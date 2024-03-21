@@ -5,12 +5,12 @@
       location = "group:Abada.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:AbadaUI/AbadaUI.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:AbadaCore/AbadaCore.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:AbadaDI/AbadaDI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:AbadaUI/AbadaUI.xcodeproj">
    </FileRef>
 </Workspace>

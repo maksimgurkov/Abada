@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -133,7 +133,8 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 6955ED7876879BC7650EA5BC /* Build configuration list for PBXProject "AbadaCore" */;
 			compatibilityVersion = "Xcode 14.0";

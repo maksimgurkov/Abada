@@ -4,14 +4,14 @@
 // Generated using tuist — https://github.com/tuist/tuist
 
 #if os(macOS)
-import AppKit
+  import AppKit
 #elseif os(iOS)
-import UIKit
+  import UIKit
 #elseif os(tvOS) || os(watchOS)
-import UIKit
+  import UIKit
 #endif
 #if canImport(SwiftUI)
-import SwiftUI
+  import SwiftUI
 #endif
 
 // swiftlint:disable superfluous_disable_command file_length implicit_return
@@ -20,72 +20,72 @@ import SwiftUI
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum AbadaAsset {
-    public static let accentColor = AbadaColors(name: "AccentColor")
+  public static let accentColor = AbadaColors(name: "AccentColor")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
 // MARK: - Implementation Details
 
 public final class AbadaColors {
-    public fileprivate(set) var name: String
+  public fileprivate(set) var name: String
 
-    #if os(macOS)
-    public typealias Color = NSColor
-    #elseif os(iOS) || os(tvOS) || os(watchOS)
-    public typealias Color = UIColor
-    #endif
+  #if os(macOS)
+  public typealias Color = NSColor
+  #elseif os(iOS) || os(tvOS) || os(watchOS)
+  public typealias Color = UIColor
+  #endif
 
-    @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
-    public private(set) lazy var color: Color = {
-        guard let color = Color(asset: self) else {
-            fatalError("Unable to load color asset named \(name).")
-        }
-        return color
-    }()
-
-    #if canImport(SwiftUI)
-    private var _swiftUIColor: Any? = nil
-    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
-    public private(set) var swiftUIColor: SwiftUI.Color {
-        get {
-            if self._swiftUIColor == nil {
-                self._swiftUIColor = SwiftUI.Color(asset: self)
-            }
-
-            return self._swiftUIColor as! SwiftUI.Color
-        }
-        set {
-            self._swiftUIColor = newValue
-        }
+  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
+  public private(set) lazy var color: Color = {
+    guard let color = Color(asset: self) else {
+      fatalError("Unable to load color asset named \(name).")
     }
-    #endif
+    return color
+  }()
 
-    fileprivate init(name: String) {
-        self.name = name
+  #if canImport(SwiftUI)
+  private var _swiftUIColor: Any? = nil
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public private(set) var swiftUIColor: SwiftUI.Color {
+    get {
+      if self._swiftUIColor == nil {
+        self._swiftUIColor = SwiftUI.Color(asset: self)
+      }
+
+      return self._swiftUIColor as! SwiftUI.Color
     }
+    set {
+      self._swiftUIColor = newValue
+    }
+  }
+  #endif
+
+  fileprivate init(name: String) {
+    self.name = name
+  }
 }
 
 public extension AbadaColors.Color {
-    @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
-    convenience init?(asset: AbadaColors) {
-        let bundle = AbadaResources.bundle
-        #if os(iOS) || os(tvOS)
-        self.init(named: asset.name, in: bundle, compatibleWith: nil)
-        #elseif os(macOS)
-        self.init(named: NSColor.Name(asset.name), bundle: bundle)
-        #elseif os(watchOS)
-        self.init(named: asset.name)
-        #endif
-    }
+  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
+  convenience init?(asset: AbadaColors) {
+    let bundle = AbadaResources.bundle
+    #if os(iOS) || os(tvOS)
+    self.init(named: asset.name, in: bundle, compatibleWith: nil)
+    #elseif os(macOS)
+    self.init(named: NSColor.Name(asset.name), bundle: bundle)
+    #elseif os(watchOS)
+    self.init(named: asset.name)
+    #endif
+  }
 }
 
 #if canImport(SwiftUI)
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public extension SwiftUI.Color {
-    init(asset: AbadaColors) {
-        let bundle = AbadaResources.bundle
-        self.init(asset.name, bundle: bundle)
-    }
+  init(asset: AbadaColors) {
+    let bundle = AbadaResources.bundle
+    self.init(asset.name, bundle: bundle)
+  }
 }
 #endif
 
