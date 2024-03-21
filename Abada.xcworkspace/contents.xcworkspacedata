@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Abada.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:AbadaUI/AbadaUI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:AbadaCore/AbadaCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:AbadaDI/AbadaDI.xcodeproj">
+   </FileRef>
+</Workspace>
