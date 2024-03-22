@@ -8,6 +8,6 @@ final class DiscountPresenter {
 // MARK: - DiscountPresenterProtocol
 extension DiscountPresenter: DiscountPresenterProtocol {
     func viewDidLoad() {
-        view?.viewTitle("Скидка")
+        // TODO: -
     }
 }
