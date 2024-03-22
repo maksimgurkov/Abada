@@ -121,4 +121,7 @@ iOSInjectionProject/
 Images
 Derived
 
+# Derived
+Derived/
+
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,cocoapods,swiftpackagemanager
