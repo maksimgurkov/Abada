@@ -11,12 +11,12 @@ extension Project {
             name: name,
             packages: packages,
             targets: [
-                Target(
+                Target.target(
                     name: name,
-                    platform: .iOS,
+                    destinations: .iOS,
                     product: .staticFramework,
                     bundleId: "maksim.gurkov.\(name)",
-                    deploymentTarget: .iOS(targetVersion: "14.0", devices: .iphone),
+                    deploymentTargets: .iOS("14.0"),
                     infoPlist: .default,
                     sources: ["\(name)/Sources/**"],
                     dependencies: dependencies

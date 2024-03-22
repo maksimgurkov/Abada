@@ -57,6 +57,13 @@
 			name = Project;
 			sourceTree = "<group>";
 		};
+		68FD80FAB2AEDFF4849568A5 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cache;
+			sourceTree = "<group>";
+		};
 		7B66DFC779FAB975B2C8A881 /* AbadaUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +77,7 @@
 			children = (
 				64E8C1C276739675F7C985D1 /* Project */,
 				FFF7052F885777EB3EF8F887 /* Frameworks */,
+				68FD80FAB2AEDFF4849568A5 /* Cache */,
 				D1F2A2DB144C3A43CE0B86E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -313,11 +321,14 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -351,7 +362,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
