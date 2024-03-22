@@ -91,9 +91,6 @@ fastlane/test_output
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
 
-iOSInjectionProject/
-Derived/
-
 ### SwiftPackageManager ###
 Packages
 xcuserdata
@@ -112,5 +109,16 @@ xcuserdata
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+# Ignore Xcode project and workspace files
+*.xcodeproj
+*.xcworkspace
+*.xcscheme
+*.xcuserstate
+
+iOSInjectionProject/
+.DS_Store
+Images
+Derived
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,cocoapods,swiftpackagemanager
