@@ -33,8 +33,14 @@ private extension NewsPresenter {
             let viewModel = NewsViewModel(
                 image: $0.image,
                 title: $0.title,
-                subTitle: $0.subTitle) {
-                self.router.routerToNewsDetail()
+                subTitle: $0.subTitle,
+                detail: DetailViewModel(
+                    title: $0.detail.title,
+                    image: $0.detail.image,
+                    description: $0.detail.description
+                )
+            ) { detail in
+                self.router.routerToNewsDetail(viewModel: detail)
             }
             models.append(viewModel)
         }

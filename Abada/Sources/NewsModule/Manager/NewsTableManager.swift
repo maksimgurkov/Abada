@@ -45,7 +45,7 @@ extension NewsTableManager: UITableViewDataSource {
 extension NewsTableManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = viewModels[indexPath.row]
-        viewModel.didTup()
+        viewModel.didTup(viewModel.detail)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

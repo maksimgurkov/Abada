@@ -1,4 +1,6 @@
 import Foundation
 
 // MARK: - NewsDetailInput
-protocol NewsDetailInput: AnyObject { }
+protocol NewsDetailInput: AnyObject {
+    func updateView(viewModel: DetailViewModel)
+}
