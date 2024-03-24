@@ -8,15 +8,27 @@ final class DiscountTableManager: NSObject {
 
 // MARK: - DiscountTableManagerProtocol
 extension DiscountTableManager: DiscountTableManagerProtocol {
+    func viewDidLoad() {
+
+    }
 
     func setup(tableView: UITableView) {
         self.tableView = tableView
         tableView.separatorStyle = .none
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
-        self.tableView?.register(BotMessageTableViewCell.self, forCellReuseIdentifier: BotMessageTableViewCell.description())
-        self.tableView?.register(UserMessageTableViewCell.self, forCellReuseIdentifier: UserMessageTableViewCell.description())
-        self.tableView?.register(ButtonMessageTableViewCell.self, forCellReuseIdentifier: ButtonMessageTableViewCell.description())
+        self.tableView?.register(
+            BotMessageTableViewCell.self,
+            forCellReuseIdentifier: BotMessageTableViewCell.description()
+        )
+        self.tableView?.register(
+            UserMessageTableViewCell.self,
+            forCellReuseIdentifier: UserMessageTableViewCell.description()
+        )
+        self.tableView?.register(
+            ButtonMessageTableViewCell.self,
+            forCellReuseIdentifier: ButtonMessageTableViewCell.description()
+        )
     }
 
     func update(viewModels: [MessageTypeCell]) {

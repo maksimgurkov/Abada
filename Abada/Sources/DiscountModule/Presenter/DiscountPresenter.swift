@@ -16,6 +16,7 @@ final class DiscountPresenter {
 extension DiscountPresenter: DiscountPresenterProtocol {
     func viewDidLoad() {
         createViewModel(viewModel: viewModel)
+        view?.viewTitle("Скидки")
     }
 }
 
