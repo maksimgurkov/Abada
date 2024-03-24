@@ -6,6 +6,7 @@ final class NewsTableViewCell: UITableViewCell {
     // MARK: - Private properties
     private let newsImage: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFill
         return image
     }()
 

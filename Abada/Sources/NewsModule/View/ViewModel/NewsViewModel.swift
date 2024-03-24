@@ -5,5 +5,12 @@ struct NewsViewModel {
     let image: String
     let title: String
     let subTitle: String
-    let didTup: () -> Void
+    let detail: DetailViewModel
+    let didTup: (DetailViewModel) -> Void
+}
+
+struct DetailViewModel {
+    let title: String
+    let image: String
+    let description: String
 }
