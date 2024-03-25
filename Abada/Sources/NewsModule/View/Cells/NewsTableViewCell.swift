@@ -13,6 +13,7 @@ final class NewsTableViewCell: UITableViewCell {
     private let newsTitle: UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.numberOfLines = 0
         return label
     }()
 
@@ -68,6 +69,7 @@ private extension NewsTableViewCell {
 
             newsTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
             newsTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            newsTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
 
             subTitle.topAnchor.constraint(equalTo: newsTitle.bottomAnchor, constant: 20),
             subTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),

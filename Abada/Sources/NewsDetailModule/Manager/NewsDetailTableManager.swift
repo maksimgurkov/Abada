@@ -55,7 +55,7 @@ extension NewsDetailTableManager: UITableViewDataSource {
                 withIdentifier: NewsDetailButtonCell.description(),
                 for: indexPath
             ) as? NewsDetailButtonCell else { return UITableViewCell() }
-            cell.fill(title: model.title)
+            cell.fill(viewModel: model)
             return cell
         }
     }
