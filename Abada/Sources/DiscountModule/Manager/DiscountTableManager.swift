@@ -65,7 +65,7 @@ extension DiscountTableManager: UITableViewDataSource {
                 withIdentifier: ButtonMessageTableViewCell.description(),
                 for: indexPath
             ) as? ButtonMessageTableViewCell else { return UITableViewCell() }
-            cell.fill(title: model.title)
+            cell.fill(viewModel: model)
             return cell
         }
 

@@ -63,8 +63,8 @@ private extension UserMessageTableViewCell {
     func addSubView() {
         contentView.addSubviews([
             avatarImageView,
-            containerView,
             tailImageView,
+            containerView,
             messageLabel
         ])
     }

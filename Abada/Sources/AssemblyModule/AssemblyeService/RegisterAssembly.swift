@@ -10,6 +10,7 @@ final class RegisterAssembly {
         WorkAssembly(),
         CompanyAssembly(),
         DiscountAssembly(),
+        PersonDiscountAssembly(),
         TabBarAssembly()
     ]
 

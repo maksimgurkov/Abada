@@ -3,10 +3,13 @@ import UIKit
 // MARK: - ChatTableViewCell
 final class ButtonMessageTableViewCell: UITableViewCell {
 
-    private lazy var button: UIButton = {
+    private var viewModel: ButtonViewModel?
+
+    private lazy var discountButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = #colorLiteral(red: 0.6082915664, green: 0.3423695564, blue: 0.268579036, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.6078431373, green: 0.3411764706, blue: 0.2666666667, alpha: 1)
         button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(tupDiscountButton), for: .touchUpInside)
         return button
     }()
 
@@ -20,8 +23,9 @@ final class ButtonMessageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func fill(title: String) {
-        self.button.setTitle(title, for: .normal)
+    func fill(viewModel: ButtonViewModel) {
+        self.discountButton.setTitle(viewModel.title, for: .normal)
+        self.viewModel = viewModel
     }
 }
 
@@ -38,7 +42,7 @@ private extension ButtonMessageTableViewCell {
 private extension ButtonMessageTableViewCell {
     func addSubView() {
         contentView.addSubviews([
-            button
+            discountButton
         ])
     }
 }
@@ -47,11 +51,18 @@ private extension ButtonMessageTableViewCell {
 private extension ButtonMessageTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            button.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            button.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
-            button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            button.heightAnchor.constraint(equalToConstant: 44)
+            discountButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            discountButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            discountButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+            discountButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            discountButton.heightAnchor.constraint(equalToConstant: 44)
         ])
+    }
+}
+
+// MARK: - Action
+private extension ButtonMessageTableViewCell {
+    @objc func tupDiscountButton() {
+        viewModel?.didTap()
     }
 }
