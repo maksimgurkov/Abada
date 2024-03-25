@@ -4,7 +4,7 @@ import Foundation
 final class NewsDetailPresenter {
 
     weak var view: NewsDetailInput?
-    
+
     // MARK: - Private properties
     private let viewModel: DetailViewModel
     private let tableManager: NewsDetailTableManagerProtocol

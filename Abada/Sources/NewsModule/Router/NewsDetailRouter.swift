@@ -13,6 +13,7 @@ final class NewsDetailRouter: NewsDetailRouterProtocol {
     func routerToNewsDetail(viewModel: DetailViewModel) {
         NewsDetailAssembly.init(viewModel: viewModel).assemble()
         @Dependency var newsDetailModule: NewsDetailViewController
+        newsDetailModule.modalPresentationStyle = .fullScreen
         view?.present(newsDetailModule, animated: true)
     }
 }
