@@ -6,9 +6,11 @@ final class DiscountPresenter {
 
     private let tableView: DiscountTableManagerProtocol
     private let viewModel = MessageData.shared.messages
+    private let router: DiscountRouterProtocol
 
-    init(tableView: DiscountTableManagerProtocol) {
+    init(tableView: DiscountTableManagerProtocol, router: DiscountRouterProtocol) {
         self.tableView = tableView
+        self.router = router
     }
 }
 
@@ -16,6 +18,7 @@ final class DiscountPresenter {
 extension DiscountPresenter: DiscountPresenterProtocol {
     func viewDidLoad() {
         createViewModel(viewModel: viewModel)
+        view?.viewTitle("Скидки")
     }
 }
 
@@ -34,7 +37,9 @@ private extension DiscountPresenter {
             viewModels.append(userTwoModel)
             let botThreeModel: MessageTypeCell = .bot(.init(image: $0.botThree.image, text: $0.botThree.text))
             viewModels.append(botThreeModel)
-            let buttonModel: MessageTypeCell = .button(.init(title: $0.button.title))
+            let buttonModel: MessageTypeCell = .button(.init(title: $0.button.title, didTap: {
+                self.router.routerToPersonDiscount()
+            }))
             viewModels.append(buttonModel)
         }
         DispatchQueue.main.async {

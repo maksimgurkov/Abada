@@ -2,14 +2,17 @@ import UIKit
 
 // MARK: - DiscountTableManager
 final class DiscountTableManager: NSObject {
-    weak var tableView: UITableView?
 
-    // MARK: - Private properties
+    weak var tableView: UITableView?
     private var viewModels = [MessageTypeCell]()
 }
 
 // MARK: - DiscountTableManagerProtocol
 extension DiscountTableManager: DiscountTableManagerProtocol {
+    func viewDidLoad() {
+        // TODO: -
+    }
+
     func setup(tableView: UITableView) {
         self.tableView = tableView
         tableView.separatorStyle = .none
@@ -63,11 +66,15 @@ extension DiscountTableManager: UITableViewDataSource {
                 withIdentifier: ButtonMessageTableViewCell.description(),
                 for: indexPath
             ) as? ButtonMessageTableViewCell else { return UITableViewCell() }
-            cell.fill(title: model.title)
+            cell.fill(viewModel: model)
             return cell
         }
+
     }
+
 }
 
 // MARK: - UITableViewDelegate
-extension DiscountTableManager: UITableViewDelegate { }
+extension DiscountTableManager: UITableViewDelegate {
+
+}
