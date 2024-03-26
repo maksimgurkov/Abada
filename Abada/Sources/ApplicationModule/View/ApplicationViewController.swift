@@ -25,6 +25,48 @@ final class ApplicationViewController: UIViewController {
         return label
     }()
 
+    private let nameTextField: CustomTextFieldUI = {
+        return CustomTextFieldUI(placeholder: "Ваше имя")
+    }()
+
+    private let numberPhoneTextField: CustomTextFieldUI = {
+        let textField = CustomTextFieldUI(placeholder: "Телефон")
+        return textField
+    }()
+
+    private let emailTextField: CustomTextFieldUI = {
+        let textField = CustomTextFieldUI(placeholder: "Email - по желанию")
+        return textField
+    }()
+
+    private let applicationTextField: CustomTextFieldUI = {
+        return CustomTextFieldUI(placeholder: "Интересующая услуга например - Пол")
+    }()
+
+    private lazy var checkButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "square"), for: .normal)
+        button.tintColor = .systemGray6
+        button.addTarget(self, action: #selector(tupCheckButton), for: .touchUpInside)
+        return button
+    }()
+
+    private let dataLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .gray
+        label.text = "Соглашаюсь на обработку персональных данных"
+        return label
+    }()
+
+    private let sendButton: BigButtonUI = {
+        let button = BigButtonUI(title: "Отправить")
+        button.isHidden = true
+        return button
+    }()
+
+    private var isEmpty = false
+
     // MARK: - Initialisers
     init(presenter: ApplicationPresenterProtocol) {
         self.presenter = presenter
@@ -60,7 +102,20 @@ private extension ApplicationViewController {
 // MARK: - Setting
 private extension ApplicationViewController {
     func addSubView() {
-        view.addSubviews([closeButton, titleLabel, descriptionLabel])
+        view.addSubviews(
+            [
+                closeButton,
+                titleLabel,
+                descriptionLabel,
+                nameTextField,
+                numberPhoneTextField,
+                emailTextField,
+                applicationTextField,
+                checkButton,
+                dataLabel,
+                sendButton
+            ]
+        )
     }
 }
 
@@ -76,7 +131,35 @@ private extension ApplicationViewController {
 
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             descriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            descriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+            descriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+
+            nameTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            nameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+
+            numberPhoneTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
+            numberPhoneTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            numberPhoneTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+
+            emailTextField.topAnchor.constraint(equalTo: numberPhoneTextField.bottomAnchor, constant: 20),
+            emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+
+            applicationTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
+            applicationTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            applicationTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+
+            checkButton.topAnchor.constraint(equalTo: applicationTextField.bottomAnchor, constant: 20),
+            checkButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            checkButton.heightAnchor.constraint(equalToConstant: 25),
+            checkButton.widthAnchor.constraint(equalToConstant: 25),
+
+            dataLabel.leftAnchor.constraint(equalTo: checkButton.rightAnchor, constant: 10),
+            dataLabel.centerYAnchor.constraint(equalTo: checkButton.centerYAnchor),
+
+            sendButton.topAnchor.constraint(equalTo: dataLabel.bottomAnchor, constant: 20),
+            sendButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            sendButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
         ])
     }
 }
@@ -86,5 +169,20 @@ private extension ApplicationViewController {
     @objc
     func tupCloseButton() {
         dismiss(animated: true)
+    }
+
+    @objc
+    func tupCheckButton(sender: UIButton) {
+        if !isEmpty {
+            sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+            sender.tintColor = .brown
+            isEmpty.toggle()
+            sendButton.isHidden = false
+        } else if isEmpty {
+            sender.setImage(UIImage(systemName: "square"), for: .normal)
+            sender.tintColor = .systemGray6
+            isEmpty.toggle()
+            sendButton.isHidden = true
+        }
     }
 }

@@ -7,7 +7,7 @@ final class NewsDetailButtonCell: UITableViewCell {
     // MARK: - Private properties
     private var viewModel: NewsButtonViewModel?
     private let detailButton: BigButtonUI = {
-        let button = BigButtonUI()
+        let button = BigButtonUI(title: "")
         return button
     }()
 
