@@ -11,7 +11,8 @@ final class RegisterAssembly {
         CompanyAssembly(),
         DiscountAssembly(),
         PersonDiscountAssembly(),
-        TabBarAssembly()
+        TabBarAssembly(),
+        ApplicationAssembly()
     ]
 
     func registerAssembly() {
