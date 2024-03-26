@@ -6,6 +6,10 @@ final class WorkViewController: UIViewController {
     // MARK: - Private properties
     private let presenter: WorkPresenterProtocol
 
+    lazy var tableView: UITableView = {
+        return UITableView(frame: .zero, style: .plain)
+    }()
+
     // MARK: - Initialisers
     init(presenter: WorkPresenterProtocol) {
         self.presenter = presenter
@@ -36,12 +40,25 @@ private extension WorkViewController {
     func setupView() {
         view.backgroundColor = .systemBackground
         addSubView()
+        setConstraints()
     }
 }
 
 // MARK: - Setting
 private extension WorkViewController {
     func addSubView() {
-        // TODO: - добавление SubView
+        view.addSubviews([tableView])
+    }
+}
+
+// MARK: - Layout
+private extension WorkViewController {
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
