@@ -10,7 +10,9 @@ final class RegisterAssembly {
         WorkAssembly(),
         CompanyAssembly(),
         DiscountAssembly(),
-        TabBarAssembly()
+        PersonDiscountAssembly(),
+        TabBarAssembly(),
+        ApplicationAssembly()
     ]
 
     func registerAssembly() {

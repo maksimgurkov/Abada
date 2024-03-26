@@ -4,15 +4,21 @@ import Foundation
 final class NewsDetailPresenter {
 
     weak var view: NewsDetailInput?
-    
+
     // MARK: - Private properties
     private let viewModel: DetailViewModel
     private let tableManager: NewsDetailTableManagerProtocol
+    private let router: ApplicationRouterProtocol
 
     // MARK: - Initialisers
-    init(viewModel: DetailViewModel, tableManager: NewsDetailTableManagerProtocol) {
+    init(
+        viewModel: DetailViewModel,
+        tableManager: NewsDetailTableManagerProtocol,
+        router: ApplicationRouterProtocol
+    ) {
         self.viewModel = viewModel
         self.tableManager = tableManager
+        self.router = router
     }
 }
 
@@ -35,7 +41,14 @@ private extension NewsDetailPresenter {
         let descriptionModel: NewsTypeCell = .newsDescription(.init(description: viewModel.description))
         viewModels.append(descriptionModel)
 
-        let newsButtonViewModel: NewsTypeCell = .newsButton(.init(title: "Оставить заявку"))
+        let newsButtonViewModel: NewsTypeCell = .newsButton(
+            .init(
+                title: "Оставить заявку",
+                didTup: {
+                    self.router.routerToApplication()
+                }
+            )
+        )
         viewModels.append(newsButtonViewModel)
 
         DispatchQueue.main.async {

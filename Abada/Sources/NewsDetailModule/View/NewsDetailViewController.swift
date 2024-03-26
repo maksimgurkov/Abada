@@ -16,6 +16,7 @@ final class NewsDetailViewController: UIViewController {
 
     private lazy var closeButton: CloseButtonUI = {
         let button = CloseButtonUI()
+        button.addTarget(self, action: #selector(tupCloseButton), for: .touchUpInside)
         return button
     }()
 
@@ -68,17 +69,24 @@ private extension NewsDetailViewController {
 private extension NewsDetailViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -70),
 
-            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             closeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
 
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+}
+
+private extension NewsDetailViewController {
+    @objc
+    func tupCloseButton() {
+        dismiss(animated: true)
     }
 }

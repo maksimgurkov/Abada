@@ -18,4 +18,5 @@ struct UserViewModel {
 
 struct ButtonViewModel {
     let title: String
+    let didTap: () -> Void
 }

@@ -5,8 +5,9 @@ import AbadaUI
 final class NewsDetailButtonCell: UITableViewCell {
 
     // MARK: - Private properties
+    private var viewModel: NewsButtonViewModel?
     private let detailButton: BigButtonUI = {
-        let button = BigButtonUI()
+        let button = BigButtonUI(title: "")
         return button
     }()
 
@@ -21,8 +22,9 @@ final class NewsDetailButtonCell: UITableViewCell {
     }
 
     // MARK: - Public functions
-    func fill(title: String) {
-        self.detailButton.setTitle(title, for: .normal)
+    func fill(viewModel: NewsButtonViewModel) {
+        self.viewModel = viewModel
+        self.detailButton.setTitle(viewModel.title, for: .normal)
     }
 }
 
@@ -30,6 +32,7 @@ final class NewsDetailButtonCell: UITableViewCell {
 private extension NewsDetailButtonCell {
     func setupView() {
         selectionStyle = .none
+        detailButton.addTarget(self, action: #selector(tupDetailButton), for: .touchUpInside)
         addSubView()
         setConstraints()
     }
@@ -50,5 +53,13 @@ private extension NewsDetailButtonCell {
             detailButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             detailButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
+    }
+}
+
+// MARK: - Actions
+private extension NewsDetailButtonCell {
+    @objc
+    func tupDetailButton() {
+        viewModel?.didTup()
     }
 }

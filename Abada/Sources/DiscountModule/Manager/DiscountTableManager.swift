@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - DiscountTableManager
 final class DiscountTableManager: NSObject {
 
     weak var tableView: UITableView?
@@ -8,15 +9,27 @@ final class DiscountTableManager: NSObject {
 
 // MARK: - DiscountTableManagerProtocol
 extension DiscountTableManager: DiscountTableManagerProtocol {
+    func viewDidLoad() {
+        // TODO: -
+    }
 
     func setup(tableView: UITableView) {
         self.tableView = tableView
         tableView.separatorStyle = .none
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
-        self.tableView?.register(BotMessageTableViewCell.self, forCellReuseIdentifier: BotMessageTableViewCell.description())
-        self.tableView?.register(UserMessageTableViewCell.self, forCellReuseIdentifier: UserMessageTableViewCell.description())
-        self.tableView?.register(ButtonMessageTableViewCell.self, forCellReuseIdentifier: ButtonMessageTableViewCell.description())
+        self.tableView?.register(
+            BotMessageTableViewCell.self,
+            forCellReuseIdentifier: BotMessageTableViewCell.description()
+        )
+        self.tableView?.register(
+            UserMessageTableViewCell.self,
+            forCellReuseIdentifier: UserMessageTableViewCell.description()
+        )
+        self.tableView?.register(
+            ButtonMessageTableViewCell.self,
+            forCellReuseIdentifier: ButtonMessageTableViewCell.description()
+        )
     }
 
     func update(viewModels: [MessageTypeCell]) {
@@ -53,7 +66,7 @@ extension DiscountTableManager: UITableViewDataSource {
                 withIdentifier: ButtonMessageTableViewCell.description(),
                 for: indexPath
             ) as? ButtonMessageTableViewCell else { return UITableViewCell() }
-            cell.fill(title: model.title)
+            cell.fill(viewModel: model)
             return cell
         }
 

@@ -2,6 +2,7 @@ import UIKit
 
 // MARK: - NewsTableManager
 final class NewsTableManager: NSObject {
+
     weak var tableView: UITableView?
 
     // MARK: - Private properties

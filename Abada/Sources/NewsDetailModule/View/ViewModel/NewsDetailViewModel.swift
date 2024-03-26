@@ -20,4 +20,5 @@ struct NewsDescriptionViewModel {
 // MARK: - NewsButtonViewModel
 struct NewsButtonViewModel {
     let title: String
+    let didTup: () -> Void
 }
