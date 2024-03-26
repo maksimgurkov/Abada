@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - DiscountTableManager
 final class DiscountTableManager: NSObject {
 
     weak var tableView: UITableView?
@@ -9,7 +10,7 @@ final class DiscountTableManager: NSObject {
 // MARK: - DiscountTableManagerProtocol
 extension DiscountTableManager: DiscountTableManagerProtocol {
     func viewDidLoad() {
-
+        // TODO: -
     }
 
     func setup(tableView: UITableView) {
