@@ -17,25 +17,56 @@ final class CompanyPresenter {
 extension CompanyPresenter: CompanyPresenterProtocol {
     func viewDidLoad() {
         view?.viewTitle("О нас")
-        createViewModel(viewModels: viewModels)
+        createViewModel(viewModel: viewModels)
     }
 }
 
 // MARK: - Setting
 private extension CompanyPresenter {
-    func createViewModel(viewModels: [CompanyModel]) {
-        var models = [CompanyViewModel]()
+    func createViewModel(viewModel: CompanyModel) {
+        var viewModels = [CompanyTypeCell]()
+        var certificates = [CertificatViewModel]()
+        var partners = [PartnerViewModel]()
 
-        viewModels.forEach {
-            let viewModel = CompanyViewModel(
-                title: $0.title,
-                subtitle: $0.subTitle,
-                description: $0.description
+        let companyViewModel: CompanyTypeCell = .companyCell(
+            .init(
+                title: viewModel.title,
+                description: viewModel.description,
+                image: viewModel.image
             )
-            models.append(viewModel)
+        )
+        viewModels.append(companyViewModel)
+
+        let headerCertificate: CompanyTypeCell = .collectionHeader(.init(title: "Лицензии"))
+        viewModels.append(headerCertificate)
+
+        viewModel.certificates.forEach {
+            let certificat = CertificatViewModel(
+                title: $0.title,
+                subTitle: $0.subTitle,
+                image: $0.image
+            )
+            certificates.append(certificat)
         }
+        let certificatViewModel: CompanyTypeCell = .collectionCertificateCell(.init(certificates: certificates))
+        viewModels.append(certificatViewModel)
+        certificates = []
+
+        let headerPartner: CompanyTypeCell = .collectionHeader(.init(title: "Партнёры"))
+        viewModels.append(headerPartner)
+
+        viewModel.pertners.forEach {
+            let partner = PartnerViewModel(
+                title: $0.title,
+                image: $0.image
+            )
+            partners.append(partner)
+        }
+        let partnerViewModel: CompanyTypeCell = .collectionPartnerCell(.init(partners: partners))
+        viewModels.append(partnerViewModel)
+
         DispatchQueue.main.async {
-            self.tableManager.update(viewModels: models)
+            self.tableManager.update(viewModels: viewModels)
         }
     }
 }
