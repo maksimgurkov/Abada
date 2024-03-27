@@ -32,7 +32,7 @@ private extension PartnerTableViewCell {
         setConstraints()
 
         collectionView.showsHorizontalScrollIndicator = false
-        
+
         collectionView.dataSource = self
         collectionView.delegate = self
 
