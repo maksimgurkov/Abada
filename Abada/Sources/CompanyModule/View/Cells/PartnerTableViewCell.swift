@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: - CertificateCell
-final class CollectionPartnersCell: UITableViewCell {
+final class PartnerTableViewCell: UITableViewCell {
 
     private var viewModels: PartnerViewModels?
     private let layout = UICollectionViewFlowLayout()
@@ -26,22 +26,24 @@ final class CollectionPartnersCell: UITableViewCell {
 }
 
 // MARK: - SetupView
-private extension CollectionPartnersCell {
+private extension PartnerTableViewCell {
     func setupView() {
         addSubView()
         setConstraints()
 
+        collectionView.showsHorizontalScrollIndicator = false
+        
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        collectionView.register(PartnerCell.self, forCellWithReuseIdentifier: PartnerCell.description())
+        collectionView.register(PartnerCollectionViewCell.self, forCellWithReuseIdentifier: PartnerCollectionViewCell.description())
 
         setupLayout()
     }
 }
 
 // MARK: - Setting
-private extension CollectionPartnersCell {
+private extension PartnerTableViewCell {
     func addSubView() {
         contentView.addSubviews([
             collectionView
@@ -54,7 +56,7 @@ private extension CollectionPartnersCell {
 }
 
 // MARK: - Layout
-private extension CollectionPartnersCell {
+private extension PartnerTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -67,7 +69,7 @@ private extension CollectionPartnersCell {
 }
 
 // MARK: - UICollectionViewDataSource
-extension CollectionPartnersCell: UICollectionViewDataSource {
+extension PartnerTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModels?.partners.count ?? 0
     }
@@ -77,9 +79,9 @@ extension CollectionPartnersCell: UICollectionViewDataSource {
         let viewModel = viewModels?.partners[indexPath.item]
 
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: PartnerCell.description(),
+            withReuseIdentifier: PartnerCollectionViewCell.description(),
             for: indexPath
-        ) as? PartnerCell else { return UICollectionViewCell() }
+        ) as? PartnerCollectionViewCell else { return UICollectionViewCell() }
         cell.fill(
             image: viewModel?.image ?? "",
             title: viewModel?.title ?? ""
@@ -90,12 +92,12 @@ extension CollectionPartnersCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegate
-extension CollectionPartnersCell: UICollectionViewDelegate {
+extension PartnerTableViewCell: UICollectionViewDelegate {
 
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension CollectionPartnersCell: UICollectionViewDelegateFlowLayout {
+extension PartnerTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

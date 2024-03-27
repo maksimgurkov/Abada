@@ -65,6 +65,9 @@ private extension CompanyPresenter {
         let partnerViewModel: CompanyTypeCell = .collectionPartnerCell(.init(partners: partners))
         viewModels.append(partnerViewModel)
 
+        let requisites: CompanyTypeCell = .collectionHeader(.init(title: "Реквизиты"))
+        viewModels.append(requisites)
+
         DispatchQueue.main.async {
             self.tableManager.update(viewModels: viewModels)
         }

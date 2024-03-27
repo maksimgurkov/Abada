@@ -1,20 +1,21 @@
 import UIKit
 
-// MARK: - CertificateHeaderCell
-final class CertificateHeaderCell: UITableViewCell {
+// MARK: - RequisitesTableViewCell
+final class RequisitesTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.numberOfLines = 0
         return label
     }()
 
-    private let seporatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .secondarySystemBackground
-        return view
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.numberOfLines = 0
+        return label
     }()
 
     // MARK: - Init
@@ -27,41 +28,41 @@ final class CertificateHeaderCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func fill(title: String) {
+    func fill(title: String, description: String) {
         self.titleLabel.text = title
+        self.descriptionLabel.text = description
     }
 }
 
 // MARK: - SetupView
-private extension CertificateHeaderCell {
+private extension RequisitesTableViewCell {
     func setupView() {
         addSubView()
         setConstraints()
     }
 }
 
-// MARK: - Setting
-private extension CertificateHeaderCell {
+// MARK: - SettingView
+private extension RequisitesTableViewCell {
     func addSubView() {
         contentView.addSubviews([
             titleLabel,
-            seporatorView
+            descriptionLabel
         ])
     }
 }
 
 // MARK: - Layout
-private extension CertificateHeaderCell {
+private extension RequisitesTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
-            titleLabel.bottomAnchor.constraint(equalTo: seporatorView.topAnchor, constant: 8),
 
-            seporatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            seporatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
-            seporatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
     }
 }

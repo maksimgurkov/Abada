@@ -5,6 +5,7 @@ enum CompanyTypeCell {
     case collectionHeader(CertificatHeaderViewModel)
     case collectionCertificateCell(CertificatViewModels)
     case collectionPartnerCell(PartnerViewModels)
+    case collectionRequisitesCell(RequisitesViewModels)
 }
 
 // MARK: - CompanyViewModel
@@ -35,4 +36,13 @@ struct PartnerViewModels {
 struct PartnerViewModel {
     let title: String
     let image: String
+}
+
+struct RequisitesViewModels {
+    let requisites: [RequisitesViewModel]
+}
+
+struct RequisitesViewModel {
+    let title: String
+    let description: String
 }

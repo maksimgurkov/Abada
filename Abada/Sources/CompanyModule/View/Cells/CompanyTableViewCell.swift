@@ -18,9 +18,11 @@ final class CompanyTableViewCell: UITableViewCell {
         return label
     }()
 
-    private let photoImageView: UIImageView = {
+    private lazy var photoImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 8
+        image.clipsToBounds = true
         image.image = UIImage(named: "companyDetail_onas")
         return image
     }()
@@ -66,8 +68,8 @@ private extension CompanyTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            photoImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            photoImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            photoImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            photoImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
             photoImageView.heightAnchor.constraint(equalToConstant: 200),
 
             titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 20),

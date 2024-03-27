@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: - CertificateCell
-final class CollectionCertificatesCell: UITableViewCell {
+final class CertificatTableViewCell: UITableViewCell {
 
     private var viewModels: CertificatViewModels?
     private let layout = UICollectionViewFlowLayout()
@@ -26,22 +26,25 @@ final class CollectionCertificatesCell: UITableViewCell {
 }
 
 // MARK: - SetupView
-private extension CollectionCertificatesCell {
+private extension CertificatTableViewCell {
     func setupView() {
         addSubView()
         setConstraints()
 
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.bounces = false
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        collectionView.register(CertificateCell.self, forCellWithReuseIdentifier: CertificateCell.description())
+        collectionView.register(CertificatCollectionViewCell.self, forCellWithReuseIdentifier: CertificatCollectionViewCell.description())
 
         setupLayout()
     }
 }
 
 // MARK: - Setting
-private extension CollectionCertificatesCell {
+private extension CertificatTableViewCell {
     func addSubView() {
         contentView.addSubviews([
             collectionView
@@ -49,25 +52,26 @@ private extension CollectionCertificatesCell {
     }
 
     func setupLayout() {
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.minimumLineSpacing = 40
         layout.scrollDirection = .horizontal
     }
 }
 
 // MARK: - Layout
-private extension CollectionCertificatesCell {
+private extension CertificatTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 200)
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
 
 // MARK: - UICollectionViewDataSource
-extension CollectionCertificatesCell: UICollectionViewDataSource {
+extension CertificatTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModels?.certificates.count ?? 0
     }
@@ -77,9 +81,9 @@ extension CollectionCertificatesCell: UICollectionViewDataSource {
         let viewModel = viewModels?.certificates[indexPath.item]
 
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CertificateCell.description(),
+            withReuseIdentifier: CertificatCollectionViewCell.description(),
             for: indexPath
-        ) as? CertificateCell else { return UICollectionViewCell() }
+        ) as? CertificatCollectionViewCell else { return UICollectionViewCell() }
         cell.fill(
             image: viewModel?.image ?? "",
             title: viewModel?.title ?? "",
@@ -91,17 +95,17 @@ extension CollectionCertificatesCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegate
-extension CollectionCertificatesCell: UICollectionViewDelegate {
+extension CertificatTableViewCell: UICollectionViewDelegate {
 
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension CollectionCertificatesCell: UICollectionViewDelegateFlowLayout {
+extension CertificatTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        CGSize(width: contentView.frame.width, height: 500)
+        CGSize(width: collectionView.frame.width - 40, height: collectionView.frame.height)
     }
 }

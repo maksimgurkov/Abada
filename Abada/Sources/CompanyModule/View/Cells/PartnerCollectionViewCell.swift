@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: - PartnerCollectionCell
-final class PartnerCell: UICollectionViewCell {
+final class PartnerCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private properties
     private let photoImageView: UIImageView = {
@@ -33,7 +33,7 @@ final class PartnerCell: UICollectionViewCell {
 }
 
 // MARK: - SetupView
-private extension PartnerCell {
+private extension PartnerCollectionViewCell {
     func setupView() {
         addSubView()
         setConstraints()
@@ -41,7 +41,7 @@ private extension PartnerCell {
 }
 
 // MARK: - Setting
-private extension PartnerCell {
+private extension PartnerCollectionViewCell {
     func addSubView() {
         contentView.addSubviews([
             photoImageView,
@@ -51,7 +51,7 @@ private extension PartnerCell {
 }
 
 // MARK: - Layout
-private extension PartnerCell {
+private extension PartnerCollectionViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             photoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -59,7 +59,7 @@ private extension PartnerCell {
             photoImageView.heightAnchor.constraint(equalToConstant: 50),
             photoImageView.widthAnchor.constraint(equalToConstant: 100),
 
-            titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10),
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }

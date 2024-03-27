@@ -8,6 +8,7 @@ struct CompanyModel {
     let image: String
     let certificates: [CertificatModel]
     let pertners: [PartnerModel]
+    let requisites: [RequisitesModel]
 }
 
 struct CertificatModel {
@@ -19,6 +20,11 @@ struct CertificatModel {
 struct PartnerModel {
     let title: String
     let image: String
+}
+
+struct RequisitesModel {
+    let title: String
+    let description: String
 }
 
 struct CompanyData {
@@ -89,6 +95,40 @@ struct CompanyData {
                 PartnerModel(
                     title: "HOPTA",
                     image: "HOPTA"
+                )
+            ],
+            requisites: [
+                RequisitesModel(
+                    title: "Полное наименование:",
+                    description: "Общество с ограниченной ответственностью «Абада Груп»"
+                ),
+                RequisitesModel(
+                    title: "ИНН/КПП:",
+                    description: "7713609655/771301001"
+                ),
+                RequisitesModel(
+                    title: "ОГРН:",
+                    description: "1077746308815"
+                ),
+                RequisitesModel(
+                    title: "Юридический адрес:",
+                    description: "127247, Москва, Дмитровское ш., д. 100, стр.2, оф. 2104"
+                ),
+                RequisitesModel(
+                    title: "Почтовый адрес:",
+                    description: "127247, Москва, Дмитровское ш., д. 100, стр.2, оф. 2104"
+                ),
+                RequisitesModel(
+                    title: "Телефон, факс:",
+                    description: "+7 (495) 280-00-00"
+                ),
+                RequisitesModel(
+                    title: "Электронная почта:",
+                    description: "info@abada.ru"
+                ),
+                RequisitesModel(
+                    title: "Банковские реквизиты:",
+                    description: "БИК 044525225 Р/с №40702810638040115528 в ПАО Сбербанк г.Москва, Кор/счет 30101810400000000225"
                 )
             ]
         )

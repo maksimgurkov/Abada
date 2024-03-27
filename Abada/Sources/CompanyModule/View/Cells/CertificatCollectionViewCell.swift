@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: - CertificatCollectionCell
-final class CertificateCell: UICollectionViewCell {
+final class CertificatCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private properties
     private let photoImageView: UIImageView = {
@@ -41,15 +41,18 @@ final class CertificateCell: UICollectionViewCell {
 }
 
 // MARK: - SetupView
-private extension CertificateCell {
+private extension CertificatCollectionViewCell {
     func setupView() {
+        backgroundColor = .secondarySystemBackground
+        layer.cornerRadius = 15
+
         addSubView()
         setConstraints()
     }
 }
 
 // MARK: - Setting
-private extension CertificateCell {
+private extension CertificatCollectionViewCell {
     func addSubView() {
         contentView.addSubviews([
             photoImageView,
@@ -60,7 +63,7 @@ private extension CertificateCell {
 }
 
 // MARK: - Layput
-private extension CertificateCell {
+private extension CertificatCollectionViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
