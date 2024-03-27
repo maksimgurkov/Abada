@@ -3,19 +3,11 @@ import UIKit
 // MARK: - RequisitesTableViewCell
 final class RequisitesTableViewCell: UITableViewCell {
 
-    // MARK: - Private properties
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.numberOfLines = 0
-        return label
-    }()
+    // MARK: Private propertyes
+    private var viewModels: RequisitesViewModels?
 
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.numberOfLines = 0
-        return label
+    private let tableView: UITableView = {
+        return UITableView(frame: .zero, style: .plain)
     }()
 
     // MARK: - Init
@@ -28,26 +20,32 @@ final class RequisitesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func fill(title: String, description: String) {
-        self.titleLabel.text = title
-        self.descriptionLabel.text = description
+    func fill(viewModels: RequisitesViewModels) {
+        self.viewModels = viewModels
     }
 }
 
 // MARK: - SetupView
 private extension RequisitesTableViewCell {
     func setupView() {
+        tableView.showsVerticalScrollIndicator = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(
+            DetailRequisitesTableViewCell.self,
+            forCellReuseIdentifier: DetailRequisitesTableViewCell.description()
+        )
+
         addSubView()
         setConstraints()
     }
 }
 
-// MARK: - SettingView
+// MARK: - Setting
 private extension RequisitesTableViewCell {
     func addSubView() {
         contentView.addSubviews([
-            titleLabel,
-            descriptionLabel
+            tableView
         ])
     }
 }
@@ -56,13 +54,37 @@ private extension RequisitesTableViewCell {
 private extension RequisitesTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
-
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+            tableView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
+}
+
+// MARK: - UITableViewDataSource
+extension RequisitesTableViewCell: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModels?.requisites.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let viewModel = viewModels?.requisites[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: DetailRequisitesTableViewCell.description(),
+            for: indexPath
+        ) as? DetailRequisitesTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.fill(
+            title: viewModel?.title ?? "",
+            description: viewModel?.description ?? ""
+        )
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension RequisitesTableViewCell: UITableViewDelegate {
+
 }

@@ -2,10 +2,11 @@ import Foundation
 
 enum CompanyTypeCell {
     case companyCell(CompanyViewModel)
-    case collectionHeader(CertificatHeaderViewModel)
+    case headerCell(CertificatHeaderViewModel)
     case collectionCertificateCell(CertificatViewModels)
     case collectionPartnerCell(PartnerViewModels)
     case collectionRequisitesCell(RequisitesViewModels)
+    case applicationButtonCell(NewsButtonViewModel)
 }
 
 // MARK: - CompanyViewModel

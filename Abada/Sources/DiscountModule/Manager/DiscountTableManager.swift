@@ -16,6 +16,7 @@ extension DiscountTableManager: DiscountTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
         self.tableView?.register(

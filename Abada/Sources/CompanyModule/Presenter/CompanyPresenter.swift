@@ -7,9 +7,11 @@ final class CompanyPresenter {
     // MARK: - Private properties
     private let tableManager: CompanyTableManagerProtocol
     private let viewModels = CompanyData.shared.company
+    private let router: ApplicationRouterProtocol
 
-    init(tableView: CompanyTableManagerProtocol) {
+    init(tableView: CompanyTableManagerProtocol, router: ApplicationRouterProtocol) {
         self.tableManager = tableView
+        self.router = router
     }
 }
 
@@ -27,6 +29,7 @@ private extension CompanyPresenter {
         var viewModels = [CompanyTypeCell]()
         var certificates = [CertificatViewModel]()
         var partners = [PartnerViewModel]()
+        var requisitesViewModel = [RequisitesViewModel]()
 
         let companyViewModel: CompanyTypeCell = .companyCell(
             .init(
@@ -37,7 +40,7 @@ private extension CompanyPresenter {
         )
         viewModels.append(companyViewModel)
 
-        let headerCertificate: CompanyTypeCell = .collectionHeader(.init(title: "Лицензии"))
+        let headerCertificate: CompanyTypeCell = .headerCell(.init(title: "Лицензии"))
         viewModels.append(headerCertificate)
 
         viewModel.certificates.forEach {
@@ -52,7 +55,7 @@ private extension CompanyPresenter {
         viewModels.append(certificatViewModel)
         certificates = []
 
-        let headerPartner: CompanyTypeCell = .collectionHeader(.init(title: "Партнёры"))
+        let headerPartner: CompanyTypeCell = .headerCell(.init(title: "Партнёры"))
         viewModels.append(headerPartner)
 
         viewModel.pertners.forEach {
@@ -65,8 +68,23 @@ private extension CompanyPresenter {
         let partnerViewModel: CompanyTypeCell = .collectionPartnerCell(.init(partners: partners))
         viewModels.append(partnerViewModel)
 
-        let requisites: CompanyTypeCell = .collectionHeader(.init(title: "Реквизиты"))
+        let requisites: CompanyTypeCell = .headerCell(.init(title: "Реквизиты"))
         viewModels.append(requisites)
+
+        viewModel.requisites.forEach {
+            let requisitesModel = RequisitesViewModel(
+                title: $0.title,
+                description: $0.description
+            )
+            requisitesViewModel.append(requisitesModel)
+        }
+        let model: CompanyTypeCell = .collectionRequisitesCell(.init(requisites: requisitesViewModel))
+        viewModels.append(model)
+
+        let applicationButton: CompanyTypeCell = .applicationButtonCell(.init(title: "Оставить заявку", didTup: {
+            self.router.routerToApplication()
+        }))
+        viewModels.append(applicationButton)
 
         DispatchQueue.main.async {
             self.tableManager.update(viewModels: viewModels)

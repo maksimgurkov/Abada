@@ -36,7 +36,10 @@ private extension PartnerTableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        collectionView.register(PartnerCollectionViewCell.self, forCellWithReuseIdentifier: PartnerCollectionViewCell.description())
+        collectionView.register(
+            PartnerCollectionViewCell.self,
+            forCellWithReuseIdentifier: PartnerCollectionViewCell.description()
+        )
 
         setupLayout()
     }
@@ -74,7 +77,10 @@ extension PartnerTableViewCell: UICollectionViewDataSource {
         viewModels?.partners.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
 
         let viewModel = viewModels?.partners[indexPath.item]
 
@@ -88,7 +94,6 @@ extension PartnerTableViewCell: UICollectionViewDataSource {
         )
         return cell
     }
-
 }
 
 // MARK: - UICollectionViewDelegate
