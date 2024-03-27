@@ -7,6 +7,8 @@ final class NewsTableViewCell: UITableViewCell {
     private let newsImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 8
+        image.layer.masksToBounds = true
         return image
     }()
 
@@ -37,8 +39,6 @@ final class NewsTableViewCell: UITableViewCell {
 
     func fill(viewModel: NewsViewModel) {
         self.newsImage.image = UIImage(named: viewModel.image)
-        self.newsTitle.text = viewModel.title
-        self.subTitle.text = viewModel.subTitle
     }
 }
 
@@ -63,17 +63,18 @@ private extension NewsTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             newsImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            newsImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            newsImage.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            newsImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            newsImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             newsImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
-            newsTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
+            //            newsTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
             newsTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             newsTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+            newsTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
 
-            subTitle.topAnchor.constraint(equalTo: newsTitle.bottomAnchor, constant: 20),
-            subTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            subTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+            //            subTitle.topAnchor.constraint(equalTo: newsTitle.bottomAnchor, constant: 20),
+            //            subTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            //            subTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
     }
 }

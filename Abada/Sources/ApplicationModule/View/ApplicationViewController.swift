@@ -46,7 +46,7 @@ final class ApplicationViewController: UIViewController {
     private lazy var checkButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "square"), for: .normal)
-        button.tintColor = .systemGray6
+        button.tintColor = .systemGray
         button.addTarget(self, action: #selector(tupCheckButton), for: .touchUpInside)
         return button
     }()
@@ -175,12 +175,12 @@ private extension ApplicationViewController {
     func tupCheckButton(sender: UIButton) {
         if !isEmpty {
             sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-            sender.tintColor = .brown
+            sender.tintColor = .gray
             isEmpty.toggle()
             sendButton.isHidden = false
         } else if isEmpty {
             sender.setImage(UIImage(systemName: "square"), for: .normal)
-            sender.tintColor = .systemGray6
+            sender.tintColor = .gray
             isEmpty.toggle()
             sendButton.isHidden = true
         }
