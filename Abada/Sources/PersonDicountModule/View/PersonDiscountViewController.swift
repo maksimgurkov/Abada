@@ -15,7 +15,7 @@ final class PersonDiscountViewController: UIViewController {
 
     private let substrateView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.2605251372, green: 0.5434525609, blue: 0.9710552096, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
         view.layer.cornerRadius = 8
         return view
     }()
@@ -30,7 +30,7 @@ final class PersonDiscountViewController: UIViewController {
 
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "На монтаж радиаторов отопления и систем кондиционирования"
+        label.text = "На монтаж радиаторов отопления и систем кондиционирования."
         label.numberOfLines = 0
         return label
     }()
@@ -40,7 +40,7 @@ final class PersonDiscountViewController: UIViewController {
         label.text = "ABADA30"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
 

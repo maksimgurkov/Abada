@@ -6,7 +6,7 @@ final class UserMessageTableViewCell: UITableViewCell {
     // MARK: Private property
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.2605251372, green: 0.5434525609, blue: 0.9710552096, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
         view.layer.cornerRadius = 15
         return view
     }()
@@ -14,7 +14,7 @@ final class UserMessageTableViewCell: UITableViewCell {
     private let tailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "triangle.fill")
-        imageView.tintColor = #colorLiteral(red: 0.2605251372, green: 0.5434525609, blue: 0.9710552096, alpha: 1)
+        imageView.tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -29,7 +29,7 @@ final class UserMessageTableViewCell: UITableViewCell {
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
