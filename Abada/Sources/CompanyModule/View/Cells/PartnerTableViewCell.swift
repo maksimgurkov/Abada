@@ -32,7 +32,8 @@ private extension PartnerTableViewCell {
         setConstraints()
 
         collectionView.showsHorizontalScrollIndicator = false
-
+        collectionView.isPagingEnabled = true
+        collectionView.bounces = false
         collectionView.dataSource = self
         collectionView.delegate = self
 
@@ -54,6 +55,8 @@ private extension PartnerTableViewCell {
     }
 
     func setupLayout() {
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.minimumLineSpacing = 40
         layout.scrollDirection = .horizontal
     }
 }
@@ -108,6 +111,6 @@ extension PartnerTableViewCell: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        CGSize(width: contentView.frame.width / 3, height: 200)
+        CGSize(width: collectionView.frame.width / 3 - 40, height: collectionView.frame.height)
     }
 }

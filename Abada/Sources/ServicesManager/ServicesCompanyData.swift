@@ -85,8 +85,8 @@ struct CompanyData {
                     image: "RMS"
                 ),
                 PartnerModel(
-                    title: "Rossinka",
-                    image: "Rossinka"
+                    title: "ROSSINKA",
+                    image: "ROSSINKA"
                 ),
                 PartnerModel(
                     title: "LEMARK",
