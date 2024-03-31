@@ -32,11 +32,15 @@ private extension PartnerTableViewCell {
         setConstraints()
 
         collectionView.showsHorizontalScrollIndicator = false
-
+        collectionView.isPagingEnabled = true
+        collectionView.bounces = false
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        collectionView.register(PartnerCollectionViewCell.self, forCellWithReuseIdentifier: PartnerCollectionViewCell.description())
+        collectionView.register(
+            PartnerCollectionViewCell.self,
+            forCellWithReuseIdentifier: PartnerCollectionViewCell.description()
+        )
 
         setupLayout()
     }
@@ -51,6 +55,8 @@ private extension PartnerTableViewCell {
     }
 
     func setupLayout() {
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.minimumLineSpacing = 40
         layout.scrollDirection = .horizontal
     }
 }
@@ -74,7 +80,10 @@ extension PartnerTableViewCell: UICollectionViewDataSource {
         viewModels?.partners.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
 
         let viewModel = viewModels?.partners[indexPath.item]
 
@@ -88,7 +97,6 @@ extension PartnerTableViewCell: UICollectionViewDataSource {
         )
         return cell
     }
-
 }
 
 // MARK: - UICollectionViewDelegate
@@ -103,6 +111,6 @@ extension PartnerTableViewCell: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        CGSize(width: contentView.frame.width / 3, height: 200)
+        CGSize(width: collectionView.frame.width / 3 - 40, height: collectionView.frame.height)
     }
 }

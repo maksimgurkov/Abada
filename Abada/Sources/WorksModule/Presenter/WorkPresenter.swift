@@ -30,7 +30,12 @@ private extension WorkPresenter {
 
         model.forEach({
             $0.descriptionWork.forEach({
-                let model = DetailWorkViewModel(title: $0.title, image: $0.image, description: $0.description, price: $0.price)
+                let model = DetailWorkViewModel(
+                    title: $0.title,
+                    image: $0.image,
+                    description: $0.description,
+                    price: $0.price
+                )
                 models.append(model)
             })
             let viewModel = WorkViewModel(title: $0.title, image: $0.image, descriptionWork: models)

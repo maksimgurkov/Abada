@@ -6,6 +6,8 @@ final class NewsDetailImageCell: UITableViewCell {
     private let newsImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 8
+        image.clipsToBounds = true
         return image
     }()
 
@@ -44,10 +46,11 @@ private extension NewsDetailImageCell {
 private extension NewsDetailImageCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            newsImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            newsImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            newsImage.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            newsImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            newsImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            newsImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            newsImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+            newsImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            newsImage.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
 }

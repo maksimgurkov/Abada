@@ -37,7 +37,10 @@ private extension CertificatTableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        collectionView.register(CertificatCollectionViewCell.self, forCellWithReuseIdentifier: CertificatCollectionViewCell.description())
+        collectionView.register(
+            CertificatCollectionViewCell.self,
+            forCellWithReuseIdentifier: CertificatCollectionViewCell.description()
+        )
 
         setupLayout()
     }
@@ -76,7 +79,10 @@ extension CertificatTableViewCell: UICollectionViewDataSource {
         viewModels?.certificates.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
 
         let viewModel = viewModels?.certificates[indexPath.item]
 

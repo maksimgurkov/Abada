@@ -7,6 +7,8 @@ final class PartnerCollectionViewCell: UICollectionViewCell {
     private let photoImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 8
+        image.clipsToBounds = true
         return image
     }()
 

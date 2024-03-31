@@ -67,14 +67,9 @@ private extension NewsTableViewCell {
             newsImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             newsImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
-            //            newsTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
             newsTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             newsTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
             newsTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
-
-            //            subTitle.topAnchor.constraint(equalTo: newsTitle.bottomAnchor, constant: 20),
-            //            subTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            //            subTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
     }
 }

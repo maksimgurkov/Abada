@@ -33,6 +33,14 @@ extension CompanyTableManager: CompanyTableManagerProtocol {
             PartnerTableViewCell.self,
             forCellReuseIdentifier: PartnerTableViewCell.description()
         )
+        self.tableView?.register(
+            RequisitesTableViewCell.self,
+            forCellReuseIdentifier: RequisitesTableViewCell.description()
+        )
+        self.tableView?.register(
+            ApplicationButtonCell.self,
+            forCellReuseIdentifier: ApplicationButtonCell.description()
+        )
     }
 
     func update(viewModels: [CompanyTypeCell]) {
@@ -61,7 +69,7 @@ extension CompanyTableManager: UITableViewDataSource {
             return cell
 
         // Заголовок
-        case .collectionHeader(let model):
+        case .headerCell(let model):
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: HeaderTableViewCell.description(),
                 for: indexPath
@@ -90,10 +98,17 @@ extension CompanyTableManager: UITableViewDataSource {
         // Реквизиты
         case .collectionRequisitesCell(let model):
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: PartnerTableViewCell.description(),
+                withIdentifier: RequisitesTableViewCell.description(),
                 for: indexPath
-            ) as? PartnerTableViewCell else { return UITableViewCell() }
-            //            cell.fill(viewModels: model)
+            ) as? RequisitesTableViewCell else { return UITableViewCell() }
+            cell.fill(viewModels: model)
+            return cell
+        case .applicationButtonCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: ApplicationButtonCell.description(),
+                for: indexPath
+            ) as? ApplicationButtonCell else { return UITableViewCell() }
+            cell.fill(viewModel: model)
             return cell
         }
 
@@ -107,6 +122,8 @@ extension CompanyTableManager: UITableViewDelegate {
         switch viewModel {
         case .collectionCertificateCell:
             return 200
+        case .collectionRequisitesCell:
+            return 580
         default:
             return UITableView.automaticDimension
         }

@@ -19,11 +19,11 @@ public final class CloseButtonUI: UIButton {
     private func setupButton() {
         setImage(UIImage(systemName: "xmark"), for: .normal)
         backgroundColor = .secondarySystemBackground
-        tintColor = #colorLiteral(red: 0.6078431373, green: 0.3411764706, blue: 0.2666666667, alpha: 1)
+        tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
         layer.cornerRadius = height / 2
 
-        heightAnchor.constraint(equalToConstant: 35).isActive = true
-        widthAnchor.constraint(equalToConstant: 35).isActive = true
+        heightAnchor.constraint(equalToConstant: height).isActive = true
+        widthAnchor.constraint(equalToConstant: height).isActive = true
     }
 
 }

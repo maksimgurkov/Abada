@@ -2,7 +2,7 @@ import UIKit
 import AbadaUI
 
 // MARK: - NewsDetailButtonCell
-final class NewsDetailButtonCell: UITableViewCell {
+class NewsDetailButtonCell: UITableViewCell {
 
     // MARK: - Private properties
     private var viewModel: NewsButtonViewModel?
@@ -51,7 +51,8 @@ private extension NewsDetailButtonCell {
         NSLayoutConstraint.activate([
             detailButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             detailButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            detailButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+            detailButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+            detailButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
 }

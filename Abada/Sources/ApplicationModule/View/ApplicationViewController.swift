@@ -40,13 +40,13 @@ final class ApplicationViewController: UIViewController {
     }()
 
     private let applicationTextField: CustomTextFieldUI = {
-        return CustomTextFieldUI(placeholder: "Интересующая услуга например - Пол")
+        return CustomTextFieldUI(placeholder: "Интересующая услуга, например - Пол")
     }()
 
     private lazy var checkButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "square"), for: .normal)
-        button.tintColor = .systemGray
+        button.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        button.tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
         button.addTarget(self, action: #selector(tupCheckButton), for: .touchUpInside)
         return button
     }()
@@ -61,11 +61,11 @@ final class ApplicationViewController: UIViewController {
 
     private let sendButton: BigButtonUI = {
         let button = BigButtonUI(title: "Отправить")
-        button.isHidden = true
+        //        button.isHidden = true
         return button
     }()
 
-    private var isEmpty = false
+    private var isEmpty = true
 
     // MARK: - Initialisers
     init(presenter: ApplicationPresenterProtocol) {
@@ -175,7 +175,7 @@ private extension ApplicationViewController {
     func tupCheckButton(sender: UIButton) {
         if !isEmpty {
             sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-            sender.tintColor = .gray
+            sender.tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
             isEmpty.toggle()
             sendButton.isHidden = false
         } else if isEmpty {

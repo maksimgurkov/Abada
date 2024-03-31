@@ -1,14 +1,13 @@
 import UIKit
+import AbadaUI
 
 // MARK: - ChatTableViewCell
 final class ButtonMessageTableViewCell: UITableViewCell {
 
     private var viewModel: ButtonViewModel?
 
-    private lazy var discountButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = #colorLiteral(red: 0.6078431373, green: 0.3411764706, blue: 0.2666666667, alpha: 1)
-        button.layer.cornerRadius = 8
+    private lazy var discountButton: BigButtonUI = {
+        let button = BigButtonUI(title: "")
         button.addTarget(self, action: #selector(tupDiscountButton), for: .touchUpInside)
         return button
     }()
