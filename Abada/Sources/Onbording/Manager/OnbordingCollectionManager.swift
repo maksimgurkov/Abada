@@ -4,7 +4,7 @@ import UIKit
 final class OnbordingCollectionManager: NSObject {
     weak var collectionView: UICollectionView?
     private var delegate: OnbordingInput?
-    private var viewModel = [Int]()
+    private var viewModel = [OnbordingViewModel]()
 }
 
 // MARK: - OnbordingCollectionProtocol
@@ -22,7 +22,7 @@ extension OnbordingCollectionManager: OnbordingCollectionProtocol {
         self.collectionView?.bounces = false
     }
 
-    func update(viewModel: [Int]) {
+    func update(viewModel: [OnbordingViewModel]) {
         self.viewModel = viewModel
         self.collectionView?.reloadData()
     }
@@ -42,10 +42,12 @@ extension OnbordingCollectionManager: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
+        let viewModel = viewModel[indexPath.item]
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: OnbordingCollectionCell.description(),
             for: indexPath
         ) as? OnbordingCollectionCell else { return UICollectionViewCell() }
+        cell.fill(viewModel: viewModel)
         return cell
     }
 

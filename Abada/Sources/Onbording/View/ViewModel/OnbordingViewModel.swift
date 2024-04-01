@@ -1,8 +1,7 @@
-//
-//  OnbordingViewModel.swift
-//  Abada
-//
-//  Created by Игорь Солодянкин on 01.04.2024.
-//
-
 import Foundation
+
+// MARK: - OnbordingViewModel
+struct OnbordingViewModel {
+    let image: String
+    let title: String
+}

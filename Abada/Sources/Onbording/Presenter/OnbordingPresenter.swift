@@ -6,6 +6,7 @@ final class OnbordingPresenter {
 
     private let router: OnbordingRouterProtocol
     private let collectionManager: OnbordingCollectionProtocol
+    private let viewModels = OnbordingData.shared.onbording
 
     init(router: OnbordingRouterProtocol, collectionManager: OnbordingCollectionProtocol) {
         self.router = router
@@ -17,12 +18,25 @@ final class OnbordingPresenter {
 // MARK: - OnbordingPresenterProtocol
 extension OnbordingPresenter: OnbordingPresenterProtocol {
     func viewDidLoad() {
-        DispatchQueue.main.async {
-            self.collectionManager.update(viewModel: [1, 2, 3])
-        }
+        createViewModel(viewModel: viewModels)
     }
 
     func goToTabBar() {
         router.goToTabBar()
+    }
+}
+
+// MARK: - OnbordingPresenter
+private extension OnbordingPresenter {
+    func createViewModel(viewModel: OnbordingModels) {
+        var viewModels = [OnbordingViewModel]()
+        viewModel.onbordings.forEach {
+            let viewModel = OnbordingViewModel(image: $0.image, title: $0.title)
+            viewModels.append(viewModel)
+        }
+
+        DispatchQueue.main.async {
+            self.collectionManager.update(viewModel: viewModels)
+        }
     }
 }

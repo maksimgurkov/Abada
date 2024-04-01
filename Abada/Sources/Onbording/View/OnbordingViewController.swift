@@ -15,7 +15,7 @@ final class OnbordingViewController: UIViewController {
     private let pageController: UIPageControl = {
         let pageController = UIPageControl()
         pageController.currentPageIndicatorTintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
-        pageController.numberOfPages = 3
+        pageController.numberOfPages = 4
         return pageController
     }()
 
@@ -60,7 +60,6 @@ extension OnbordingViewController: OnbordingInput {
 private extension OnbordingViewController {
     func setupView() {
         view.backgroundColor = .systemBackground
-        collectionView.backgroundColor = .blue
         addSubView()
         setupLayput()
         setConstraint()
