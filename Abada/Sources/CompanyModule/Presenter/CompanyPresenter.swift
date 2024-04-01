@@ -86,6 +86,11 @@ private extension CompanyPresenter {
         }))
         viewModels.append(applicationButton)
 
+        let phoneButton: CompanyTypeCell = .applicationButtonCell(.init(title: "Позвонить", didTup: {
+            print("Позвонить")
+        }))
+        viewModels.append(phoneButton)
+
         DispatchQueue.main.async {
             self.tableManager.update(viewModels: viewModels)
         }

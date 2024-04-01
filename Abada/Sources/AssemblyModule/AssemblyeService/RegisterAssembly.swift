@@ -6,6 +6,7 @@ import AbadaDI
 final class RegisterAssembly {
     static let shared = RegisterAssembly()
     private let assemblies: [Assembly] = [
+        OnbordingAssembly(),
         NewsAssembly(),
         WorkAssembly(),
         CompanyAssembly(),
