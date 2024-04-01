@@ -7,6 +7,8 @@ final class NewsTableViewCell: UITableViewCell {
     private let newsImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.layer.borderColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        image.layer.borderWidth = 1
         image.layer.cornerRadius = 8
         image.layer.masksToBounds = true
         return image
