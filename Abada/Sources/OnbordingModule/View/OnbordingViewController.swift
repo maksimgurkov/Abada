@@ -48,7 +48,7 @@ extension OnbordingViewController: OnbordingInput {
         pageController.currentPage = position / Int(view.bounds.width - 42)
         numberCell = position / Int(view.bounds.width - 42)
         switch numberCell {
-        case 0, 1:
+        case 0, 1, 2:
             startButton.setTitle("Пропустить", for: .normal)
         default:
             startButton.setTitle("Начать", for: .normal)

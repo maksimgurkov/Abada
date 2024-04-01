@@ -47,7 +47,7 @@ final class PersonDiscountViewController: UIViewController {
     private let validityPeriodLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "Действует с 26.03.2024 по 31.03.2024"
+        label.text = "Действует с 01.04.2024 по 30.04.2024"
         return label
     }()
 
