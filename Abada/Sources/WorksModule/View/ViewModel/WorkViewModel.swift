@@ -2,7 +2,6 @@ import Foundation
 
 struct WorkViewModel {
     let title: String
-    let image: String
     let descriptionWork: [DetailWorkViewModel]
 }
 

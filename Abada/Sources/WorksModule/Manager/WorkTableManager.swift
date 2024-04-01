@@ -15,6 +15,7 @@ extension WorkTableManager: WorkTableManagerProtocol {
         self.tableView?.register(WorkTableViewCell.self, forCellReuseIdentifier: WorkTableViewCell.description())
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
+        self.tableView?.separatorStyle = .none
     }
 
     func update(viewModel: [WorkViewModel]) {

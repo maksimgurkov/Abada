@@ -32,8 +32,6 @@ private extension NewsPresenter {
         viewModels.forEach {
             let viewModel = NewsViewModel(
                 image: $0.image,
-                title: $0.title,
-                subTitle: $0.subTitle,
                 detail: DetailViewModel(
                     title: $0.detail.title,
                     image: $0.detail.image,

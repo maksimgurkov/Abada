@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 // MARK: - NewsDetailPresenter
 final class NewsDetailPresenter {
@@ -50,6 +51,13 @@ private extension NewsDetailPresenter {
             )
         )
         viewModels.append(newsButtonViewModel)
+
+        let phoneButton: NewsTypeCell = .newsButton(.init(title: "Позвонить", didTup: {
+            if let url = URL(string: "tel://89261356825") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        viewModels.append(phoneButton)
 
         DispatchQueue.main.async {
             self.tableManager.update(viewModels: viewModels)

@@ -38,7 +38,7 @@ private extension WorkPresenter {
                 )
                 models.append(model)
             })
-            let viewModel = WorkViewModel(title: $0.title, image: $0.image, descriptionWork: models)
+            let viewModel = WorkViewModel(title: $0.title, descriptionWork: models)
             viewModels.append(viewModel)
             models = []
         })
