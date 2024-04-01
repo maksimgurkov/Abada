@@ -4,7 +4,6 @@ import Foundation
 
 struct WorkModel {
     let title: String
-    let image: String
     let descriptionWork: [DetailWorkModel]
 }
 
@@ -18,14 +17,126 @@ struct DetailWorkModel {
 struct WorkData {
     static var shared = WorkData()
 
-    let works = [WorkModel(
-        title: "Дизайн квартир",
-        image: "disaneApartment",
-        descriptionWork: [DetailWorkModel(
-            title: "Планировочный этап",
-            image: "disaneApartment",
-            description: "Важный этап при ремонте, это планировочное решение. Разводка коммуникаций, электрика, сантехника, освещение, планируются на основе плана расстановки мебели. Для того, чтобы все розетки были в нужном месте, а не скрыты за мебелью.  Освещение должно освещать там, где оно больше всего необходимо.",
-            price: 2800
+    let works = [
+        WorkModel(
+            title: "Дизайн квартир",
+            descriptionWork: [DetailWorkModel(
+                title: "Планировочный этап",
+                image: "disaneApartment",
+                description: "Важный этап при ремонте, это планировочное решение. Разводка коммуникаций, электрика, сантехника, освещение, планируются на основе плана расстановки мебели. Для того, чтобы все розетки были в нужном месте, а не скрыты за мебелью.  Освещение должно освещать там, где оно больше всего необходимо.",
+                price: 2800
+            )]
+        ), WorkModel(
+            title: "Ремонт квартир",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Ванна под ключ",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Ремонт домов",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Натяжные потолки",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Мебель",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Окна",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Межкомнатные и входные двери",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Кондиционеры. Монтаж и обслуживание",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Сантехнические работы",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Видеонаблюдение",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Электромонтажные работы",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Коммерческие помещения",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Оформление окна",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
+        ), WorkModel(
+            title: "Экраны для радиаторов отопления",
+            descriptionWork: [DetailWorkModel(
+                title: "",
+                image: "",
+                description: "",
+                price: 2888
+            )]
         )]
-    )]
 }

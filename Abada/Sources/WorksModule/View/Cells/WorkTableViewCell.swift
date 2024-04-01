@@ -16,6 +16,12 @@ final class WorkTableViewCell: UITableViewCell {
         return image
     }()
 
+    private let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        return view
+    }()
+
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,7 +50,7 @@ private extension WorkTableViewCell {
 // MARK: - Setting
 private extension WorkTableViewCell {
     func addSubView() {
-        contentView.addSubviews([titleLabel, nextImage])
+        contentView.addSubviews([titleLabel, nextImage, separatorView])
     }
 }
 
@@ -52,13 +58,18 @@ private extension WorkTableViewCell {
 private extension WorkTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             titleLabel.rightAnchor.constraint(equalTo: nextImage.leftAnchor, constant: 20),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            titleLabel.bottomAnchor.constraint(equalTo: separatorView.topAnchor, constant: -20),
 
             nextImage.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            nextImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+            nextImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+
+            separatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            separatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            separatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+            separatorView.heightAnchor.constraint(equalToConstant: 0.5)
         ])
     }
 }
