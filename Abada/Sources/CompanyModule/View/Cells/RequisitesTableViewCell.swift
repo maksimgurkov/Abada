@@ -28,6 +28,7 @@ final class RequisitesTableViewCell: UITableViewCell {
 // MARK: - SetupView
 private extension RequisitesTableViewCell {
     func setupView() {
+        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.dataSource = self
         tableView.delegate = self

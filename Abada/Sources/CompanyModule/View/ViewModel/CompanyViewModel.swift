@@ -7,6 +7,7 @@ enum CompanyTypeCell {
     case collectionPartnerCell(PartnerViewModels)
     case collectionRequisitesCell(RequisitesViewModels)
     case applicationButtonCell(NewsButtonViewModel)
+    case phoneButtonCell(NewsButtonViewModel)
 }
 
 // MARK: - CompanyViewModel

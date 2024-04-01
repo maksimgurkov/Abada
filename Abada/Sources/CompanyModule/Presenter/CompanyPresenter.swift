@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 // MARK: - CompanyPresenter
 final class CompanyPresenter {
@@ -87,7 +87,9 @@ private extension CompanyPresenter {
         viewModels.append(applicationButton)
 
         let phoneButton: CompanyTypeCell = .applicationButtonCell(.init(title: "Позвонить", didTup: {
-            print("Позвонить")
+            if let url = URL(string: "tel://89261356825") {
+                UIApplication.shared.open(url)
+            }
         }))
         viewModels.append(phoneButton)
 
