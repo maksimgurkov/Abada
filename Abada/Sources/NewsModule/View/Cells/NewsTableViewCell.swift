@@ -18,15 +18,16 @@ final class NewsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .black
         label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
 
-    private let subTitle: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13)
-        label.numberOfLines = 0
-        label.textColor = .black
-        return label
+    private let containerView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 8
+        view.backgroundColor = .white
+        view.alpha = 0.6
+        return view
     }()
 
     // MARK: - Initialisers
@@ -41,6 +42,7 @@ final class NewsTableViewCell: UITableViewCell {
 
     func fill(viewModel: NewsViewModel) {
         self.newsImage.image = UIImage(named: viewModel.image)
+        self.newsTitle.text = viewModel.title
     }
 }
 
@@ -56,7 +58,7 @@ private extension NewsTableViewCell {
 // MARK: - Setting
 private extension NewsTableViewCell {
     func addSubView() {
-        contentView.addSubviews([newsImage, newsTitle, subTitle])
+        contentView.addSubviews([newsImage, containerView, newsTitle])
     }
 }
 
@@ -69,9 +71,13 @@ private extension NewsTableViewCell {
             newsImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             newsImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
-            newsTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            newsTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
-            newsTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+
+            newsTitle.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+            newsTitle.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+            newsTitle.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+            newsTitle.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10)
         ])
     }
 }
