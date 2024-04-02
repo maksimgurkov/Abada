@@ -57,15 +57,12 @@ private extension PartnerCollectionViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            //            photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            //            photoImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            //            photoImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            //            photoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            photoImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            photoImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             photoImageView.heightAnchor.constraint(equalToConstant: 50),
-            photoImageView.widthAnchor.constraint(equalToConstant: 100),
 
-            //            titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10),
-            titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 5),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             titleLabel.centerXAnchor.constraint(equalTo: photoImageView.centerXAnchor)
         ])
     }

@@ -130,6 +130,8 @@ extension CompanyTableManager: UITableViewDelegate {
             return 200
         case .collectionRequisitesCell:
             return 580
+        case .collectionPartnerCell:
+            return 80
         default:
             return UITableView.automaticDimension
         }
