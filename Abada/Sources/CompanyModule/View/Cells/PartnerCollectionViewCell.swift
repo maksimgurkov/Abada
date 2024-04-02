@@ -6,7 +6,7 @@ final class PartnerCollectionViewCell: UICollectionViewCell {
     // MARK: - Private properties
     private let photoImageView: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 8
         image.clipsToBounds = true
         return image
@@ -56,13 +56,14 @@ private extension PartnerCollectionViewCell {
 private extension PartnerCollectionViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            photoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -20),
+            photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            photoImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            photoImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             photoImageView.heightAnchor.constraint(equalToConstant: 50),
-            photoImageView.widthAnchor.constraint(equalToConstant: 100),
 
-            titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10),
-            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+            titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 5),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: photoImageView.centerXAnchor)
         ])
     }
 }
