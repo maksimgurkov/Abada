@@ -110,8 +110,14 @@ extension CompanyTableManager: UITableViewDataSource {
             ) as? ApplicationButtonCell else { return UITableViewCell() }
             cell.fill(viewModel: model)
             return cell
+        case .phoneButtonCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: ApplicationButtonCell.description(),
+                for: indexPath
+            ) as? ApplicationButtonCell else { return UITableViewCell() }
+            cell.fill(viewModel: model)
+            return cell
         }
-
     }
 }
 

@@ -5,7 +5,7 @@ final class OnbordingCollectionCell: UICollectionViewCell {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 0
         label.text = "Добро пожаловать в наше приложение для ремонта под ключ!"
         return label
@@ -55,9 +55,9 @@ private extension OnbordingCollectionCell {
     func setConstraint() {
         NSLayoutConstraint.activate([
             photoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            photoImageView.heightAnchor.constraint(equalToConstant: 200),
-            photoImageView.widthAnchor.constraint(equalToConstant: 200),
+            photoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -50),
+            photoImageView.heightAnchor.constraint(equalToConstant: 250),
+            photoImageView.widthAnchor.constraint(equalToConstant: 250),
 
             titleLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 20),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
