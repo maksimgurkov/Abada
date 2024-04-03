@@ -2,20 +2,24 @@ import UIKit
 
 // MARK: - GroupWorkViewController
 final class GroupWorkViewController: UIViewController {
-    
+
     // MARK: - Private properties
     private let presenter: GroupWorkPresenterProtocol
-    
+
+    lazy var tableView: UITableView = {
+        return UITableView(frame: .zero, style: .plain)
+    }()
+
     // MARK: - Init
     init(presenter: GroupWorkPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Public functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +46,7 @@ private extension GroupWorkViewController {
 // MARK: - Setting
 private extension GroupWorkViewController {
     func addSubView() {
-        
+
     }
 }
 
@@ -50,7 +54,7 @@ private extension GroupWorkViewController {
 private extension GroupWorkViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            
+
         ])
     }
 }
