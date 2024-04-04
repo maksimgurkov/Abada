@@ -2,8 +2,9 @@ import UIKit
 import AbadaDI
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
+    var notification = Notification()
     private var isOn = true
     private var userDefaults = UserDefaults.standard.bool(forKey: "false")
 
@@ -33,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = tabBarModule
             window?.makeKeyAndVisible()
         }
+        notification.checkForPermisson()
         return true
     }
 }
