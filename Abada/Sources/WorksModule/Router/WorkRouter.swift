@@ -13,6 +13,7 @@ final class WorkRouter: WorkRouterProtocol {
     func goTuGroupWork(viewModel: WorkGroupViewModel) {
         GroupWorkAssembly(viewModels: viewModel).assemble()
         @Dependency var groupModule: GroupWorkViewController
-        view?.navigationController?.pushViewController(groupModule, animated: true)
+        groupModule.modalPresentationStyle = .fullScreen
+        view?.present(groupModule, animated: true)
     }
 }

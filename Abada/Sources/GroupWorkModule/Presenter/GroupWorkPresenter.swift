@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 // MARK: - GroupWorkPresenter
 final class GroupWorkPresenter {
@@ -17,9 +17,12 @@ final class GroupWorkPresenter {
 
 // MARK: - GroupWorkPresenterProtocol
 extension GroupWorkPresenter: GroupWorkPresenterProtocol {
+
     func viewDidLoad() {
-        view?.viewTitle(viewModels.nameGroup)
         createViewModel(model: viewModels)
+    }
+    func getTitle(_ label: UILabel) {
+        label.text = viewModels.nameGroup
     }
 }
 

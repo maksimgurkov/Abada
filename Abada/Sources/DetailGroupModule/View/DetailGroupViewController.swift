@@ -2,20 +2,20 @@ import UIKit
 
 // MARK: - DetailGroupViewController
 final class DetailGroupViewController: UIViewController {
-    
+
     // MARK: - Private properties
     private let presenter: DetailGroupPresenterProtocol
-    
+
     // MARK: - Init
     init(presenter: DetailGroupPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Public functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ private extension DetailGroupViewController {
 // MARK: - Setting
 private extension DetailGroupViewController {
     func addSubView() {
-        
+
     }
 }
 
