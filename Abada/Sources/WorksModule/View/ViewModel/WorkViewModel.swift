@@ -2,7 +2,13 @@ import Foundation
 
 struct WorkViewModel {
     let title: String
-    let descriptionWork: [DetailWorkViewModel]
+    let descriptionWork: WorkGroupViewModel
+    let didTup: (WorkGroupViewModel) -> Void
+}
+
+struct WorkGroupViewModel {
+    let nameGroup: String
+    let groups: [DetailWorkViewModel]
 }
 
 struct DetailWorkViewModel {

@@ -1,31 +1,35 @@
 import UIKit
 
-// MARK: - PriceTableManager
-final class WorkTableManager: NSObject {
+// MARK: - GroupTableManager
+final class GroupTableManager: NSObject {
     weak var tableView: UITableView?
 
     // MARK: - Private properties
-    private var viewModel = [WorkViewModel]()
+    private var viewModel = [GroupViewModel]()
 }
 
-// MARK: - PriceTableManagerProtocol
-extension WorkTableManager: WorkTableManagerProtocol {
+// MARK: - GroupTableManagerProtocol
+extension GroupTableManager: GroupTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
-        self.tableView?.register(WorkTableViewCell.self, forCellReuseIdentifier: WorkTableViewCell.description())
+        self.tableView?.register(
+            GroupWorkTableViewCell.self,
+            forCellReuseIdentifier: GroupWorkTableViewCell.description()
+        )
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
+        self.tableView?.showsVerticalScrollIndicator = false
         self.tableView?.separatorStyle = .none
     }
 
-    func update(viewModel: [WorkViewModel]) {
+    func update(viewModel: [GroupViewModel]) {
         self.viewModel = viewModel
         self.tableView?.reloadData()
     }
 }
 
 // MARK: - UITableViewDataSource
-extension WorkTableManager: UITableViewDataSource {
+extension GroupTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.count
     }
@@ -33,19 +37,15 @@ extension WorkTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModel[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: WorkTableViewCell.description(),
+            withIdentifier: GroupWorkTableViewCell.description(),
             for: indexPath
-        ) as? WorkTableViewCell else { return UITableViewCell() }
+        ) as? GroupWorkTableViewCell else { return UITableViewCell() }
         cell.fill(viewModel: viewModel)
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
-extension WorkTableManager: UITableViewDelegate {
+extension GroupTableManager: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = viewModel[indexPath.row]
-        viewModel.didTup(viewModel.descriptionWork)
-    }
 }
