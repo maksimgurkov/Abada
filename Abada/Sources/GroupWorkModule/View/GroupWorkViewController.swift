@@ -15,6 +15,8 @@ final class GroupWorkViewController: UIViewController {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
 
@@ -64,7 +66,8 @@ private extension GroupWorkViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            titleLabel.rightAnchor.constraint(equalTo: closeButton.leftAnchor, constant: -20),
 
             closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             closeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),

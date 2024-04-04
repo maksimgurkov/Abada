@@ -64,7 +64,7 @@ private extension GroupWorkTableViewCell {
             imageWork.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             imageWork.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             imageWork.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
-            imageWork.heightAnchor.constraint(equalToConstant: 200),
+            imageWork.heightAnchor.constraint(equalToConstant: 180),
 
             containerView.topAnchor.constraint(equalTo: imageWork.bottomAnchor, constant: -20),
             containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),

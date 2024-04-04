@@ -11,13 +11,22 @@ final class GroupWorkAssembly: Assembly {
     }
 
     func assemble() {
+        Container.shared.register(service: GroupRouter.self) { _ in
+            GroupRouter()
+        }
+
         Container.shared.register(service: GroupTableManager.self) { _ in
             GroupTableManager()
         }
 
         Container.shared.register(service: GroupWorkPresenter.self) { resolve in
             let tableManager: GroupTableManager = resolve.resolve()
-            return GroupWorkPresenter(tableManager: tableManager, viewModels: self.viewModels)
+            let router: GroupRouter = resolve.resolve()
+            return GroupWorkPresenter(
+                tableManager: tableManager,
+                viewModels: self.viewModels,
+                router: router
+            )
         }
 
         Container.shared.register(service: GroupWorkViewController.self) { resolve in
@@ -28,8 +37,10 @@ final class GroupWorkAssembly: Assembly {
         @Dependency var tableManager: GroupTableManager
         @Dependency var presenter: GroupWorkPresenter
         @Dependency var view: GroupWorkViewController
+        @Dependency var router: GroupRouter
 
         presenter.view = view
         tableManager.setup(tableView: view.tableView)
+        router.view = view
     }
 }

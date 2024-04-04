@@ -4,5 +4,7 @@ import Foundation
 struct GroupViewModel {
     let image: String
     let title: String
-    let didTup: () -> Void
+    let description: String
+    let price: Int
+    let didTup: (GroupViewModel) -> Void
 }
