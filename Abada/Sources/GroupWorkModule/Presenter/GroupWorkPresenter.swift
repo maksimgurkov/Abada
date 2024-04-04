@@ -19,5 +19,23 @@ final class GroupWorkPresenter {
 extension GroupWorkPresenter: GroupWorkPresenterProtocol {
     func viewDidLoad() {
         view?.viewTitle(viewModels.nameGroup)
+        createViewModel(model: viewModels)
+    }
+}
+
+private extension GroupWorkPresenter {
+    func createViewModel(model: WorkGroupViewModel) {
+        var viewModels = [GroupViewModel]()
+
+        model.groups.forEach {
+            let viewModel = GroupViewModel(image: $0.image, title: $0.title) {
+                print("1")
+            }
+            viewModels.append(viewModel)
+        }
+
+        DispatchQueue.main.async {
+            self.tableManager.update(viewModel: viewModels)
+        }
     }
 }

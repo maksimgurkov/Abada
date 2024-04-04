@@ -5,7 +5,7 @@ final class GroupTableManager: NSObject {
     weak var tableView: UITableView?
 
     // MARK: - Private properties
-    private var viewModel = [Int]()
+    private var viewModel = [GroupViewModel]()
 }
 
 // MARK: - GroupTableManagerProtocol
@@ -22,7 +22,7 @@ extension GroupTableManager: GroupTableManagerProtocol {
         self.tableView?.separatorStyle = .none
     }
 
-    func update(viewModel: [Int]) {
+    func update(viewModel: [GroupViewModel]) {
         self.viewModel = viewModel
         self.tableView?.reloadData()
     }
@@ -35,10 +35,12 @@ extension GroupTableManager: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let viewModel = viewModel[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: GroupWorkTableViewCell.description(),
             for: indexPath
         ) as? GroupWorkTableViewCell else { return UITableViewCell() }
+        cell.fill(viewModel: viewModel)
         return cell
     }
 }
