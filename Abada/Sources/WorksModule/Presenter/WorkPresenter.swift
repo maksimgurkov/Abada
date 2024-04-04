@@ -7,10 +7,12 @@ final class WorkPresenter {
     // MARK: - Private properties
     private let tableManager: WorkTableManagerProtocol
     private let dataWork = WorkData.shared.works
+    private let router: WorkRouterProtocol
 
     // MARK: - Init
-    init(tableManager: WorkTableManagerProtocol) {
+    init(tableManager: WorkTableManagerProtocol, router: WorkRouterProtocol) {
         self.tableManager = tableManager
+        self.router = router
     }
 }
 
@@ -38,7 +40,14 @@ private extension WorkPresenter {
                 )
                 models.append(model)
             })
-            let viewModel = WorkViewModel(title: $0.title, descriptionWork: models)
+
+            let viewModel = WorkViewModel(
+                title: $0.title,
+                descriptionWork: WorkGroupViewModel(nameGroup: $0.title, groups: models),
+                didTup: { model in
+                    self.router.goTuGroupWork(viewModel: model)
+                }
+            )
             viewModels.append(viewModel)
             models = []
         })

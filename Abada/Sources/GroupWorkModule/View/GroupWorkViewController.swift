@@ -38,6 +38,7 @@ extension GroupWorkViewController: GroupWorkInput {
 private extension GroupWorkViewController {
     func setupView() {
         view.backgroundColor = .systemBackground
+        
         addSubView()
         setConstraints()
     }
@@ -46,7 +47,7 @@ private extension GroupWorkViewController {
 // MARK: - Setting
 private extension GroupWorkViewController {
     func addSubView() {
-
+        view.addSubviews([tableView])
     }
 }
 
@@ -54,7 +55,10 @@ private extension GroupWorkViewController {
 private extension GroupWorkViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 }

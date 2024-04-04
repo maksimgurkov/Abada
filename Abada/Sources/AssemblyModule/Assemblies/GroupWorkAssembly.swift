@@ -3,6 +3,13 @@ import AbadaDI
 
 // MARK: - GroupWorkAssembly
 final class GroupWorkAssembly: Assembly {
+
+    private let viewModels: WorkGroupViewModel
+
+    init(viewModels: WorkGroupViewModel) {
+        self.viewModels = viewModels
+    }
+
     func assemble() {
         Container.shared.register(service: GroupTableManager.self) { _ in
             GroupTableManager()
@@ -10,7 +17,7 @@ final class GroupWorkAssembly: Assembly {
 
         Container.shared.register(service: GroupWorkPresenter.self) { resolve in
             let tableManager: GroupTableManager = resolve.resolve()
-            return GroupWorkPresenter(tableManager: tableManager)
+            return GroupWorkPresenter(tableManager: tableManager, viewModels: self.viewModels)
         }
 
         Container.shared.register(service: GroupWorkViewController.self) { resolve in

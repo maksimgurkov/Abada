@@ -44,4 +44,8 @@ extension WorkTableManager: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension WorkTableManager: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = viewModel[indexPath.row]
+        viewModel.didTup(viewModel.descriptionWork)
+    }
 }

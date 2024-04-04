@@ -5,19 +5,19 @@ final class GroupWorkPresenter {
     weak var view: GroupWorkInput?
 
     // MARK: - Private properties
+    private let viewModels: WorkGroupViewModel
     private let tableManager: GroupTableManagerProtocol
 
     // MARK: - Init
-    init(tableManager: GroupTableManagerProtocol) {
+    init(tableManager: GroupTableManagerProtocol, viewModels: WorkGroupViewModel) {
         self.tableManager = tableManager
+        self.viewModels = viewModels
     }
 }
 
 // MARK: - GroupWorkPresenterProtocol
 extension GroupWorkPresenter: GroupWorkPresenterProtocol {
     func viewDidLoad() {
-        DispatchQueue.main.async {
-            self.tableManager.update(viewModel: [1, 1, 1])
-        }
+        view?.viewTitle(viewModels.nameGroup)
     }
 }
