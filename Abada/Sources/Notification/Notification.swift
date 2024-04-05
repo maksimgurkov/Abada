@@ -1,5 +1,6 @@
 import UserNotifications
 
+// ЬФКЛЖ - Notification
 final class Notification {
     func checkForPermisson() {
         let notificationCenter = UNUserNotificationCenter.current()
@@ -24,7 +25,7 @@ final class Notification {
     private func dispatchNotification() {
         let identifier = "New"
         let title = "ABADA"
-        let bode = "Загляни в приложение прямо сейчас, Вам доступна персональная скидка"
+        let bode = "Загляни в приложение прямо сейчас, Вам доступна персональная скидка!"
         let hour = 11
         let minute = 00
         let isDaily = true

@@ -7,6 +7,8 @@ public final class BigButtonUI: UIButton {
     public init(title: String) {
         super.init(frame: .zero)
         setupButton(title: title)
+        addTarget(self, action: #selector(buttonPressed), for: .touchDown)
+        addTarget(self, action: #selector(buttonReleased), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
@@ -22,4 +24,16 @@ public final class BigButtonUI: UIButton {
         heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
 
+    // MARK: - Button Actions
+    @objc private func buttonPressed() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 0.3
+        }
+    }
+
+    @objc private func buttonReleased() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 1
+        }
+    }
 }
