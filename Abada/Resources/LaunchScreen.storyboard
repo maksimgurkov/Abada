@@ -17,14 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundView" translatesAutoresizingMaskIntoConstraints="NO" id="mXT-sZ-rLM">
-                                <rect key="frame" x="30" y="139" width="333" height="333"/>
+                                <rect key="frame" x="60" y="139" width="273" height="273"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mXT-sZ-rLM" secondAttribute="height" multiplier="1:1" id="hqE-nL-5tx"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABADA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5g6-kx-pUz">
-                                <rect key="frame" x="77.666666666666686" y="259" width="238" height="83.666666666666686"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="70"/>
+                                <rect key="frame" x="102.66666666666669" y="238.99999999999997" width="188" height="64.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="55"/>
                                 <color key="textColor" red="0.62529462579999995" green="0.30444496869999998" blue="0.23563861850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -32,11 +32,11 @@
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="mXT-sZ-rLM" secondAttribute="trailing" constant="30" id="4wJ-0m-2Ha"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="mXT-sZ-rLM" secondAttribute="trailing" constant="60" id="4wJ-0m-2Ha"/>
                             <constraint firstItem="mXT-sZ-rLM" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="80" id="B9T-hn-oFm"/>
                             <constraint firstItem="5g6-kx-pUz" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="IEL-81-kDn"/>
-                            <constraint firstItem="5g6-kx-pUz" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="200" id="PuT-Y2-Tzn"/>
-                            <constraint firstItem="mXT-sZ-rLM" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="30" id="asm-iN-DRs"/>
+                            <constraint firstItem="5g6-kx-pUz" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="180" id="PuT-Y2-Tzn"/>
+                            <constraint firstItem="mXT-sZ-rLM" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="60" id="asm-iN-DRs"/>
                         </constraints>
                     </view>
                 </viewController>
