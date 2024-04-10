@@ -55,7 +55,10 @@ extension CompanyTableManager: UITableViewDataSource {
         return viewModels.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
         let viewModel = viewModels[indexPath.row]
         switch viewModel {
 
