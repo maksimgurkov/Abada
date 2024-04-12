@@ -17,6 +17,7 @@ extension NewsTableManager: NewsTableManagerProtocol {
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
         self.tableView?.separatorStyle = .none
+        self.tableView?.showsVerticalScrollIndicator = false
     }
 
     func update(viewModels: [NewsViewModel]) {
@@ -52,5 +53,4 @@ extension NewsTableManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         200
     }
-
 }

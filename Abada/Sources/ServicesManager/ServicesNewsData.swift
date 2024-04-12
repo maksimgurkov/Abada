@@ -57,6 +57,15 @@ struct NewsData {
                 image: "detailCitchen",
                 description: "Закажи кухню по индивидуальному размеру и получи технику до 35% от стоимости кухни."
             )
+        ),
+        NewsModel(
+            image: "djob",
+            title: "",
+            detail: DetailModel(
+                title: "Вступай в нашу команду",
+                image: "djob",
+                description: "Приглашаем на работу: Перечень должностей"
+            )
         )
     ]
 }

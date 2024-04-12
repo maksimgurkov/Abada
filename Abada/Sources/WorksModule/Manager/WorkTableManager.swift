@@ -16,6 +16,7 @@ extension WorkTableManager: WorkTableManagerProtocol {
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
         self.tableView?.separatorStyle = .none
+        self.tableView?.showsVerticalScrollIndicator = false
     }
 
     func update(viewModel: [WorkViewModel]) {

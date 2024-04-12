@@ -1,10 +1,15 @@
 import UIKit
+import AbadaUI
 
 // MARK: - WorkViewController
 final class WorkViewController: UIViewController {
 
     // MARK: - Private properties
     private let presenter: WorkPresenterProtocol
+
+    private let searchTextField: CustomTextFieldUI = {
+        return CustomTextFieldUI(placeholder: "Поиск")
+    }()
 
     lazy var tableView: UITableView = {
         return UITableView(frame: .zero, style: .plain)
@@ -47,7 +52,7 @@ private extension WorkViewController {
 // MARK: - Setting
 private extension WorkViewController {
     func addSubView() {
-        view.addSubviews([tableView])
+        view.addSubviews([searchTextField, tableView])
     }
 }
 
@@ -55,7 +60,11 @@ private extension WorkViewController {
 private extension WorkViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            searchTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+
+            tableView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

@@ -14,14 +14,14 @@ final class GroupWorkTableViewCell: UITableViewCell {
 
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        view.backgroundColor = .systemGray3
         view.layer.cornerRadius = 8
         return view
     }()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        //        label.textColor = .black
         return label
     }()
 
@@ -64,7 +64,7 @@ private extension GroupWorkTableViewCell {
             imageWork.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             imageWork.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             imageWork.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
-            imageWork.heightAnchor.constraint(equalToConstant: 180),
+            imageWork.heightAnchor.constraint(equalToConstant: 150),
 
             containerView.topAnchor.constraint(equalTo: imageWork.bottomAnchor, constant: -20),
             containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
