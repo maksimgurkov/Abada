@@ -13,7 +13,10 @@ final class NewsTableManager: NSObject {
 extension NewsTableManager: NewsTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
-        self.tableView?.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.description())
+        self.tableView?.register(
+            NewsTableViewCell.self,
+            forCellReuseIdentifier: NewsTableViewCell.description()
+        )
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
         self.tableView?.separatorStyle = .none

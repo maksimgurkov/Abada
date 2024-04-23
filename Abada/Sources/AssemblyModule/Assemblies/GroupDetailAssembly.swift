@@ -10,8 +10,22 @@ final class GroupDetailAssembly: Assembly {
     }
 
     func assemble() {
-        Container.shared.register(service: DetailGroupPresenter.self) { _ in
-            DetailGroupPresenter(viewModel: self.viewModel)
+        Container.shared.register(service: ApplicationRouter.self) { _ in
+            ApplicationRouter()
+        }
+
+        Container.shared.register(service: DetailServisTableManager.self) { _ in
+            DetailServisTableManager()
+        }
+
+        Container.shared.register(service: DetailGroupPresenter.self) { resolve in
+            let tableManager: DetailServisTableManager = resolve.resolve()
+            let router: ApplicationRouter = resolve.resolve()
+            return DetailGroupPresenter(
+                viewModel: self.viewModel,
+                tableView: tableManager,
+                router: router
+            )
         }
 
         Container.shared.register(service: DetailGroupViewController.self) { resolve in
@@ -21,7 +35,11 @@ final class GroupDetailAssembly: Assembly {
 
         @Dependency var presenter: DetailGroupPresenter
         @Dependency var view: DetailGroupViewController
+        @Dependency var tableView: DetailServisTableManager
+        @Dependency var router: ApplicationRouter
 
         presenter.view = view
+        tableView.setup(tableView: view.tableView)
+        router.view = view
     }
 }

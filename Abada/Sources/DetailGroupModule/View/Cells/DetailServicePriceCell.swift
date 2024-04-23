@@ -1,0 +1,56 @@
+import UIKit
+
+// MARK: - DetailServicePriceCell
+final class DetailServicePriceCell: UITableViewCell {
+
+    // MARK: - Private properties
+    lazy var priceLabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        return label
+    }()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func fill(viewModel: DetailPriceViewModel) {
+        self.priceLabel.text = "\(viewModel.amount)₽ м² по полу"
+    }
+}
+
+// MARK: - SetupView
+private extension DetailServicePriceCell {
+    func setupView() {
+        selectionStyle = .none
+        addSubView()
+        setConstraints()
+    }
+}
+
+// MARK: - Setting
+private extension DetailServicePriceCell {
+    func addSubView() {
+        contentView.addSubviews([
+            priceLabel
+        ])
+    }
+}
+
+// MARK: - Layout
+private extension DetailServicePriceCell {
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+            priceLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            priceLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            priceLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+        ])
+    }
+}
