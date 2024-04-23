@@ -17,8 +17,7 @@ extension DiscountTableManager: DiscountTableManagerProtocol {
         self.tableView = tableView
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        self.tableView?.dataSource = self
-        self.tableView?.delegate = self
+        tableView.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         self.tableView?.register(
             BotMessageTableViewCell.self,
             forCellReuseIdentifier: BotMessageTableViewCell.description()
@@ -31,6 +30,8 @@ extension DiscountTableManager: DiscountTableManagerProtocol {
             ButtonMessageTableViewCell.self,
             forCellReuseIdentifier: ButtonMessageTableViewCell.description()
         )
+        self.tableView?.dataSource = self
+        self.tableView?.delegate = self
     }
 
     func update(viewModels: [MessageTypeCell]) {

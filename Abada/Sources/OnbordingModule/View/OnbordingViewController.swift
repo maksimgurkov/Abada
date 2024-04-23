@@ -14,7 +14,7 @@ final class OnbordingViewController: UIViewController {
 
     private let pageController: UIPageControl = {
         let pageController = UIPageControl()
-        pageController.currentPageIndicatorTintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        pageController.currentPageIndicatorTintColor = AbadaColors.Color(resource: .abadaPrimary)
         pageController.numberOfPages = 4
         return pageController
     }()

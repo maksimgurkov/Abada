@@ -6,7 +6,7 @@ final class UserMessageTableViewCell: UITableViewCell {
     // MARK: Private property
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        view.backgroundColor = AbadaColors.Color(resource: .abadaAcent)
         view.layer.cornerRadius = 15
         return view
     }()
@@ -14,7 +14,7 @@ final class UserMessageTableViewCell: UITableViewCell {
     private let tailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "triangle.fill")
-        imageView.tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        imageView.tintColor = AbadaColors.Color(resource: .abadaAcent)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -29,7 +29,7 @@ final class UserMessageTableViewCell: UITableViewCell {
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = AbadaColors.Color(resource: .abadaText)
         label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
@@ -54,6 +54,7 @@ final class UserMessageTableViewCell: UITableViewCell {
 private extension UserMessageTableViewCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

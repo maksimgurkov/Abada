@@ -30,6 +30,7 @@ final class DetailServiceImageCell: UITableViewCell {
 private extension DetailServiceImageCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

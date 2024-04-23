@@ -32,6 +32,7 @@ final class ButtonMessageTableViewCell: UITableViewCell {
 private extension ButtonMessageTableViewCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

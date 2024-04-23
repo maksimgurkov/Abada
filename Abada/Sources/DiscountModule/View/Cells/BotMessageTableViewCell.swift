@@ -53,6 +53,7 @@ final class BotMessageTableViewCell: UITableViewCell {
 private extension BotMessageTableViewCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

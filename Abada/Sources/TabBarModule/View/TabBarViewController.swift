@@ -32,7 +32,7 @@ extension TabBarViewController: TabBarInput { }
 private extension TabBarViewController {
     func setupView() {
         view.backgroundColor = .systemBackground
-        tabBar.tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        tabBar.tintColor = AbadaColors.Color(resource: .abadaAcent)
         generatorTabBar()
     }
 }

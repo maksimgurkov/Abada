@@ -30,6 +30,8 @@ final class DetailServiceButtonCell: UITableViewCell {
 // MARK: - Setting
 private extension DetailServiceButtonCell {
     func setupView() {
+        selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

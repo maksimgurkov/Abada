@@ -9,7 +9,7 @@ final class DetailGroupViewController: UIViewController {
 
     lazy var closingLeverView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.2980392157, green: 0.3058823529, blue: 0.3176470588, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.2964690924, green: 0.3058690429, blue: 0.3186741769, alpha: 1)
         view.layer.cornerRadius = 2
         return view
     }()
@@ -42,7 +42,7 @@ extension DetailGroupViewController: DetailGroupInput { }
 // MARK: - SetupView
 private extension DetailGroupViewController {
     func setupView() {
-        view.backgroundColor = #colorLiteral(red: 0.1137254902, green: 0.1254901961, blue: 0.1450980392, alpha: 1)
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

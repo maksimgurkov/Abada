@@ -46,7 +46,7 @@ final class ApplicationViewController: UIViewController {
     private lazy var checkButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-        button.tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        button.tintColor = AbadaColors.Color(resource: .abadaPrimary)
         button.addTarget(self, action: #selector(tupCheckButton), for: .touchUpInside)
         return button
     }()
@@ -175,7 +175,7 @@ private extension ApplicationViewController {
     func tupCheckButton(sender: UIButton) {
         if !isEmpty {
             sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-            sender.tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+            sender.tintColor = AbadaColors.Color(resource: .abadaPrimary)
             isEmpty.toggle()
             sendButton.isHidden = false
         } else if isEmpty {

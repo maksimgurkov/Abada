@@ -12,13 +12,13 @@ final class WorkTableViewCell: UITableViewCell {
     private let nextImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "chevron.right")
-        image.tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        image.tintColor = AbadaColors.Color(resource: .abadaPrimary)
         return image
     }()
 
     private let separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        view.backgroundColor = AbadaColors.Color(resource: .abadaPrimary)
         return view
     }()
 

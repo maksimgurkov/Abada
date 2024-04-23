@@ -7,7 +7,7 @@ final class DetailServicePriceCell: UITableViewCell {
     lazy var priceLabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        label.textColor = AbadaColors.Color(resource: .abadaAcent)
         return label
     }()
 
@@ -29,6 +29,7 @@ final class DetailServicePriceCell: UITableViewCell {
 private extension DetailServicePriceCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

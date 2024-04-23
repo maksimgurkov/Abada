@@ -29,6 +29,7 @@ final class DetailServiceArticleCell: UITableViewCell {
 private extension DetailServiceArticleCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

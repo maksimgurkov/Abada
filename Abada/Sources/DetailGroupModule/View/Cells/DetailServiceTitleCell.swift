@@ -29,6 +29,7 @@ final class DetailServiceTitleCell: UITableViewCell {
 private extension DetailServiceTitleCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

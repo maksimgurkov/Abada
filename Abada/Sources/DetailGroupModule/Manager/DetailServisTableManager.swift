@@ -13,6 +13,7 @@ extension DetailServisTableManager: DetailServisTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
         self.tableView?.showsVerticalScrollIndicator = false
+        self.tableView?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         self.tableView?.separatorStyle = .none
         self.tableView?.register(
             DetailServiceImageCell.self,

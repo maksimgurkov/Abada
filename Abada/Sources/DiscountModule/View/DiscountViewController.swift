@@ -38,7 +38,7 @@ extension DiscountViewController: DiscountInput {
 // MARK: - SetupView
 private extension DiscountViewController {
     func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

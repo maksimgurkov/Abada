@@ -15,7 +15,7 @@ final class PersonDiscountViewController: UIViewController {
 
     private let substrateView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        view.backgroundColor = AbadaColors.Color(resource: .abadaPrimary)
         view.layer.cornerRadius = 8
         return view
     }()
