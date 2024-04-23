@@ -12,13 +12,13 @@ final class WorkTableViewCell: UITableViewCell {
     private let nextImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "chevron.right")
-        image.tintColor = AbadaColors.Color(resource: .abadaPrimary)
+        image.tintColor = AbadaColors.Color(resource: .abadaAcent)
         return image
     }()
 
     private let separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = AbadaColors.Color(resource: .abadaPrimary)
+        view.backgroundColor = AbadaColors.Color(resource: .abadaAcent)
         return view
     }()
 
@@ -42,6 +42,7 @@ final class WorkTableViewCell: UITableViewCell {
 private extension WorkTableViewCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

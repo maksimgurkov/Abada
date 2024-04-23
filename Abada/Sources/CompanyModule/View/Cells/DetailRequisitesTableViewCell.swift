@@ -37,9 +37,10 @@ final class DetailRequisitesTableViewCell: UITableViewCell {
 // MARK: - SetupView
 private extension DetailRequisitesTableViewCell {
     func setupView() {
+        selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
-        selectionStyle = .none
     }
 }
 

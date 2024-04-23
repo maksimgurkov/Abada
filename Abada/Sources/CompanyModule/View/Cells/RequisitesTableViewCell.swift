@@ -32,6 +32,7 @@ private extension RequisitesTableViewCell {
         tableView.showsVerticalScrollIndicator = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         tableView.register(
             DetailRequisitesTableViewCell.self,
             forCellReuseIdentifier: DetailRequisitesTableViewCell.description()

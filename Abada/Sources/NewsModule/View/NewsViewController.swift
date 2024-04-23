@@ -38,7 +38,7 @@ extension NewsViewController: NewsInput {
 // MARK: - SetupView
 private extension NewsViewController {
     func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

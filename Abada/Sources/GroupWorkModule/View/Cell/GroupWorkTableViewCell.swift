@@ -14,14 +14,14 @@ final class GroupWorkTableViewCell: UITableViewCell {
 
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = AbadaColors.Color(resource: .abadaPrimary)
+        view.backgroundColor = AbadaColors.Color(resource: .abadaAcent)
         view.layer.cornerRadius = 8
         return view
     }()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
         return label
     }()
 
@@ -45,6 +45,7 @@ final class GroupWorkTableViewCell: UITableViewCell {
 private extension GroupWorkTableViewCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

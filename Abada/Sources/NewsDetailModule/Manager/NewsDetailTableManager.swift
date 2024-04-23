@@ -19,6 +19,7 @@ extension NewsDetailTableManager: NewsDetailTableManagerProtocol {
         self.tableview?.dataSource = self
         self.tableview?.delegate = self
         self.tableview?.separatorStyle = .none
+        self.tableview?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
     }
 
     func update(viewModels: [NewsTypeCell]) {

@@ -30,6 +30,7 @@ final class NewsDescriptionCell: UITableViewCell {
 private extension NewsDescriptionCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

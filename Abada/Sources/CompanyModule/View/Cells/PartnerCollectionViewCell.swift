@@ -39,6 +39,7 @@ private extension PartnerCollectionViewCell {
     func setupView() {
         addSubView()
         setConstraints()
+        //        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
     }
 }
 

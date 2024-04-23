@@ -36,6 +36,7 @@ private extension PartnerTableViewCell {
         collectionView.bounces = false
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
 
         collectionView.register(
             PartnerCollectionViewCell.self,

@@ -8,14 +8,14 @@ final class PersonDiscountViewController: UIViewController {
 
     private let backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         view.layer.cornerRadius = 20
         return view
     }()
 
     private let substrateView: UIView = {
         let view = UIView()
-        view.backgroundColor = AbadaColors.Color(resource: .abadaPrimary)
+        view.backgroundColor = AbadaColors.Color(resource: .abadaAcent)
         view.layer.cornerRadius = 8
         return view
     }()
@@ -40,7 +40,7 @@ final class PersonDiscountViewController: UIViewController {
         label.text = "ABADA30"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.textColor = .black
+        label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
         return label
     }()
 

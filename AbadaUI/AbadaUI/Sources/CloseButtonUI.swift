@@ -18,8 +18,8 @@ public final class CloseButtonUI: UIButton {
     // MARK: Private Methods
     private func setupButton() {
         setImage(UIImage(systemName: "xmark"), for: .normal)
-        backgroundColor = .secondarySystemBackground
-        tintColor = #colorLiteral(red: 1, green: 0.8666666667, blue: 0.1764705882, alpha: 1)
+        backgroundColor = .tertiarySystemBackground
+        tintColor = UIColor(named: "abadaAcent")
         layer.cornerRadius = height / 2
 
         heightAnchor.constraint(equalToConstant: height).isActive = true

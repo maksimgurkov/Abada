@@ -43,7 +43,7 @@ final class CertificatCollectionViewCell: UICollectionViewCell {
 // MARK: - SetupView
 private extension CertificatCollectionViewCell {
     func setupView() {
-        backgroundColor = .secondarySystemBackground
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         layer.cornerRadius = 15
 
         addSubView()

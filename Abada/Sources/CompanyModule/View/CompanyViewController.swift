@@ -38,7 +38,7 @@ extension CompanyViewController: CompanyInput {
 // MARK: - SetupView
 extension CompanyViewController {
     func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

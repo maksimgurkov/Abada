@@ -14,7 +14,7 @@ final class OnbordingViewController: UIViewController {
 
     private let pageController: UIPageControl = {
         let pageController = UIPageControl()
-        pageController.currentPageIndicatorTintColor = AbadaColors.Color(resource: .abadaPrimary)
+        pageController.currentPageIndicatorTintColor = AbadaColors.Color(resource: .abadaAcent)
         pageController.numberOfPages = 4
         return pageController
     }()
@@ -59,9 +59,9 @@ extension OnbordingViewController: OnbordingInput {
 // MARK: - SetupView
 private extension OnbordingViewController {
     func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
-        setupLayput()
+        setupLayout()
         setConstraint()
     }
 }
@@ -76,7 +76,7 @@ private extension OnbordingViewController {
         ])
     }
 
-    func setupLayput() {
+    func setupLayout() {
         layout.minimumLineSpacing = 8
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         layout.scrollDirection = .horizontal

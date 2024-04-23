@@ -37,6 +37,7 @@ private extension OnbordingCollectionCell {
     func setupView() {
         addSubView()
         setConstraint()
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
     }
 }
 

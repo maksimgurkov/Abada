@@ -32,6 +32,7 @@ class NewsDetailButtonCell: UITableViewCell {
 private extension NewsDetailButtonCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         detailButton.addTarget(self, action: #selector(tupDetailButton), for: .touchUpInside)
         addSubView()
         setConstraints()

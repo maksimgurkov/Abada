@@ -20,6 +20,7 @@ extension OnbordingCollectionManager: OnbordingCollectionProtocol {
         self.collectionView?.showsHorizontalScrollIndicator = false
         self.collectionView?.isPagingEnabled = true
         self.collectionView?.bounces = false
+        self.collectionView?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
     }
 
     func update(viewModel: [OnbordingViewModel]) {

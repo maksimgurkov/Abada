@@ -29,7 +29,7 @@ final class UserMessageTableViewCell: UITableViewCell {
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = AbadaColors.Color(resource: .abadaText)
+        label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
         label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()

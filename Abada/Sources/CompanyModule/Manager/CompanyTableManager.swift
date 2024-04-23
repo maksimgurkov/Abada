@@ -14,6 +14,7 @@ extension CompanyTableManager: CompanyTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
         tableView.separatorStyle = .none
+        tableView.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         tableView.showsVerticalScrollIndicator = false
         self.tableView?.dataSource = self
         self.tableView?.delegate = self

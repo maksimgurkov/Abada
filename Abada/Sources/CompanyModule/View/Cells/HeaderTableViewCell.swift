@@ -36,6 +36,7 @@ final class HeaderTableViewCell: UITableViewCell {
 private extension HeaderTableViewCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

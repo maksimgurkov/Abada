@@ -12,14 +12,15 @@ final class GroupTableManager: NSObject {
 extension GroupTableManager: GroupTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
+        self.tableView?.showsVerticalScrollIndicator = false
+        self.tableView?.separatorStyle = .none
+        self.tableView?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         self.tableView?.register(
             GroupWorkTableViewCell.self,
             forCellReuseIdentifier: GroupWorkTableViewCell.description()
         )
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
-        self.tableView?.showsVerticalScrollIndicator = false
-        self.tableView?.separatorStyle = .none
     }
 
     func update(viewModel: [GroupViewModel]) {

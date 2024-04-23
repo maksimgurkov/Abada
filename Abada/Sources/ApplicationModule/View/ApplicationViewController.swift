@@ -46,7 +46,7 @@ final class ApplicationViewController: UIViewController {
     private lazy var checkButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-        button.tintColor = AbadaColors.Color(resource: .abadaPrimary)
+        button.tintColor = AbadaColors.Color(resource: .abadaAcent)
         button.addTarget(self, action: #selector(tupCheckButton), for: .touchUpInside)
         return button
     }()
@@ -61,7 +61,6 @@ final class ApplicationViewController: UIViewController {
 
     private let sendButton: BigButtonUI = {
         let button = BigButtonUI(title: "Отправить")
-        //        button.isHidden = true
         return button
     }()
 
@@ -91,7 +90,7 @@ extension ApplicationViewController: ApplicationInput { }
 // MARK: - SetupView
 private extension ApplicationViewController {
     func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         titleLabel.text = "Подать заявку"
         descriptionLabel.text = "Менеджеры компании с радостью свяжутся с вами и ответят на ваши вопросы и произведут расчет стоимости услуг и подготовят индивидуальное коммерческое предложение."
         addSubView()
@@ -175,12 +174,12 @@ private extension ApplicationViewController {
     func tupCheckButton(sender: UIButton) {
         if !isEmpty {
             sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-            sender.tintColor = AbadaColors.Color(resource: .abadaPrimary)
+            sender.tintColor = AbadaColors.Color(resource: .abadaAcent)
             isEmpty.toggle()
             sendButton.isHidden = false
         } else if isEmpty {
             sender.setImage(UIImage(systemName: "square"), for: .normal)
-            sender.tintColor = .gray
+            sender.tintColor = AbadaColors.Color(resource: .abadaAcent)
             isEmpty.toggle()
             sendButton.isHidden = true
         }

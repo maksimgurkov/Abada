@@ -48,7 +48,7 @@ extension GroupWorkViewController: GroupWorkInput { }
 // MARK: - SetupView
 private extension GroupWorkViewController {
     func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

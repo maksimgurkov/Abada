@@ -38,7 +38,7 @@ extension WorkViewController: WorkInput {
 // MARK: - SetupView
 private extension WorkViewController {
     func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }

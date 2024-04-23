@@ -16,6 +16,7 @@ extension WorkTableManager: WorkTableManagerProtocol {
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
         self.tableView?.separatorStyle = .none
+        self.tableView?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
     }
 
     func update(viewModel: [WorkViewModel]) {

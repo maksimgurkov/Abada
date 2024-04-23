@@ -47,6 +47,7 @@ final class CompanyTableViewCell: UITableViewCell {
 private extension CompanyTableViewCell {
     func setupView() {
         selectionStyle = .none
+        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
         setConstraints()
     }
