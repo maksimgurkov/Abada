@@ -5,7 +5,7 @@ final class BotMessageTableViewCell: UITableViewCell {
 
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 15
         return view
     }()
@@ -13,7 +13,7 @@ final class BotMessageTableViewCell: UITableViewCell {
     private let tailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "triangle.fill")
-        imageView.tintColor = .secondarySystemBackground
+        imageView.tintColor = .systemBackground
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
