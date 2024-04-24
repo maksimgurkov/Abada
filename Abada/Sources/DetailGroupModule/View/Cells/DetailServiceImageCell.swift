@@ -1,16 +1,11 @@
 import UIKit
+import AbadaUI
 
 // MARK: - DetailServiceImageCell
 final class DetailServiceImageCell: UITableViewCell {
 
     // MARK: - Private properties
-    lazy var photoImageView = {
-        let image = UIImageView()
-        image.layer.cornerRadius = 8
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
+    lazy var photoImageView = PhotoBorderImageViewUI(image: "")
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

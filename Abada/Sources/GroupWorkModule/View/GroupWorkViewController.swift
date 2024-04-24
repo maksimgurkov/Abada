@@ -13,12 +13,7 @@ final class GroupWorkViewController: UIViewController {
         return button
     }()
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
-    }()
+    private let headerLabel = HeaderLabelUI(text: "")
 
     lazy var tableView: UITableView = {
         return UITableView(frame: .zero, style: .plain)
@@ -39,7 +34,7 @@ final class GroupWorkViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         presenter.viewDidLoad()
-        presenter.getTitle(titleLabel)
+        presenter.getTitle(headerLabel)
     }
 }
 
@@ -57,7 +52,7 @@ private extension GroupWorkViewController {
 // MARK: - Setting
 private extension GroupWorkViewController {
     func addSubView() {
-        view.addSubviews([titleLabel, closeButton, tableView])
+        view.addSubviews([headerLabel, closeButton, tableView])
     }
 }
 
@@ -65,14 +60,14 @@ private extension GroupWorkViewController {
 private extension GroupWorkViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            titleLabel.rightAnchor.constraint(equalTo: closeButton.leftAnchor, constant: -20),
+            headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            headerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            headerLabel.rightAnchor.constraint(equalTo: closeButton.leftAnchor, constant: -20),
 
-            closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            closeButton.centerYAnchor.constraint(equalTo: headerLabel.centerYAnchor),
             closeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
 
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 20),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

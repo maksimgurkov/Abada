@@ -1,24 +1,15 @@
 import UIKit
+import AbadaUI
 
 // MARK: - NewsTableViewCell
 final class NewsTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let newsImage: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.layer.borderColor = AbadaColors.Color(resource: .abadaAcent).cgColor
-        image.layer.borderWidth = 1
-        image.layer.cornerRadius = 8
-        image.layer.masksToBounds = true
-        return image
-    }()
+    private let newsImage = PhotoBorderImageViewUI(image: "")
 
-    private let newsTitle: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+    private let newsTitle: TitleLabelUI = {
+        let label = TitleLabelUI(text: "")
+        label.textColor = #colorLiteral(red: 0.3190954328, green: 0.3190953732, blue: 0.3190953732, alpha: 1)
         return label
     }()
 

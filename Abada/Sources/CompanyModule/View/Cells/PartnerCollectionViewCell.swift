@@ -1,20 +1,14 @@
 import UIKit
+import AbadaUI
 
 // MARK: - PartnerCollectionCell
 final class PartnerCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private properties
-    private let photoImageView: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 8
-        image.clipsToBounds = true
-        return image
-    }()
+    private let photoImageView = PhotoImageViewUI(image: "")
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+    private let titleLabel: TitleLabelUI = {
+        let label = TitleLabelUI(text: "")
         label.textColor = .systemGray2
         return label
     }()
@@ -39,7 +33,6 @@ private extension PartnerCollectionViewCell {
     func setupView() {
         addSubView()
         setConstraints()
-        //        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
     }
 }
 

@@ -13,17 +13,8 @@ final class ApplicationViewController: UIViewController {
         return button
     }()
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        return label
-    }()
-
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        return label
-    }()
+    private let titleLabel = HeaderLabelUI(text: "")
+    private let descriptionLabel = SmallLabelUI(text: "")
 
     private let nameTextField: CustomTextFieldUI = {
         return CustomTextFieldUI(placeholder: "Ваше имя")
@@ -51,10 +42,9 @@ final class ApplicationViewController: UIViewController {
         return button
     }()
 
-    private let dataLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .gray
+    private let dataLabel: ExtraSmallLabelUI = {
+        let label = ExtraSmallLabelUI()
+        label.textColor = AbadaColors.Color(resource: .abadaText)
         label.text = "Соглашаюсь на обработку персональных данных"
         return label
     }()
@@ -154,6 +144,7 @@ private extension ApplicationViewController {
             checkButton.widthAnchor.constraint(equalToConstant: 25),
 
             dataLabel.leftAnchor.constraint(equalTo: checkButton.rightAnchor, constant: 10),
+            dataLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             dataLabel.centerYAnchor.constraint(equalTo: checkButton.centerYAnchor),
 
             sendButton.topAnchor.constraint(equalTo: dataLabel.bottomAnchor, constant: 20),

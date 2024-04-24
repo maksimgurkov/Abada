@@ -1,21 +1,11 @@
 import UIKit
+import AbadaUI
 
 // MARK: - CertificateHeaderCell
 final class HeaderTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.numberOfLines = 0
-        return label
-    }()
-
-    private let seporatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .secondarySystemBackground
-        return view
-    }()
+    private let titleLabel = HeaderLabelUI(text: "")
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

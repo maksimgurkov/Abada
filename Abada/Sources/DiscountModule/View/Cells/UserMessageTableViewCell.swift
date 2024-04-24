@@ -1,4 +1,5 @@
 import UIKit
+import AbadaUI
 
 // MARK: - ChatTableViewCell
 final class UserMessageTableViewCell: UITableViewCell {
@@ -26,11 +27,9 @@ final class UserMessageTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private let messageLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
+    private let messageLabel: SmallLabelUI = {
+        let label = SmallLabelUI(text: "")
         label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
-        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
 

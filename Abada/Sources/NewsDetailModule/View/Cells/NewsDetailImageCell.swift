@@ -1,15 +1,10 @@
 import UIKit
+import AbadaUI
 
 // MARK: - NewsDetailTitleCell
 final class NewsDetailImageCell: UITableViewCell {
 
-    private let newsImage: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 8
-        image.clipsToBounds = true
-        return image
-    }()
+    private let newsImage = PhotoBorderImageViewUI(image: "")
 
     // MARK: - Initialisers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

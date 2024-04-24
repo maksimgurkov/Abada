@@ -1,12 +1,12 @@
 import UIKit
+import AbadaUI
 
 // MARK: - DetailServicePriceCell
 final class DetailServicePriceCell: UITableViewCell {
 
     // MARK: - Private properties
-    lazy var priceLabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+    lazy var priceLabel: HeaderLabelUI = {
+        let label = HeaderLabelUI(text: "")
         label.textColor = AbadaColors.Color(resource: .abadaAcent)
         return label
     }()

@@ -1,11 +1,12 @@
 import UIKit
+import AbadaUI
 
 // MARK: - ChatTableViewCell
 final class BotMessageTableViewCell: UITableViewCell {
 
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
+        view.backgroundColor = .tertiarySystemBackground
         view.layer.cornerRadius = 15
         return view
     }()
@@ -13,7 +14,7 @@ final class BotMessageTableViewCell: UITableViewCell {
     private let tailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "triangle.fill")
-        imageView.tintColor = AbadaColors.Color(resource: .abadaBackground)
+        imageView.tintColor = .tertiarySystemBackground
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -26,10 +27,8 @@ final class BotMessageTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private let messageLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 15)
+    private let messageLabel: SmallLabelUI = {
+        let label = SmallLabelUI(text: "")
         return label
     }()
 

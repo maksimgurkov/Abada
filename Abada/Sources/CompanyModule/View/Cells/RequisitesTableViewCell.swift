@@ -30,13 +30,13 @@ private extension RequisitesTableViewCell {
     func setupView() {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         tableView.register(
             DetailRequisitesTableViewCell.self,
             forCellReuseIdentifier: DetailRequisitesTableViewCell.description()
         )
+        tableView.dataSource = self
+        tableView.delegate = self
 
         addSubView()
         setConstraints()

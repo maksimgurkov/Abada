@@ -1,22 +1,12 @@
 import UIKit
+import AbadaUI
 
 // MARK: - RequisitesTableViewCell
 final class DetailRequisitesTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.numberOfLines = 0
-        return label
-    }()
-
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.numberOfLines = 0
-        return label
-    }()
+    private let titleLabel = TitleLabelUI(text: "")
+    private let descriptionLabel = SmallLabelUI(text: "")
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

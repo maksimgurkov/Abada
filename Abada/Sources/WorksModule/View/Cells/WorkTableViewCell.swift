@@ -1,11 +1,12 @@
 import UIKit
+import AbadaUI
 
 // MARK: - PriceTableViewCell
 final class WorkTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let titleLabel: UILabel = {
-        let label = UILabel()
+    private let titleLabel: TitleLabelUI = {
+        let label = TitleLabelUI(text: "")
         return label
     }()
 
@@ -66,6 +67,8 @@ private extension WorkTableViewCell {
 
             nextImage.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             nextImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+            nextImage.heightAnchor.constraint(equalToConstant: 20),
+            nextImage.widthAnchor.constraint(equalToConstant: 20),
 
             separatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             separatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
