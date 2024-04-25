@@ -21,7 +21,7 @@ final class DetailServicePriceCell: UITableViewCell {
     }
 
     func fill(viewModel: DetailPriceViewModel) {
-        self.priceLabel.text = "\(viewModel.amount)₽ м² по полу"
+        self.priceLabel.text = "\(viewModel.amount)"
     }
 }
 

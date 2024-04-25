@@ -5,6 +5,6 @@ struct GroupViewModel {
     let image: String
     let title: String
     let description: String
-    let price: Int
+    let price: String
     let didTup: (GroupViewModel) -> Void
 }
