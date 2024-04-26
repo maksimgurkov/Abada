@@ -1,5 +1,7 @@
 import UIKit
 import AbadaUI
+import MessageUI
+import SafariServices
 
 // MARK: - ApplicationViewController
 final class ApplicationViewController: UIViewController {
@@ -22,16 +24,12 @@ final class ApplicationViewController: UIViewController {
 
     private let numberPhoneTextField: CustomTextFieldUI = {
         let textField = CustomTextFieldUI(placeholder: "Телефон")
+        textField.keyboardType = .numberPad
         return textField
     }()
 
-    private let emailTextField: CustomTextFieldUI = {
-        let textField = CustomTextFieldUI(placeholder: "Email - по желанию")
-        return textField
-    }()
-
-    private let applicationTextField: CustomTextFieldUI = {
-        return CustomTextFieldUI(placeholder: "Интересующая услуга, например - Пол")
+    private let wishListTextField: CustomTextFieldUI = {
+        return CustomTextFieldUI(placeholder: "Что нужно сделать")
     }()
 
     private lazy var checkButton: UIButton = {
@@ -42,15 +40,19 @@ final class ApplicationViewController: UIViewController {
         return button
     }()
 
-    private let dataLabel: ExtraSmallLabelUI = {
-        let label = ExtraSmallLabelUI()
-        label.textColor = AbadaColors.Color(resource: .abadaText)
-        label.text = "Соглашаюсь на обработку персональных данных"
-        return label
+    private lazy var consentButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Согласие на обработку персональных данных", for: .normal)
+        button.setTitleColor(AbadaColors.Color(resource: .abadaText), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.titleLabel?.numberOfLines = 2
+        button.addTarget(self, action: #selector(tupShowConsent), for: .touchUpInside)
+        return button
     }()
 
-    private let sendButton: BigButtonUI = {
+    private lazy var sendButton: BigButtonUI = {
         let button = BigButtonUI(title: "Отправить")
+        button.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
         return button
     }()
 
@@ -71,6 +73,12 @@ final class ApplicationViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         presenter.viewDidLoad()
+    }
+
+    // Скрытие клавиатуры
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.view.endEditing(true)
     }
 }
 
@@ -98,11 +106,10 @@ private extension ApplicationViewController {
                 descriptionLabel,
                 nameTextField,
                 numberPhoneTextField,
-                emailTextField,
-                applicationTextField,
+                wishListTextField,
                 checkButton,
-                dataLabel,
-                sendButton
+                sendButton,
+                consentButton
             ]
         )
     }
@@ -130,26 +137,23 @@ private extension ApplicationViewController {
             numberPhoneTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             numberPhoneTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
 
-            emailTextField.topAnchor.constraint(equalTo: numberPhoneTextField.bottomAnchor, constant: 20),
-            emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            wishListTextField.topAnchor.constraint(equalTo: numberPhoneTextField.bottomAnchor, constant: 20),
+            wishListTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            wishListTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
 
-            applicationTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-            applicationTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            applicationTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-
-            checkButton.topAnchor.constraint(equalTo: applicationTextField.bottomAnchor, constant: 20),
+            checkButton.topAnchor.constraint(equalTo: wishListTextField.bottomAnchor, constant: 20),
             checkButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            checkButton.heightAnchor.constraint(equalToConstant: 25),
-            checkButton.widthAnchor.constraint(equalToConstant: 25),
+            checkButton.heightAnchor.constraint(equalToConstant: 15),
+            checkButton.widthAnchor.constraint(equalToConstant: 15),
 
-            dataLabel.leftAnchor.constraint(equalTo: checkButton.rightAnchor, constant: 10),
-            dataLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            dataLabel.centerYAnchor.constraint(equalTo: checkButton.centerYAnchor),
+            consentButton.leftAnchor.constraint(equalTo: checkButton.rightAnchor, constant: 5),
+            consentButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            consentButton.centerYAnchor.constraint(equalTo: checkButton.centerYAnchor),
 
-            sendButton.topAnchor.constraint(equalTo: dataLabel.bottomAnchor, constant: 20),
+            sendButton.topAnchor.constraint(equalTo: consentButton.bottomAnchor, constant: 20),
             sendButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             sendButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+
         ])
     }
 }
@@ -173,6 +177,82 @@ private extension ApplicationViewController {
             sender.tintColor = AbadaColors.Color(resource: .abadaAcent)
             isEmpty.toggle()
             sendButton.isHidden = true
+        }
+    }
+
+    @objc
+    func sendEmail() {
+        let mailComposeViewController = configureMailComposer()
+
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        }
+    }
+
+    @objc
+    func tupShowConsent() {
+        if let url = URL(string: "https://abada.ru/include/licenses_detail.php") {
+            let safariVC = SFSafariViewController(url: url)
+            present(safariVC, animated: true, completion: nil)
+        }
+    }
+
+    @objc
+    func mailSentAlert() {
+        let alert = UIAlertController(
+            title: "Заявка принята",
+            message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте.",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func clearTextField() {
+        nameTextField.text = nil
+        numberPhoneTextField.text = nil
+        wishListTextField.text = nil
+    }
+}
+
+// MARK: - MFMailComposeViewControllerDelegate
+extension ApplicationViewController: MFMailComposeViewControllerDelegate {
+    private func configureMailComposer() -> MFMailComposeViewController {
+        let mailComposeVC = MFMailComposeViewController()
+
+        let name = "Имя: \(nameTextField.text ?? "")"
+        let phone = "Контактный телефон: \(numberPhoneTextField.text ?? "")"
+        let wishList = "Нужно: \(wishListTextField.text ?? "")"
+
+        let bodyMail = """
+\(name)
+\(phone)
+\(wishList)
+"""
+
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.setToRecipients(["solodyankin.ie@ya.ru"])
+        mailComposeVC.setSubject("Новая заявка из приложения!")
+        mailComposeVC.setMessageBody("\(bodyMail)", isHTML: false)
+
+        return mailComposeVC
+    }
+
+    // Отправка письма и закрытие текущего экрана
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
+
+        switch result {
+        case .sent:
+            DispatchQueue.main.async {
+                controller.dismiss(animated: true, completion: nil)
+                self.tupCloseButton()
+                self.mailSentAlert()
+                self.clearTextField()
+            }
+        default:
+            controller.dismiss(animated: true, completion: nil)
         }
     }
 }
