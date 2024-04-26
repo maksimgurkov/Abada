@@ -7,16 +7,9 @@ final class BotMessageTableViewCell: UITableViewCell {
     private let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .tertiarySystemBackground
-        view.layer.cornerRadius = 15
+        view.layer.cornerRadius = 8
+        view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner]
         return view
-    }()
-
-    private let tailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "triangle.fill")
-        imageView.tintColor = .tertiarySystemBackground
-        imageView.contentMode = .scaleAspectFit
-        return imageView
     }()
 
     private let avatarImageView: UIImageView = {
@@ -64,7 +57,6 @@ private extension BotMessageTableViewCell {
         contentView.addSubviews([
             avatarImageView,
             containerView,
-            tailImageView,
             messageLabel
         ])
     }
@@ -87,12 +79,7 @@ private extension BotMessageTableViewCell {
             containerView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -15),
             containerView.leftAnchor.constraint(equalTo: messageLabel.leftAnchor, constant: -15),
             containerView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 15),
-            containerView.rightAnchor.constraint(equalTo: messageLabel.rightAnchor, constant: 15),
-
-            tailImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 3),
-            tailImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: -9),
-            tailImageView.heightAnchor.constraint(equalToConstant: 30),
-            tailImageView.widthAnchor.constraint(equalToConstant: 30)
+            containerView.rightAnchor.constraint(equalTo: messageLabel.rightAnchor, constant: 15)
         ])
     }
 }
