@@ -19,12 +19,15 @@ final class ApplicationViewController: UIViewController {
     private let descriptionLabel = SmallLabelUI(text: "")
 
     private let nameTextField: CustomTextFieldUI = {
-        return CustomTextFieldUI(placeholder: "Ваше имя")
+        let textField = CustomTextFieldUI(placeholder: "Имя")
+        textField.isOn = true
+        return textField
     }()
 
     private let numberPhoneTextField: CustomTextFieldUI = {
         let textField = CustomTextFieldUI(placeholder: "Телефон")
         textField.keyboardType = .numberPad
+        textField.isOn = true
         return textField
     }()
 
@@ -52,7 +55,7 @@ final class ApplicationViewController: UIViewController {
 
     private lazy var sendButton: BigButtonUI = {
         let button = BigButtonUI(title: "Отправить")
-        button.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
+        button.addTarget(self, action: #selector(checkingForEmptyString), for: .touchUpInside)
         return button
     }()
 
@@ -79,6 +82,20 @@ final class ApplicationViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.view.endEditing(true)
+    }
+
+    func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func clearTextField() {
+        nameTextField.text = nil
+        numberPhoneTextField.text = nil
+        wishListTextField.text = nil
     }
 }
 
@@ -166,6 +183,14 @@ private extension ApplicationViewController {
     }
 
     @objc
+    func tupShowConsent() {
+        if let url = URL(string: "https://abada.ru/include/licenses_detail.php") {
+            let safariVC = SFSafariViewController(url: url)
+            present(safariVC, animated: true, completion: nil)
+        }
+    }
+
+    @objc
     func tupCheckButton(sender: UIButton) {
         if !isEmpty {
             sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
@@ -181,39 +206,24 @@ private extension ApplicationViewController {
     }
 
     @objc
-    func sendEmail() {
+    func checkingForEmptyString() {
+        if nameTextField.text != "" && numberPhoneTextField.text != "" {
+            tupSendEmail()
+        } else {
+            displayAlert(
+                title: "Ошибка",
+                message: "Заполните обязательные поля *"
+            )
+        }
+    }
+
+    @objc
+    func tupSendEmail() {
         let mailComposeViewController = configureMailComposer()
 
         if MFMailComposeViewController.canSendMail() {
             self.present(mailComposeViewController, animated: true, completion: nil)
         }
-    }
-
-    @objc
-    func tupShowConsent() {
-        if let url = URL(string: "https://abada.ru/include/licenses_detail.php") {
-            let safariVC = SFSafariViewController(url: url)
-            present(safariVC, animated: true, completion: nil)
-        }
-    }
-
-    @objc
-    func mailSentAlert() {
-        let alert = UIAlertController(
-            title: "Заявка принята",
-            message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте.",
-            preferredStyle: .alert
-        )
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(okAction)
-
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func clearTextField() {
-        nameTextField.text = nil
-        numberPhoneTextField.text = nil
-        wishListTextField.text = nil
     }
 }
 
@@ -234,7 +244,7 @@ extension ApplicationViewController: MFMailComposeViewControllerDelegate {
 
         mailComposeVC.mailComposeDelegate = self
         mailComposeVC.setToRecipients(["solodyankin.ie@ya.ru"])
-        mailComposeVC.setSubject("Новая заявка из приложения!")
+        mailComposeVC.setSubject("Заявка из приложения!")
         mailComposeVC.setMessageBody("\(bodyMail)", isHTML: false)
 
         return mailComposeVC
@@ -247,7 +257,10 @@ extension ApplicationViewController: MFMailComposeViewControllerDelegate {
         case .sent:
             DispatchQueue.main.async {
                 self.tupCloseButton()
-                self.mailSentAlert()
+                self.displayAlert(
+                    title: "Заявка принята",
+                    message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте"
+                )
                 self.clearTextField()
             }
         default:
