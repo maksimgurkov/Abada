@@ -9,7 +9,7 @@ final class PersonDiscountViewController: UIViewController {
     private let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = 8
         return view
     }()
 
@@ -20,33 +20,27 @@ final class PersonDiscountViewController: UIViewController {
         return view
     }()
 
-    private let discountLabel: UILabel = {
-        let label = UILabel()
+    private let discountLabel: LargeLabelUI = {
+        let label = LargeLabelUI(text: "")
         label.text = "-30%"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 50)
         return label
     }()
 
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
+    private let descriptionLabel: SmallLabelUI = {
+        let label = SmallLabelUI(text: "")
         label.text = "На монтаж радиаторов отопления и систем кондиционирования."
-        label.numberOfLines = 0
         return label
     }()
 
-    private let couponLabel: UILabel = {
-        let label = UILabel()
+    private let couponLabel: LargeLabelUI = {
+        let label = LargeLabelUI(text: "")
         label.text = "ABADA30"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
         return label
     }()
 
-    private let validityPeriodLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
+    private let validityPeriodLabel: SmallLabelUI = {
+        let label = SmallLabelUI(text: "")
         label.text = "Действует с 01.04.2024 по 30.04.2024"
         return label
     }()

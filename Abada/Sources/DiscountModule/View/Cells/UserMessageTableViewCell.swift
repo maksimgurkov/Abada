@@ -1,4 +1,5 @@
 import UIKit
+import AbadaUI
 
 // MARK: - ChatTableViewCell
 final class UserMessageTableViewCell: UITableViewCell {
@@ -7,16 +8,9 @@ final class UserMessageTableViewCell: UITableViewCell {
     private let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = AbadaColors.Color(resource: .abadaAcent)
-        view.layer.cornerRadius = 15
+        view.layer.cornerRadius = 8
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
         return view
-    }()
-
-    private let tailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "triangle.fill")
-        imageView.tintColor = AbadaColors.Color(resource: .abadaAcent)
-        imageView.contentMode = .scaleAspectFit
-        return imageView
     }()
 
     private let avatarImageView: UIImageView = {
@@ -26,11 +20,9 @@ final class UserMessageTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private let messageLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
+    private let messageLabel: SmallLabelUI = {
+        let label = SmallLabelUI(text: "")
         label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
-        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
 
@@ -65,7 +57,6 @@ private extension UserMessageTableViewCell {
     func addSubView() {
         contentView.addSubviews([
             avatarImageView,
-            tailImageView,
             containerView,
             messageLabel
         ])
@@ -89,12 +80,7 @@ private extension UserMessageTableViewCell {
             containerView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -15),
             containerView.leftAnchor.constraint(equalTo: messageLabel.leftAnchor, constant: -15),
             containerView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 15),
-            containerView.rightAnchor.constraint(equalTo: messageLabel.rightAnchor, constant: 15),
-
-            tailImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 3),
-            tailImageView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 9),
-            tailImageView.heightAnchor.constraint(equalToConstant: 30),
-            tailImageView.widthAnchor.constraint(equalToConstant: 30)
+            containerView.rightAnchor.constraint(equalTo: messageLabel.rightAnchor, constant: 15)
         ])
     }
 }

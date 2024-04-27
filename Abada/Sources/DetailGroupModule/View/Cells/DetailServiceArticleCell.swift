@@ -1,15 +1,11 @@
 import UIKit
+import AbadaUI
 
 // MARK: - DetailServiceArticleCell
 final class DetailServiceArticleCell: UITableViewCell {
 
     // MARK: - Private properties
-    lazy var articleLabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.numberOfLines = 0
-        return label
-    }()
+    lazy var articleLabel = SmallLabelUI(text: "")
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

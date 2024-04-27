@@ -7,12 +7,7 @@ final class NewsDetailViewController: UIViewController {
     // MARK: - Private properties
     private let presenter: NewsDetailPresenterProtocol
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 25)
-        return label
-    }()
+    private let headerLabel = HeaderLabelUI(text: "")
 
     private lazy var closeButton: CloseButtonUI = {
         let button = CloseButtonUI()
@@ -45,7 +40,7 @@ final class NewsDetailViewController: UIViewController {
 // MARK: - NewsDetailInput
 extension NewsDetailViewController: NewsDetailInput {
     func updateView(viewModel: DetailViewModel) {
-        self.titleLabel.text = viewModel.title
+        self.headerLabel.text = viewModel.title
     }
 }
 
@@ -61,7 +56,7 @@ private extension NewsDetailViewController {
 // MARK: - Setting
 private extension NewsDetailViewController {
     func addSubView() {
-        view.addSubviews([titleLabel, closeButton, tableView])
+        view.addSubviews([closeButton, headerLabel, tableView])
     }
 }
 
@@ -69,14 +64,14 @@ private extension NewsDetailViewController {
 private extension NewsDetailViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -70),
-
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             closeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
 
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            headerLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -80),
+
+            tableView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 8),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

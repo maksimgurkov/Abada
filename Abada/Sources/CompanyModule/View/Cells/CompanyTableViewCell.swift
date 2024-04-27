@@ -1,28 +1,15 @@
 import UIKit
+import AbadaUI
 
 // MARK: - CompanyTableViewCell
 final class CompanyTableViewCell: UITableViewCell {
 
     // MARK: Private property
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.numberOfLines = 0
-        return label
-    }()
+    private let titleLabel = TitleLabelUI(text: "")
+    private let descriptionLabel = SmallLabelUI(text: "")
 
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
-    }()
-
-    private lazy var photoImageView: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 8
-        image.clipsToBounds = true
+    private lazy var photoImageView: PhotoBorderImageViewUI = {
+        let image = PhotoBorderImageViewUI(image: "")
         image.image = UIImage(named: "companyDetail_onas")
         return image
     }()

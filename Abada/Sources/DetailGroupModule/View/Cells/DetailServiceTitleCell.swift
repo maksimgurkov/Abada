@@ -1,15 +1,11 @@
 import UIKit
+import AbadaUI
 
 // MARK: - DetailServiceTitleCell
 final class DetailServiceTitleCell: UITableViewCell {
 
     // MARK: - Private properties
-    lazy var titleLabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.numberOfLines = 0
-        return label
-    }()
+    lazy var titleLabel = TitleLabelUI(text: "")
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

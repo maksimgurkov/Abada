@@ -1,14 +1,11 @@
 import UIKit
+import AbadaUI
 
 // MARK: - NewsDescriptionCell
 final class NewsDescriptionCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        return label
-    }()
+    private let descriptionLabel = SmallLabelUI(text: "")
 
     // MARK: - Initialisers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

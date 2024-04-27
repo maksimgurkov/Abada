@@ -21,7 +21,7 @@ struct DetailArticleViewModel {
 }
 
 struct DetailPriceViewModel {
-    let amount: Int
+    let amount: String
 }
 
 struct DetailButtonViewModel {

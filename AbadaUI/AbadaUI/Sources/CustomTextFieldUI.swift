@@ -10,6 +10,21 @@ public final class CustomTextFieldUI: UITextField {
         right: 20
     )
 
+    private let starLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "*"
+        label.textColor = UIColor(named: "abadaAcent")
+        label.isHidden = true
+        return label
+    }()
+
+    public var isOn: Bool = false {
+        didSet {
+            starLabel.isHidden = !isOn
+        }
+    }
+
     // MARK: - Init
     public init(placeholder: String) {
         super.init(frame: .zero)
@@ -40,6 +55,24 @@ public final class CustomTextFieldUI: UITextField {
         layer.borderColor = UIColor(named: "abadaAcent")?.cgColor
         layer.borderWidth = 1.0
         heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        addSubView()
+        setConstraints()
+    }
+}
+
+// MARK: - Add Elements
+private  extension CustomTextFieldUI {
+    // MARK: - Setting
+    func addSubView() {
+        addSubview(starLabel)
     }
 
+    // MARK: - Layout
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+            starLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            starLabel.rightAnchor.constraint(equalTo: self.leftAnchor, constant: -5)
+        ])
+    }
 }

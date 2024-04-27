@@ -1,30 +1,21 @@
 import UIKit
+import AbadaUI
 
 // MARK: - NewsTableViewCell
 final class NewsTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let newsImage: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.layer.borderColor = AbadaColors.Color(resource: .abadaAcent).cgColor
-        image.layer.borderWidth = 1
-        image.layer.cornerRadius = 8
-        image.layer.masksToBounds = true
-        return image
-    }()
+    private let newsImage = PhotoBorderImageViewUI(image: "")
 
-    private let newsTitle: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+    private let newsTitle: TitleLabelUI = {
+        let label = TitleLabelUI(text: "")
+        label.textColor = #colorLiteral(red: 0.3190954328, green: 0.3190953732, blue: 0.3190953732, alpha: 1)
         return label
     }()
 
     private let containerView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 4
         view.backgroundColor = .white
         view.alpha = 0.6
         return view
@@ -59,7 +50,13 @@ private extension NewsTableViewCell {
 // MARK: - Setting
 private extension NewsTableViewCell {
     func addSubView() {
-        contentView.addSubviews([newsImage, containerView, newsTitle])
+        contentView.addSubviews(
+            [
+                newsImage,
+                containerView,
+                newsTitle
+            ]
+        )
     }
 }
 
@@ -72,8 +69,8 @@ private extension NewsTableViewCell {
             newsImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             newsImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -14),
+            containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 14),
 
             newsTitle.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
             newsTitle.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),

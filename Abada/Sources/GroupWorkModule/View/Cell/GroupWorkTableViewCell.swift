@@ -1,16 +1,11 @@
 import UIKit
+import AbadaUI
 
 // MARK: - GroupWorkTableViewCell
 final class GroupWorkTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let imageWork: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 8
-        image.layer.masksToBounds = true
-        return image
-    }()
+    private let imageWork = PhotoBorderImageViewUI(image: "")
 
     private let containerView: UIView = {
         let view = UIView()
@@ -19,8 +14,8 @@ final class GroupWorkTableViewCell: UITableViewCell {
         return view
     }()
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
+    private let titleLabel: TitleLabelUI = {
+        let label = TitleLabelUI(text: "")
         label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
         return label
     }()

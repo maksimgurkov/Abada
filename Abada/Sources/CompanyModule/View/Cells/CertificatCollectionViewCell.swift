@@ -1,27 +1,14 @@
 import UIKit
+import AbadaUI
 
 // MARK: - CertificatCollectionCell
 final class CertificatCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private properties
-    private let photoImageView: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
+    private let photoImageView = PhotoImageViewUI(image: "")
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        return label
-    }()
-
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        return label
-    }()
+    private let titleLabel = TitleLabelUI(text: "")
+    private let descriptionLabel = SmallLabelUI(text: "")
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -43,7 +30,7 @@ final class CertificatCollectionViewCell: UICollectionViewCell {
 // MARK: - SetupView
 private extension CertificatCollectionViewCell {
     func setupView() {
-        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
+        backgroundColor = .tertiarySystemBackground
         layer.cornerRadius = 15
 
         addSubView()
