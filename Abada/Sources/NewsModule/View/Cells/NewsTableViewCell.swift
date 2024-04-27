@@ -15,7 +15,7 @@ final class NewsTableViewCell: UITableViewCell {
 
     private let containerView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 4
         view.backgroundColor = .white
         view.alpha = 0.6
         return view
@@ -50,7 +50,13 @@ private extension NewsTableViewCell {
 // MARK: - Setting
 private extension NewsTableViewCell {
     func addSubView() {
-        contentView.addSubviews([newsImage, containerView, newsTitle])
+        contentView.addSubviews(
+            [
+                newsImage,
+                containerView,
+                newsTitle
+            ]
+        )
     }
 }
 
@@ -63,8 +69,8 @@ private extension NewsTableViewCell {
             newsImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             newsImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -14),
+            containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 14),
 
             newsTitle.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
             newsTitle.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),

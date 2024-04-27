@@ -246,13 +246,14 @@ extension ApplicationViewController: MFMailComposeViewControllerDelegate {
         switch result {
         case .sent:
             DispatchQueue.main.async {
-                controller.dismiss(animated: true, completion: nil)
                 self.tupCloseButton()
                 self.mailSentAlert()
                 self.clearTextField()
             }
         default:
-            controller.dismiss(animated: true, completion: nil)
+            break
         }
+
+        controller.dismiss(animated: true, completion: nil)
     }
 }
