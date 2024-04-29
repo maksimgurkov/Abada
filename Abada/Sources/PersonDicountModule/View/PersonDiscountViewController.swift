@@ -1,6 +1,7 @@
 import UIKit
 import AbadaUI
 
+// MARK: - PersonDiscountViewController
 final class PersonDiscountViewController: UIViewController {
 
     // MARK: - Private propertyes
@@ -22,33 +23,30 @@ final class PersonDiscountViewController: UIViewController {
 
     private let discountLabel: LargeLabelUI = {
         let label = LargeLabelUI(text: "")
-        label.text = "-30%"
         return label
     }()
 
     private let descriptionLabel: SmallLabelUI = {
         let label = SmallLabelUI(text: "")
-        label.text = "На монтаж радиаторов отопления и систем кондиционирования."
         return label
     }()
 
     private let couponLabel: LargeLabelUI = {
         let label = LargeLabelUI(text: "")
-        label.text = "ABADA30"
         label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
         return label
     }()
 
-    private let validityPeriodLabel: SmallLabelUI = {
+    private let periodLabel: SmallLabelUI = {
         let label = SmallLabelUI(text: "")
-        label.text = "Действует с 01.04.2024 по 30.04.2024"
         return label
     }()
 
-    private lazy var closeButton: CloseButtonUI = {
-        let button = CloseButtonUI()
-        button.addTarget(self, action: #selector(tupCloseButton), for: .touchUpInside)
-        return button
+    lazy var closingLeverView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.2964690924, green: 0.3058690429, blue: 0.3186741769, alpha: 1)
+        view.layer.cornerRadius = 2
+        return view
     }()
 
     // MARK: - Init
@@ -65,6 +63,13 @@ final class PersonDiscountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+        presenter.updateData(
+            discountLabel: discountLabel,
+            descriptionLabel: descriptionLabel,
+            couponLabel: couponLabel,
+            periodLabel: periodLabel
+        )
+
         setupView()
     }
 }
@@ -89,11 +94,11 @@ private extension PersonDiscountViewController {
         view.addSubviews([
             backgroundView,
             substrateView,
-            closeButton,
+            closingLeverView,
             discountLabel,
             descriptionLabel,
             couponLabel,
-            validityPeriodLabel
+            periodLabel
         ])
     }
 }
@@ -107,13 +112,15 @@ private extension PersonDiscountViewController {
             backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor),
             backgroundView.heightAnchor.constraint(equalToConstant: 400),
 
+            closingLeverView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 20),
+            closingLeverView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            closingLeverView.heightAnchor.constraint(equalToConstant: 4),
+            closingLeverView.widthAnchor.constraint(equalToConstant: 80),
+
             substrateView.topAnchor.constraint(equalTo: couponLabel.topAnchor, constant: -20),
             substrateView.leftAnchor.constraint(equalTo: couponLabel.leftAnchor, constant: -20),
             substrateView.rightAnchor.constraint(equalTo: couponLabel.rightAnchor, constant: 20),
             substrateView.bottomAnchor.constraint(equalTo: couponLabel.bottomAnchor, constant: 20),
-
-            closeButton.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 20),
-            closeButton.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20),
 
             discountLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 40),
             discountLabel.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 20),
@@ -126,16 +133,9 @@ private extension PersonDiscountViewController {
             couponLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
             couponLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
 
-            validityPeriodLabel.topAnchor.constraint(equalTo: couponLabel.bottomAnchor, constant: 40),
-            validityPeriodLabel.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 20),
-            validityPeriodLabel.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20)
+            periodLabel.topAnchor.constraint(equalTo: couponLabel.bottomAnchor, constant: 40),
+            periodLabel.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 20),
+            periodLabel.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20)
         ])
-    }
-}
-
-// MARK: - Action
-private extension PersonDiscountViewController {
-    @objc func tupCloseButton() {
-        dismiss(animated: true)
     }
 }
