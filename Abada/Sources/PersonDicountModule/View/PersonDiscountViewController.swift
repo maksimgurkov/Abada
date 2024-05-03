@@ -63,7 +63,7 @@ final class PersonDiscountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
-        presenter.updateData(
+        presenter.readDataFromUserDefaults(
             discountLabel: discountLabel,
             descriptionLabel: descriptionLabel,
             couponLabel: couponLabel,

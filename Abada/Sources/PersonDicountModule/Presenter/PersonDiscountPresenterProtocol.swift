@@ -3,5 +3,11 @@ import UIKit
 // MARK: - PersonDiscountPresenterProtocol
 protocol PersonDiscountPresenterProtocol {
     func viewDidLoad()
-    func updateData(discountLabel: UILabel, descriptionLabel: UILabel, couponLabel: UILabel, periodLabel: UILabel)
+    /// Получение рандомного персонального купона
+    ///
+    /// Проверка идёт по текущему месяцу и месяцу в моделе
+    func getRandomCoupon() -> PersonDiscountModel
+
+    func readDataFromUserDefaults(discountLabel: UILabel, descriptionLabel: UILabel, couponLabel: UILabel, periodLabel: UILabel)
+
 }
