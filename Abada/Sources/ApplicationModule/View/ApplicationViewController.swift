@@ -232,7 +232,7 @@ extension ApplicationViewController: MFMailComposeViewControllerDelegate {
     private func configureMailComposer() -> MFMailComposeViewController {
         let mailComposeVC = MFMailComposeViewController()
 
-        let name = "Имя: \(nameTextField.text ?? "")"
+        let name = "Имя:> \(nameTextField.text ?? "")"
         let phone = "Контактный телефон: \(numberPhoneTextField.text ?? "")"
         let wishList = "Нужно: \(wishListTextField.text ?? "")"
 
