@@ -9,5 +9,4 @@ protocol PersonDiscountPresenterProtocol {
     func getRandomCoupon() -> PersonDiscountModel
 
     func readDataFromUserDefaults(discountLabel: UILabel, descriptionLabel: UILabel, couponLabel: UILabel, periodLabel: UILabel)
-
 }

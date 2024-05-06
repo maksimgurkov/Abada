@@ -49,11 +49,13 @@ private extension TabBarViewController {
     func generatorTabBar() {
         @Dependency var newsModule: NewsViewController
         @Dependency var workModule: WorkViewController
+        @Dependency var wishModule: WishViewController
         @Dependency var companyModule: CompanyViewController
         @Dependency var discountModule: DiscountViewController
         self.viewControllers = [
             generator(viewController: newsModule, title: "Новости", image: UIImage(systemName: "newspaper")),
             generator(viewController: workModule, title: "Услуги", image: UIImage(systemName: "hammer")),
+            generator(viewController: wishModule, title: "Цели", image: UIImage(systemName: "scope")),
             generator(viewController: companyModule, title: "О нас", image: UIImage(systemName: "house")),
             generator(viewController: discountModule, title: "Скидка", image: UIImage(systemName: "tag"))
         ]

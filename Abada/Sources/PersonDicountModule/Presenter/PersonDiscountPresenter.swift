@@ -5,7 +5,7 @@ final class PersonDiscountPresenter {
     weak var view: PersonDiscountInput?
 
     // MARK: - Private properties
-    private let viewModels = PersonDiscountData.shared.discount
+    private var viewModels = PersonDiscountData.shared.discount
 }
 
 // MARK: - PersonDiscountPresenterProtocol

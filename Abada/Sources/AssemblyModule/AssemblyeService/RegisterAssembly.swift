@@ -12,6 +12,7 @@ final class RegisterAssembly {
         CompanyAssembly(),
         DiscountAssembly(),
         PersonDiscountAssembly(),
+        WishAssembly(),
         TabBarAssembly(),
         ApplicationAssembly()
     ]
