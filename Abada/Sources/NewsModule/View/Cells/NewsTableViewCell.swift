@@ -21,7 +21,7 @@ final class NewsTableViewCell: UITableViewCell {
         return view
     }()
 
-    // MARK: - Initialisers
+    // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()

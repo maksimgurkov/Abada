@@ -1,6 +1,6 @@
 import UIKit
 import AbadaUI
-import MessageUI
+// import MessageUI
 import SafariServices
 
 // MARK: - ApplicationViewController
@@ -84,9 +84,19 @@ final class ApplicationViewController: UIViewController {
         self.view.endEditing(true)
     }
 
-    func displayAlert(title: String, message: String) {
+    //    func displayAlert(title: String, message: String) {
+    //        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    //        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    //        alert.addAction(okAction)
+    //
+    //        present(alert, animated: true, completion: nil)
+    //    }
+
+    func displayAlert(title: String, message: String, completionHandler: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            completionHandler?()
+        }
         alert.addAction(okAction)
 
         present(alert, animated: true, completion: nil)
@@ -208,32 +218,21 @@ private extension ApplicationViewController {
     @objc
     func checkingForEmptyString() {
         if nameTextField.text != "" && numberPhoneTextField.text != "" {
-            tupSendEmail()
+            //            tupSendEmail()
+            tupSendTelegram()
         } else {
             displayAlert(
                 title: "Ошибка",
-                message: "Заполните обязательные поля *"
+                message: "Заполните обязательные поля *",
+                completionHandler: nil
             )
         }
     }
 
     @objc
-    func tupSendEmail() {
-        let mailComposeViewController = configureMailComposer()
-
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeViewController, animated: true, completion: nil)
-        }
-    }
-}
-
-// MARK: - MFMailComposeViewControllerDelegate
-extension ApplicationViewController: MFMailComposeViewControllerDelegate {
-    private func configureMailComposer() -> MFMailComposeViewController {
-        let mailComposeVC = MFMailComposeViewController()
-
-        let name = "Имя:> \(nameTextField.text ?? "")"
-        let phone = "Контактный телефон: \(numberPhoneTextField.text ?? "")"
+    func tupSendTelegram() {
+        let name = "Имя: \(nameTextField.text ?? "")"
+        let phone = "Телефон: \(numberPhoneTextField.text ?? "")"
         let wishList = "Нужно: \(wishListTextField.text ?? "")"
 
         let bodyMail = """
@@ -241,32 +240,88 @@ extension ApplicationViewController: MFMailComposeViewControllerDelegate {
 \(phone)
 \(wishList)
 """
+        let token = "7019126549:AAHI3PPR2aefuWxF5yNI7jQCDm3JQQxIiZk"
+        let chatId = "-4198100751"
+        let urlString = "https://api.telegram.org/bot\(token)/sendMessage?chat_id=\(chatId)&text=\(bodyMail)"
 
-        mailComposeVC.mailComposeDelegate = self
-        mailComposeVC.setToRecipients(["solodyankin.ie@ya.ru"])
-        mailComposeVC.setSubject("Заявка из приложения!")
-        mailComposeVC.setMessageBody("\(bodyMail)", isHTML: false)
-
-        return mailComposeVC
-    }
-
-    // Отправка письма и закрытие текущего экрана
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
-
-        switch result {
-        case .sent:
-            DispatchQueue.main.async {
-                self.tupCloseButton()
-                self.displayAlert(
-                    title: "Заявка принята",
-                    message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте"
-                )
-                self.clearTextField()
+        if let url = URL(string: urlString) {
+            let task = URLSession.shared.dataTask(with: url) { (_, _, error) in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.displayAlert(
+                            title: "Упс... Что-то пошло не так...",
+                            message: "Пожалуйса, свяжитесь с нами",
+                            completionHandler: nil
+                        )
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.displayAlert(
+                            title: "Заявка принята",
+                            message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте",
+                            completionHandler: {
+                                self.tupCloseButton()
+                                self.clearTextField()
+                            }
+                        )
+                    }
+                }
             }
-        default:
-            break
+            task.resume()
         }
-
-        controller.dismiss(animated: true, completion: nil)
     }
+
+    //    @objc
+    //    func tupSendEmail() {
+    //        let mailComposeViewController = configureMailComposer()
+    //
+    //        if MFMailComposeViewController.canSendMail() {
+    //            self.present(mailComposeViewController, animated: true, completion: nil)
+    //        }
+    //    }
 }
+
+// MARK: - MFMailComposeViewControllerDelegate
+// extension ApplicationViewController: MFMailComposeViewControllerDelegate {
+//    private func configureMailComposer() -> MFMailComposeViewController {
+//        let mailComposeVC = MFMailComposeViewController()
+//
+//        let name = "Имя: \(nameTextField.text ?? "")"
+//        let phone = "Телефон: \(numberPhoneTextField.text ?? "")"
+//        let wishList = "Нужно: \(wishListTextField.text ?? "")"
+//
+//        let bodyMail = """
+// \(name)
+// \(phone)
+// \(wishList)
+// """
+//
+//        mailComposeVC.mailComposeDelegate = self
+//        mailComposeVC.setToRecipients(["solodyankin.ie@ya.ru"])
+//        mailComposeVC.setSubject("Заявка из приложения!")
+//        mailComposeVC.setMessageBody("\(bodyMail)", isHTML: false)
+//
+//        return mailComposeVC
+//    }
+//
+//    // Отправка письма и закрытие текущего экрана
+//    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
+//
+//        switch result {
+//        case .sent:
+//            DispatchQueue.main.async {
+//                self.tupCloseButton()
+//                self.displayAlert(
+//                    title: "Заявка принята",
+//                    message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте",
+//                    completionHandler: nil
+//                )
+//                self.clearTextField()
+//            }
+//        default:
+//            break
+//        }
+//
+//        controller.dismiss(animated: true, completion: nil)
+//    }
+// }

@@ -1,21 +1,21 @@
 import UIKit
 
-// MARK: - NewsTableManager
-final class NewsTableManager: NSObject {
+// MARK: - WishTableManager
+final class WishTableManager: NSObject {
 
     weak var tableView: UITableView?
 
     // MARK: - Private properties
-    private var viewModels = [NewsViewModel]()
+    private var viewModels = ["10", "20", "30", "40", "50"]
 }
 
-// MARK: - NewsTableManagerProtocol
-extension NewsTableManager: NewsTableManagerProtocol {
+// MARK: - WishTableManagerProtocol
+extension WishTableManager: WishTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
         self.tableView?.register(
-            NewsTableViewCell.self,
-            forCellReuseIdentifier: NewsTableViewCell.description()
+            WishTableCell.self,
+            forCellReuseIdentifier: WishTableCell.description()
         )
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
@@ -23,14 +23,14 @@ extension NewsTableManager: NewsTableManagerProtocol {
         self.tableView?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
     }
 
-    func update(viewModels: [NewsViewModel]) {
+    func update(viewModels: [String]) {
         self.viewModels = viewModels
         self.tableView?.reloadData()
     }
 }
 
 // MARK: - UITableViewDataSource
-extension NewsTableManager: UITableViewDataSource {
+extension WishTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModels.count
     }
@@ -38,22 +38,18 @@ extension NewsTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModels[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: NewsTableViewCell.description(),
+            withIdentifier: WishTableCell.description(),
             for: indexPath
-        ) as? NewsTableViewCell else { return UITableViewCell() }
+        ) as? WishTableCell else { return UITableViewCell() }
         cell.fill(viewModel: viewModel)
         return cell
     }
 }
 
-// MARK: - UITableViewDataSource
-extension NewsTableManager: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = viewModels[indexPath.row]
-        viewModel.didTup(viewModel.detail)
-    }
-
+// MARK: - UITableViewDelegate
+extension WishTableManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        200
+        //        let viewModel = viewModels[indexPath.row]
+        return UITableView.automaticDimension
     }
 }
