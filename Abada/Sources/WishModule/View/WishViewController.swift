@@ -6,6 +6,10 @@ final class WishViewController: UIViewController {
     // MARK: - Private properties
     private let presenter: WishPresenterProtocol
 
+    lazy var tableView: UITableView = {
+        return UITableView(frame: .zero, style: .plain)
+    }()
+
     // MARK: - Initialiser
     init(presenter: WishPresenterProtocol) {
         self.presenter = presenter
@@ -45,7 +49,7 @@ extension WishViewController {
 extension WishViewController {
     func addSubView() {
         view.addSubviews([
-
+            tableView
         ])
     }
 }
@@ -54,7 +58,10 @@ extension WishViewController {
 extension WishViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
