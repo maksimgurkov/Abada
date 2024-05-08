@@ -43,7 +43,7 @@ private extension NewsDetailPresenter {
 
         let newsButtonViewModel: NewsTypeCell = .newsButton(
             .init(
-                title: "Оставить заявку",
+                title: "Подать заявку",
                 didTup: {
                     self.router.routerToApplication()
                 }

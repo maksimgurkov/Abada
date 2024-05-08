@@ -35,7 +35,9 @@ private extension DetailGroupPresenter {
         let photoViewModel: DetailTypeCell = .image(.init(nameImage: viewModel.image))
         viewModels.append(photoViewModel)
 
-        let titleViewModel: DetailTypeCell = .title(.init(text: viewModel.title))
+        let titleViewModel: DetailTypeCell = .title(.init(text: viewModel.title, systemName: "heart", didTup: {
+            print("Кнопка favoriteButton нажата")
+        }))
         viewModels.append(titleViewModel)
 
         let articleViewModel: DetailTypeCell = .article(.init(text: viewModel.description))
@@ -44,7 +46,7 @@ private extension DetailGroupPresenter {
         let priceViewModel: DetailTypeCell = .price(.init(amount: viewModel.price))
         viewModels.append(priceViewModel)
 
-        let requestViewModel: DetailTypeCell = .button(.init(title: "Оставить заявку", didTup: {
+        let requestViewModel: DetailTypeCell = .button(.init(title: "Подать заявку", didTup: {
             self.router.routerToApplication()
         }))
         viewModels.append(requestViewModel)

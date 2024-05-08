@@ -1,6 +1,6 @@
 import UIKit
 import AbadaUI
-// import MessageUI
+import MessageUI
 import SafariServices
 
 // MARK: - ApplicationViewController
@@ -218,8 +218,8 @@ private extension ApplicationViewController {
     @objc
     func checkingForEmptyString() {
         if nameTextField.text != "" && numberPhoneTextField.text != "" {
-            //            tupSendEmail()
             tupSendTelegram()
+            tupSendEmail()
         } else {
             displayAlert(
                 title: "Ошибка",
@@ -271,57 +271,57 @@ private extension ApplicationViewController {
         }
     }
 
-    //    @objc
-    //    func tupSendEmail() {
-    //        let mailComposeViewController = configureMailComposer()
-    //
-    //        if MFMailComposeViewController.canSendMail() {
-    //            self.present(mailComposeViewController, animated: true, completion: nil)
-    //        }
-    //    }
+    @objc
+    func tupSendEmail() {
+        let mailComposeViewController = configureMailComposer()
+
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: - MFMailComposeViewControllerDelegate
-// extension ApplicationViewController: MFMailComposeViewControllerDelegate {
-//    private func configureMailComposer() -> MFMailComposeViewController {
-//        let mailComposeVC = MFMailComposeViewController()
-//
-//        let name = "Имя: \(nameTextField.text ?? "")"
-//        let phone = "Телефон: \(numberPhoneTextField.text ?? "")"
-//        let wishList = "Нужно: \(wishListTextField.text ?? "")"
-//
-//        let bodyMail = """
-// \(name)
-// \(phone)
-// \(wishList)
-// """
-//
-//        mailComposeVC.mailComposeDelegate = self
-//        mailComposeVC.setToRecipients(["solodyankin.ie@ya.ru"])
-//        mailComposeVC.setSubject("Заявка из приложения!")
-//        mailComposeVC.setMessageBody("\(bodyMail)", isHTML: false)
-//
-//        return mailComposeVC
-//    }
-//
-//    // Отправка письма и закрытие текущего экрана
-//    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
-//
-//        switch result {
-//        case .sent:
-//            DispatchQueue.main.async {
-//                self.tupCloseButton()
-//                self.displayAlert(
-//                    title: "Заявка принята",
-//                    message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте",
-//                    completionHandler: nil
-//                )
-//                self.clearTextField()
-//            }
-//        default:
-//            break
-//        }
-//
-//        controller.dismiss(animated: true, completion: nil)
-//    }
-// }
+extension ApplicationViewController: MFMailComposeViewControllerDelegate {
+    private func configureMailComposer() -> MFMailComposeViewController {
+        let mailComposeVC = MFMailComposeViewController()
+
+        let name = "Имя: \(nameTextField.text ?? "")"
+        let phone = "Телефон: \(numberPhoneTextField.text ?? "")"
+        let wishList = "Нужно: \(wishListTextField.text ?? "")"
+
+        let bodyMail = """
+ \(name)
+ \(phone)
+ \(wishList)
+ """
+
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.setToRecipients(["solodyankin.ie@ya.ru"])
+        mailComposeVC.setSubject("Заявка из приложения!")
+        mailComposeVC.setMessageBody("\(bodyMail)", isHTML: false)
+
+        return mailComposeVC
+    }
+
+    // Отправка письма и закрытие текущего экрана
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
+
+        switch result {
+        case .sent:
+            DispatchQueue.main.async {
+                self.tupCloseButton()
+                self.displayAlert(
+                    title: "Заявка принята",
+                    message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте",
+                    completionHandler: nil
+                )
+                self.clearTextField()
+            }
+        default:
+            break
+        }
+
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
