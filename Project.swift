@@ -26,20 +26,16 @@ let target = Target.target(
     dependencies: [
         .project(target: "AbadaDI", path: "AbadaDI"),
         .project(target: "AbadaCore", path: "AbadaCore"),
-        .project(target: "AbadaUI", path: "AbadaUI")
-        //        .package(product: "realm-swift")
-        //        .package(product: "Realm"),
-        //        .package(product: "RealmSwift")
+        .project(target: "AbadaUI", path: "AbadaUI"),
+        .package(product: "RealmSwift")
     ]
 )
 
 let project = Project(
     name: "Abada",
-
     packages: [
         .remote(
             url: "https://github.com/realm/realm-swift.git",
-            //            requirement: .upToNextMajor(from: "10.50.0")
             requirement: .branch("master")
         )
     ],
