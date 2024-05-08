@@ -55,7 +55,7 @@ private extension TabBarViewController {
         self.viewControllers = [
             generator(viewController: newsModule, title: "Новости", image: UIImage(systemName: "newspaper")),
             generator(viewController: workModule, title: "Услуги", image: UIImage(systemName: "hammer")),
-            generator(viewController: wishModule, title: "Цели", image: UIImage(systemName: "scope")),
+            generator(viewController: wishModule, title: "Цели", image: UIImage(systemName: "heart")),
             generator(viewController: companyModule, title: "О нас", image: UIImage(systemName: "house")),
             generator(viewController: discountModule, title: "Скидка", image: UIImage(systemName: "tag"))
         ]

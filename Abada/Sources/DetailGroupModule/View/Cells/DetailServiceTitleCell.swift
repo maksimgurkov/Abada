@@ -4,8 +4,16 @@ import AbadaUI
 // MARK: - DetailServiceTitleCell
 final class DetailServiceTitleCell: UITableViewCell {
 
+    private var viewModel: DetailTitleViewModel?
+
     // MARK: - Private properties
     lazy var titleLabel = TitleLabelUI(text: "")
+
+    private lazy var favoriteButton: TransparentButtonUI = {
+        let button = TransparentButtonUI(systemName: "")
+        button.addTarget(self, action: #selector(pressedButton), for: .touchUpInside)
+        return button
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -18,6 +26,8 @@ final class DetailServiceTitleCell: UITableViewCell {
 
     func fill(viewModel: DetailTitleViewModel) {
         self.titleLabel.text = viewModel.text
+        self.favoriteButton.setImage(UIImage(systemName: viewModel.systemName), for: .normal)
+        self.viewModel = viewModel
     }
 }
 
@@ -35,7 +45,8 @@ private extension DetailServiceTitleCell {
 private extension DetailServiceTitleCell {
     func addSubView() {
         contentView.addSubviews([
-            titleLabel
+            titleLabel,
+            favoriteButton
         ])
     }
 }
@@ -47,7 +58,20 @@ private extension DetailServiceTitleCell {
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+            titleLabel.rightAnchor.constraint(equalTo: favoriteButton.leftAnchor, constant: -20),
+
+            favoriteButton.topAnchor.constraint(equalTo: contentView.topAnchor),
+            favoriteButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 20),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 20)
         ])
+    }
+}
+
+// MARK: - Action
+private extension DetailServiceTitleCell {
+    @objc
+    func pressedButton() {
+        viewModel?.didTup()
     }
 }

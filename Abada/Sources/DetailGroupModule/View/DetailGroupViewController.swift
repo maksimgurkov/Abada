@@ -9,7 +9,7 @@ final class DetailGroupViewController: UIViewController {
 
     lazy var closingLeverView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.2964690924, green: 0.3058690429, blue: 0.3186741769, alpha: 1)
+        view.backgroundColor = UIColor(resource: .abadaGray)
         view.layer.cornerRadius = 2
         return view
     }()

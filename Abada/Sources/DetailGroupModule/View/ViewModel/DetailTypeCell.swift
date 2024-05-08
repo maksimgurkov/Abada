@@ -14,6 +14,8 @@ struct DetailImageViewModel {
 
 struct DetailTitleViewModel {
     let text: String
+    let systemName: String
+    let didTup: () -> Void
 }
 
 struct DetailArticleViewModel {
@@ -25,6 +27,6 @@ struct DetailPriceViewModel {
 }
 
 struct DetailButtonViewModel {
-    let title: String
+    let title: String?
     let didTup: () -> Void
 }

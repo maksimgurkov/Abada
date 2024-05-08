@@ -5,7 +5,7 @@ public final class CloseButtonUI: UIButton {
 
     private let height: CGFloat = 35
 
-    // MARK: - Initialisers
+    // MARK: - Initialize
     public init() {
         super.init(frame: .zero)
         setupButton()
