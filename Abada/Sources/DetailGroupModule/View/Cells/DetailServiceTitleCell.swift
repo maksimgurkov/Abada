@@ -72,6 +72,6 @@ private extension DetailServiceTitleCell {
 private extension DetailServiceTitleCell {
     @objc
     func pressedButton() {
-        viewModel?.didTup()
+        viewModel?.didTap()
     }
 }

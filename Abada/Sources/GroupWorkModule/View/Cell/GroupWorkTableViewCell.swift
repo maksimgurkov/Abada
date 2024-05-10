@@ -71,7 +71,6 @@ private extension GroupWorkTableViewCell {
             titleLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20),
             titleLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20),
             titleLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10)
-
         ])
     }
 }
