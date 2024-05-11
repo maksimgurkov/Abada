@@ -40,38 +40,6 @@ private extension DetailGroupPresenter {
         let photoViewModel: DetailTypeCell = .image(.init(nameImage: viewModel.image))
         viewModels.append(photoViewModel)
 
-        //        let titleViewModel: DetailTypeCell = .title(.init(
-        //            text: viewModel.title,
-        //            systemName: realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title).isEmpty ? "heart" : "heart.fill",
-        //            didTup: { [self] in
-        //                let worksDataRealm = WishViewModelRealm()
-        //                worksDataRealm.image = viewModel.image
-        //                worksDataRealm.title = viewModel.title
-        //                worksDataRealm.detailArticle = viewModel.description
-        //                worksDataRealm.amount = viewModel.price
-        //
-        //
-        //
-        //                // Проверяем наличие объекта в Realm до его добавления
-        //                if self.realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title).isEmpty {
-        //                    // Объект с таким названием отсутствует, добавляем
-        //                    do {
-        //                        try realm.write {
-        //                            realm.add(worksDataRealm)
-        //                            print("Данные успешно добавлены в Realm")
-        //                        }
-        //                    } catch { }
-        //                } else {
-        //                    if let existingObject = realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title).first {
-        //                        do {
-        //                            try realm.write {
-        //                                realm.delete(existingObject)
-        //                                print("Данные удалены из Realm")
-        //                            }
-        //                        } catch { }
-        //                    }
-        //                }
-        //            }))
         var systemName = realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title).isEmpty ? "heart" : "heart.fill"
 
         let didTapAction: () -> Void = { [weak self] in
@@ -83,17 +51,15 @@ private extension DetailGroupPresenter {
             worksDataRealm.detailArticle = viewModel.description
             worksDataRealm.amount = viewModel.price
 
-            let existingData = workModel.realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title)
+            let realmData = workModel.realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title)
 
             do {
                 try workModel.realm.write {
-                    if existingData.isEmpty {
+                    if realmData.isEmpty {
                         workModel.realm.add(worksDataRealm)
-                        systemName = "plus"
                         print("Добавлено в Realm")
                     } else {
-                        workModel.realm.delete(existingData)
-                        systemName = "plus"
+                        workModel.realm.delete(realmData)
                         print("Удалено из Realm")
                     }
                 }
@@ -128,5 +94,17 @@ private extension DetailGroupPresenter {
         DispatchQueue.main.async {
             self.tableManager.update(viewModel: viewModels)
         }
+    }
+
+    func add(work: WishViewModelRealm) {
+        realm.add(work)
+    }
+
+    func delete(work: WishViewModelRealm) {
+        realm.delete(work)
+    }
+
+    func setupUI() {
+
     }
 }
