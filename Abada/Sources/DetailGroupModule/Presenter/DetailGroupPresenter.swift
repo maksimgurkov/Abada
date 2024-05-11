@@ -40,36 +40,12 @@ private extension DetailGroupPresenter {
         let photoViewModel: DetailTypeCell = .image(.init(nameImage: viewModel.image))
         viewModels.append(photoViewModel)
 
-        var systemName = realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title).isEmpty ? "heart" : "heart.fill"
-
-        let didTapAction: () -> Void = { [weak self] in
-            guard let workModel = self else { return }
-
-            let worksDataRealm = WishViewModelRealm()
-            worksDataRealm.image = viewModel.image
-            worksDataRealm.title = viewModel.title
-            worksDataRealm.detailArticle = viewModel.description
-            worksDataRealm.amount = viewModel.price
-
-            let realmData = workModel.realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title)
-
-            do {
-                try workModel.realm.write {
-                    if realmData.isEmpty {
-                        workModel.realm.add(worksDataRealm)
-                        print("Добавлено в Realm")
-                    } else {
-                        workModel.realm.delete(realmData)
-                        print("Удалено из Realm")
-                    }
-                }
-            } catch { }
-        }
-
         let titleViewModel: DetailTypeCell = .title(.init(
             text: viewModel.title,
-            systemName: systemName,
-            didTap: didTapAction
+            systemName: setIconButton(),
+            didTap: { [weak self] in
+                self?.toggleDataRealm(viewModel: viewModel)
+            }
         ))
         viewModels.append(titleViewModel)
 
@@ -96,15 +72,28 @@ private extension DetailGroupPresenter {
         }
     }
 
-    func add(work: WishViewModelRealm) {
-        realm.add(work)
+    private func toggleDataRealm(viewModel: GroupViewModel) {
+        let realmData = realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title)
+
+        do {
+            try realm.write {
+                if realmData.isEmpty {
+                    let worksDataRealm = WishViewModelRealm()
+                    worksDataRealm.image = viewModel.image
+                    worksDataRealm.title = viewModel.title
+                    worksDataRealm.detailArticle = viewModel.description
+                    worksDataRealm.amount = viewModel.price
+                    realm.add(worksDataRealm)
+                    print("Добавлено в Realm")
+                } else {
+                    realm.delete(realmData)
+                    print("Удалено из Realm")
+                }
+            }
+        } catch { }
     }
 
-    func delete(work: WishViewModelRealm) {
-        realm.delete(work)
-    }
-
-    func setupUI() {
-
+    private func setIconButton() -> String {
+        realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title).isEmpty ? "heart" : "heart.fill"
     }
 }
