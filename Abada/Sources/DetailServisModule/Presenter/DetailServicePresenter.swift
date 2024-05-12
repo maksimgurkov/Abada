@@ -2,16 +2,16 @@ import UIKit
 import RealmSwift
 // swiftlint:disable force_try
 
-// MARK: - DetailServisPresenter
-final class DetailServisPresenter {
+// MARK: - DetailServicePresenter
+final class DetailServicePresenter {
 
-    weak var view: DetailServisInput?
+    weak var view: DetailServiceInput?
 
     private let viewModel: DetailServisViewModel
-    private let tableManager: DetailServisTableManagerProtocol
+    private let tableManager: DetailServiceTableManagerProtocol
     private let router: ApplicationRouterProtocol
 
-    init(viewModel: DetailServisViewModel, tableView: DetailServisTableManagerProtocol, router: ApplicationRouterProtocol) {
+    init(viewModel: DetailServisViewModel, tableView: DetailServiceTableManagerProtocol, router: ApplicationRouterProtocol) {
         self.viewModel = viewModel
         self.tableManager = tableView
         self.router = router
@@ -21,7 +21,7 @@ final class DetailServisPresenter {
 }
 
 // MARK: - DetailGroupPresenterProtocol
-extension DetailServisPresenter: DetailServisPresenterProtocol {
+extension DetailServicePresenter: DetailServicePresenterProtocol {
 
     func viewDidLoad() {
         createViewModel(viewModel: viewModel)
@@ -33,14 +33,14 @@ extension DetailServisPresenter: DetailServisPresenterProtocol {
 }
 
 // MARK: - DetailServisPresenter
-private extension DetailServisPresenter {
+private extension DetailServicePresenter {
     func createViewModel(viewModel: DetailServisViewModel) {
-        var viewModels = [DetailServisTypeCell]()
+        var viewModels = [DetailServiceTypeCell]()
 
-        let photoViewModel: DetailServisTypeCell = .image(.init(nameImage: viewModel.image))
+        let photoViewModel: DetailServiceTypeCell = .image(.init(nameImage: viewModel.image))
         viewModels.append(photoViewModel)
 
-        let titleViewModel: DetailServisTypeCell = .title(.init(
+        let titleViewModel: DetailServiceTypeCell = .title(.init(
             text: viewModel.title,
             systemName: setIconButton(),
             didTap: { [weak self] in
@@ -49,18 +49,18 @@ private extension DetailServisPresenter {
         ))
         viewModels.append(titleViewModel)
 
-        let articleViewModel: DetailServisTypeCell = .article(.init(text: viewModel.detailArticle))
+        let articleViewModel: DetailServiceTypeCell = .article(.init(text: viewModel.detailArticle))
         viewModels.append(articleViewModel)
 
-        let priceViewModel: DetailServisTypeCell = .price(.init(price: viewModel.price))
+        let priceViewModel: DetailServiceTypeCell = .price(.init(price: viewModel.price))
         viewModels.append(priceViewModel)
 
-        let requestViewModel: DetailServisTypeCell = .button(.init(title: "Подать заявку", didTap: {
+        let requestViewModel: DetailServiceTypeCell = .button(.init(title: "Подать заявку", didTap: {
             self.router.routerToApplication()
         }))
         viewModels.append(requestViewModel)
 
-        let callViewModel: DetailServisTypeCell = .button(.init(title: "Позвонить", didTap: {
+        let callViewModel: DetailServiceTypeCell = .button(.init(title: "Позвонить", didTap: {
             if let url = URL(string: "tel://89261356825") {
                 UIApplication.shared.open(url)
             }

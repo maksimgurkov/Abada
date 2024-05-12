@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: - DetailServisInformationTableManagerProtocol
-protocol DetailServisTableManagerProtocol {
+protocol DetailServiceTableManagerProtocol {
     func setup(tableView: UITableView)
-    func update(viewModel: [DetailServisTypeCell])
+    func update(viewModel: [DetailServiceTypeCell])
 }

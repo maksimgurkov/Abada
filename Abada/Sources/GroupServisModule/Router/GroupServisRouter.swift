@@ -12,7 +12,7 @@ final class GroupServisRouter: GroupServisRouterProtocol {
 
     func goToGroupDetail(viewModel: DetailServisViewModel) {
         DetailServisAssembly(viewModel: viewModel).assemble()
-        @Dependency var detailGroupModule: DetailServisViewController
+        @Dependency var detailGroupModule: DetailServiceViewController
         view?.present(detailGroupModule, animated: true)
     }
 }

@@ -1,15 +1,15 @@
 import UIKit
 
 // MARK: - DetailServisInformationTableManager
-final class DetailServisTableManager: UITableView {
+final class DetailServiceTableManager: UITableView {
     weak var tableView: UITableView?
 
     // MARK: - Private properties
-    private var viewModels = [DetailServisTypeCell]()
+    private var viewModels = [DetailServiceTypeCell]()
 }
 
 // MARK: - DetailServisInformationTableManagerProtocol
-extension DetailServisTableManager: DetailServisTableManagerProtocol {
+extension DetailServiceTableManager: DetailServiceTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
         self.tableView?.showsVerticalScrollIndicator = false
@@ -39,14 +39,14 @@ extension DetailServisTableManager: DetailServisTableManagerProtocol {
         self.tableView?.delegate = self
     }
 
-    func update(viewModel: [DetailServisTypeCell]) {
+    func update(viewModel: [DetailServiceTypeCell]) {
         self.viewModels = viewModel
         self.tableView?.reloadData()
     }
 }
 
 // MARK: - UITableViewDataSource
-extension DetailServisTableManager: UITableViewDataSource {
+extension DetailServiceTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModels.count
     }
@@ -98,6 +98,6 @@ extension DetailServisTableManager: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension DetailServisTableManager: UITableViewDelegate {
+extension DetailServiceTableManager: UITableViewDelegate {
 
 }

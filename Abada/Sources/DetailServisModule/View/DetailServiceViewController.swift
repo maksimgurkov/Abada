@@ -1,11 +1,11 @@
 import UIKit
 import AbadaUI
 
-// MARK: - DetailServisViewController
-final class DetailServisViewController: UIViewController {
+// MARK: - DetailServiceViewController
+final class DetailServiceViewController: UIViewController {
 
     // MARK: - Private properties
-    private let presenter: DetailServisPresenterProtocol
+    private let presenter: DetailServicePresenterProtocol
 
     lazy var closingLeverView: UIView = {
         let view = UIView()
@@ -19,7 +19,7 @@ final class DetailServisViewController: UIViewController {
     }()
 
     // MARK: - Init
-    init(presenter: DetailServisPresenterProtocol) {
+    init(presenter: DetailServicePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,10 +42,10 @@ final class DetailServisViewController: UIViewController {
 }
 
 // MARK: - DetailGroupInput
-extension DetailServisViewController: DetailServisInput { }
+extension DetailServiceViewController: DetailServiceInput { }
 
 // MARK: - SetupView
-private extension DetailServisViewController {
+private extension DetailServiceViewController {
     func setupView() {
         view.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         addSubView()
@@ -54,7 +54,7 @@ private extension DetailServisViewController {
 }
 
 // MARK: - Setting
-private extension DetailServisViewController {
+private extension DetailServiceViewController {
     func addSubView() {
         view.addSubviews(
             [
@@ -66,7 +66,7 @@ private extension DetailServisViewController {
 }
 
 // MARK: - Layout
-private extension DetailServisViewController {
+private extension DetailServiceViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
             closingLeverView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),

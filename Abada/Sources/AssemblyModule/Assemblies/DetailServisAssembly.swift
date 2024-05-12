@@ -14,28 +14,28 @@ final class DetailServisAssembly: Assembly {
             ApplicationRouter()
         }
 
-        Container.shared.register(service: DetailServisTableManager.self) { _ in
-            DetailServisTableManager()
+        Container.shared.register(service: DetailServiceTableManager.self) { _ in
+            DetailServiceTableManager()
         }
 
-        Container.shared.register(service: DetailServisPresenter.self) { resolve in
-            let tableManager: DetailServisTableManager = resolve.resolve()
+        Container.shared.register(service: DetailServicePresenter.self) { resolve in
+            let tableManager: DetailServiceTableManager = resolve.resolve()
             let router: ApplicationRouter = resolve.resolve()
-            return DetailServisPresenter(
+            return DetailServicePresenter(
                 viewModel: self.viewModel,
                 tableView: tableManager,
                 router: router
             )
         }
 
-        Container.shared.register(service: DetailServisViewController.self) { resolve in
-            let presenter: DetailServisPresenter = resolve.resolve()
-            return DetailServisViewController(presenter: presenter)
+        Container.shared.register(service: DetailServiceViewController.self) { resolve in
+            let presenter: DetailServicePresenter = resolve.resolve()
+            return DetailServiceViewController(presenter: presenter)
         }
 
-        @Dependency var presenter: DetailServisPresenter
-        @Dependency var view: DetailServisViewController
-        @Dependency var tableView: DetailServisTableManager
+        @Dependency var presenter: DetailServicePresenter
+        @Dependency var view: DetailServiceViewController
+        @Dependency var tableView: DetailServiceTableManager
         @Dependency var router: ApplicationRouter
 
         presenter.view = view
