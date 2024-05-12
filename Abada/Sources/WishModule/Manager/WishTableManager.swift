@@ -19,15 +19,13 @@ extension WishTableManager: WishTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
         self.tableView?.register(
-            WishTableCell.self,
-            forCellReuseIdentifier: WishTableCell.description()
+            GroupWorkTableViewCell.self,
+            forCellReuseIdentifier: GroupWorkTableViewCell.description()
         )
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
         self.tableView?.separatorStyle = .none
         self.tableView?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
-
-        //        print("в realm находится \(realm.objects(WishViewModelRealm.self).count)")
         self.viewModels = realm.objects(WishViewModelRealm.self)
     }
 
@@ -46,9 +44,9 @@ extension WishTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModels[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: WishTableCell.description(),
+            withIdentifier: GroupWorkTableViewCell.description(),
             for: indexPath
-        ) as? WishTableCell else { return UITableViewCell() }
+        ) as? GroupWorkTableViewCell else { return UITableViewCell() }
         cell.fill(viewModel: viewModel)
         return cell
     }

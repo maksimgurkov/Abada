@@ -34,6 +34,11 @@ final class GroupWorkTableViewCell: UITableViewCell {
         self.imageWork.image = UIImage(named: viewModel.image)
         self.titleLabel.text = viewModel.title
     }
+
+    func fill(viewModel: WishViewModelRealm) {
+        self.imageWork.image = UIImage(named: viewModel.image)
+        self.titleLabel.text = viewModel.title
+    }
 }
 
 // MARK: - SetupView
