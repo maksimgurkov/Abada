@@ -11,8 +11,8 @@ final class WorkRouter: WorkRouterProtocol {
     weak var view: UIViewController?
 
     func goTuGroupWork(viewModel: WorkGroupViewModel) {
-        GroupWorkAssembly(viewModels: viewModel).assemble()
-        @Dependency var groupModule: GroupWorkViewController
+        GroupServisAssembly(viewModels: viewModel).assemble()
+        @Dependency var groupModule: GroupServisViewController
         groupModule.modalPresentationStyle = .fullScreen
         view?.present(groupModule, animated: true)
     }

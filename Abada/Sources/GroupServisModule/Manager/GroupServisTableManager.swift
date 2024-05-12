@@ -1,44 +1,42 @@
 import UIKit
 
-// MARK: - WishTableManager
-final class WishTableManager: NSObject {
-
-    // MARK: - Properties
+// MARK: - GroupServisTableManager
+final class GroupServisTableManager: NSObject {
     weak var tableView: UITableView?
 
     // MARK: - Private properties
-    private var viewModels = [DetailServisViewModel]()
+    private var viewModel = [DetailServisViewModel]()
 }
 
-// MARK: - WishTableManagerProtocol
-extension WishTableManager: WishTableManagerProtocol {
-
+// MARK: - GroupTableManagerProtocol
+extension GroupServisTableManager: GroupServisTableManagerProtocol {
     func setup(tableView: UITableView) {
         self.tableView = tableView
+        self.tableView?.showsVerticalScrollIndicator = false
+        self.tableView?.separatorStyle = .none
+        self.tableView?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
         self.tableView?.register(
             GroupServisTableViewCell.self,
             forCellReuseIdentifier: GroupServisTableViewCell.description()
         )
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
-        self.tableView?.separatorStyle = .none
-        self.tableView?.backgroundColor = AbadaColors.Color(resource: .abadaBackground)
     }
 
-    func update(viewModels: [DetailServisViewModel]) {
-        self.viewModels = viewModels
+    func update(viewModel: [DetailServisViewModel]) {
+        self.viewModel = viewModel
         self.tableView?.reloadData()
     }
 }
 
 // MARK: - UITableViewDataSource
-extension WishTableManager: UITableViewDataSource {
+extension GroupServisTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModels.count
+        viewModel.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = viewModels[indexPath.row]
+        let viewModel = viewModel[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: GroupServisTableViewCell.description(),
             for: indexPath
@@ -49,13 +47,9 @@ extension WishTableManager: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension WishTableManager: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-
+extension GroupServisTableManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = viewModels[indexPath.row]
+        let viewModel = viewModel[indexPath.row]
         viewModel.didTup(viewModel)
     }
 }

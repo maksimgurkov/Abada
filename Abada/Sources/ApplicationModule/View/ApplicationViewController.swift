@@ -78,7 +78,6 @@ final class ApplicationViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         presenter.viewDidLoad()
-        //        print(keychainManager.token)
     }
 
     // Скрытие клавиатуры

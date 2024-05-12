@@ -8,9 +8,14 @@ final class WishAssembly: Assembly {
             WishTableManager()
         }
 
+        Container.shared.register(service: GroupServisRouter.self) { _ in
+            GroupServisRouter()
+        }
+
         Container.shared.register(service: WishPresenter.self) { resolve in
             let tableManager: WishTableManager = resolve.resolve()
-            return WishPresenter(tableManager: tableManager)
+            let router: GroupServisRouter = resolve.resolve()
+            return WishPresenter(tableManager: tableManager, router: router)
         }
 
         Container.shared.register(service: WishViewController.self) { resolve in
@@ -21,8 +26,10 @@ final class WishAssembly: Assembly {
         @Dependency var presenter: WishPresenter
         @Dependency var view: WishViewController
         @Dependency var tableManager: WishTableManager
+        @Dependency var router: GroupServisRouter
 
         presenter.view = view
         tableManager.setup(tableView: view.tableView)
+        router.view = view
     }
 }

@@ -23,12 +23,11 @@ final class WishViewController: UIViewController {
     // MARK: - Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.viewDidLoad()
         setupView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
+        presenter.viewDidLoad()
     }
 }
 
