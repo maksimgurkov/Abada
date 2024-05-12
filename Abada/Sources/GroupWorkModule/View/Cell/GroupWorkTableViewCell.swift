@@ -34,6 +34,11 @@ final class GroupWorkTableViewCell: UITableViewCell {
         self.imageWork.image = UIImage(named: viewModel.image)
         self.titleLabel.text = viewModel.title
     }
+
+    func fill(viewModel: WishViewModelRealm) {
+        self.imageWork.image = UIImage(named: viewModel.image)
+        self.titleLabel.text = viewModel.title
+    }
 }
 
 // MARK: - SetupView
@@ -71,7 +76,6 @@ private extension GroupWorkTableViewCell {
             titleLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20),
             titleLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20),
             titleLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10)
-
         ])
     }
 }

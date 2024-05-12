@@ -27,6 +27,9 @@ final class WishViewController: UIViewController {
         setupView()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 }
 
 // MARK: - WishInput

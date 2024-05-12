@@ -27,7 +27,8 @@ let target = Target.target(
         .project(target: "AbadaDI", path: "AbadaDI"),
         .project(target: "AbadaCore", path: "AbadaCore"),
         .project(target: "AbadaUI", path: "AbadaUI"),
-        .package(product: "RealmSwift")
+        .package(product: "RealmSwift"),
+        .package(product: "KeychainSwift")
     ]
 )
 
@@ -36,6 +37,10 @@ let project = Project(
     packages: [
         .remote(
             url: "https://github.com/realm/realm-swift.git",
+            requirement: .branch("master")
+        ),
+        .remote(
+            url: "https://github.com/evgenyneu/keychain-swift.git",
             requirement: .branch("master")
         )
     ],

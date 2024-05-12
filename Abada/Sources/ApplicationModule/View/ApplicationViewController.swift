@@ -18,6 +18,8 @@ final class ApplicationViewController: UIViewController {
     private let titleLabel = HeaderLabelUI(text: "")
     private let descriptionLabel = SmallLabelUI(text: "")
 
+    let keychainManager = KeychainManager.shared
+
     private let nameTextField: CustomTextFieldUI = {
         let textField = CustomTextFieldUI(placeholder: "Имя")
         textField.isOn = true
@@ -76,6 +78,7 @@ final class ApplicationViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         presenter.viewDidLoad()
+        //        print(keychainManager.token)
     }
 
     // Скрытие клавиатуры
@@ -83,14 +86,6 @@ final class ApplicationViewController: UIViewController {
         super.touchesBegan(touches, with: event)
         self.view.endEditing(true)
     }
-
-    //    func displayAlert(title: String, message: String) {
-    //        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    //        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-    //        alert.addAction(okAction)
-    //
-    //        present(alert, animated: true, completion: nil)
-    //    }
 
     func displayAlert(title: String, message: String, completionHandler: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -240,34 +235,35 @@ private extension ApplicationViewController {
 \(phone)
 \(wishList)
 """
-        let token = "7019126549:AAHI3PPR2aefuWxF5yNI7jQCDm3JQQxIiZk"
-        let chatId = "-4198100751"
-        let urlString = "https://api.telegram.org/bot\(token)/sendMessage?chat_id=\(chatId)&text=\(bodyMail)"
 
-        if let url = URL(string: urlString) {
-            let task = URLSession.shared.dataTask(with: url) { (_, _, error) in
-                if let error = error {
-                    DispatchQueue.main.async {
-                        self.displayAlert(
-                            title: "Упс... Что-то пошло не так...",
-                            message: "Пожалуйса, свяжитесь с нами",
-                            completionHandler: nil
-                        )
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.displayAlert(
-                            title: "Заявка принята",
-                            message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте",
-                            completionHandler: {
-                                self.tupCloseButton()
-                                self.clearTextField()
-                            }
-                        )
+        if let telegramBotToken = keychainManager.getToken(), let telegramChatId = keychainManager.getChatId() {
+            let urlString = "https://api.telegram.org/bot\(telegramBotToken)/sendMessage?chat_id=\(telegramChatId)&text=\(bodyMail)"
+
+            if let url = URL(string: urlString) {
+                let task = URLSession.shared.dataTask(with: url) { (_, _, error) in
+                    if error != nil {
+                        DispatchQueue.main.async {
+                            self.displayAlert(
+                                title: "Упс... Что-то пошло не так...",
+                                message: "Пожалуйса, свяжитесь с нами",
+                                completionHandler: nil
+                            )
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.displayAlert(
+                                title: "Заявка принята",
+                                message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте",
+                                completionHandler: {
+                                    self.tupCloseButton()
+                                    self.clearTextField()
+                                }
+                            )
+                        }
                     }
                 }
+                task.resume()
             }
-            task.resume()
         }
     }
 

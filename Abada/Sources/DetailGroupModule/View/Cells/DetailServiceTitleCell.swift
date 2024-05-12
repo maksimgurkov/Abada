@@ -68,10 +68,22 @@ private extension DetailServiceTitleCell {
     }
 }
 
+// MARK: - Private extension
+private extension DetailServiceTitleCell {
+    func statusButton() {
+        if favoriteButton.currentImage == UIImage(systemName: "heart") {
+            favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
+}
+
 // MARK: - Action
 private extension DetailServiceTitleCell {
     @objc
     func pressedButton() {
-        viewModel?.didTup()
+        statusButton()
+        viewModel?.didTap()
     }
 }

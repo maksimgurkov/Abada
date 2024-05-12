@@ -62,6 +62,6 @@ private extension DetailServiceButtonCell {
 private extension DetailServiceButtonCell {
     @objc
     func pressedButton() {
-        viewModel?.didTup()
+        viewModel?.didTap()
     }
 }

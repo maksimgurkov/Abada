@@ -38,7 +38,7 @@ private extension GroupWorkPresenter {
                 description: $0.description,
                 price: $0.price
             ) { model in
-                self.router.goTuGroupDetail(viewModel: model)
+                self.router.goToGroupDetail(viewModel: model)
             }
             viewModels.append(viewModel)
         }

@@ -103,7 +103,6 @@ extension PersonDiscountPresenter: PersonDiscountPresenterProtocol {
                     periodLabel: periodLabel,
                     model: model
                 )
-                //                clearUserDefaults()
             }
 
         } else {
