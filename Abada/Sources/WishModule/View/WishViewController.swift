@@ -67,3 +67,8 @@ extension WishViewController {
         ])
     }
 }
+
+// MARK: - GroupServisInput
+extension WishViewController: GroupServisInput {
+
+}

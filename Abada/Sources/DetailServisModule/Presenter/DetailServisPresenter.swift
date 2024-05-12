@@ -5,12 +5,10 @@ import RealmSwift
 // MARK: - DetailServisPresenter
 final class DetailServisPresenter {
 
-    let realm = try! Realm()
     weak var view: DetailServisInput?
 
     private let viewModel: DetailServisViewModel
     private let tableManager: DetailServisTableManagerProtocol
-
     private let router: ApplicationRouterProtocol
 
     init(viewModel: DetailServisViewModel, tableView: DetailServisTableManagerProtocol, router: ApplicationRouterProtocol) {
@@ -18,6 +16,8 @@ final class DetailServisPresenter {
         self.tableManager = tableView
         self.router = router
     }
+
+    let realmData = StorageManager.shared.realm.objects(WishViewModelRealm.self)
 }
 
 // MARK: - DetailGroupPresenterProtocol
@@ -73,27 +73,23 @@ private extension DetailServisPresenter {
     }
 
     private func toggleDataRealm(viewModel: DetailServisViewModel) {
-        let realmData = realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title)
+        let services = realmData.filter("title == %@", viewModel.title)
 
-        do {
-            try realm.write {
-                if realmData.isEmpty {
-                    let worksDataRealm = WishViewModelRealm()
-                    worksDataRealm.image = viewModel.image
-                    worksDataRealm.title = viewModel.title
-                    worksDataRealm.detailArticle = viewModel.detailArticle
-                    worksDataRealm.price = viewModel.price
-                    realm.add(worksDataRealm)
-                    print("Добавлено в Realm")
-                } else {
-                    realm.delete(realmData)
-                    print("Удалено из Realm")
-                }
+        if services.isEmpty {
+            let servisDataRealm = WishViewModelRealm()
+            servisDataRealm.image = viewModel.image
+            servisDataRealm.title = viewModel.title
+            servisDataRealm.detailArticle = viewModel.detailArticle
+            servisDataRealm.price = viewModel.price
+            StorageManager.shared.save(servisDataRealm)
+        } else {
+            for service in services {
+                StorageManager.shared.delete(service)
             }
-        } catch { }
+        }
     }
 
     private func setIconButton() -> String {
-        realm.objects(WishViewModelRealm.self).filter("title == %@", viewModel.title).isEmpty ? "heart" : "heart.fill"
+        realmData.isEmpty ? "heart" : "heart.fill"
     }
 }
