@@ -90,6 +90,6 @@ private extension DetailServicePresenter {
     }
 
     private func setIconButton() -> String {
-        realmData.isEmpty ? "heart" : "heart.fill"
+        realmData.filter("title == %@", viewModel.title).isEmpty ? "heart" : "heart.fill"
     }
 }

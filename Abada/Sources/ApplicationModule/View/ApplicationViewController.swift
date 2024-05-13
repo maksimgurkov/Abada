@@ -18,7 +18,7 @@ final class ApplicationViewController: UIViewController {
     private let titleLabel = HeaderLabelUI(text: "")
     private let descriptionLabel = SmallLabelUI(text: "")
 
-    let keychainManager = KeychainManager.shared
+    //    let keychainManager = KeychainManager.shared
 
     private let nameTextField: CustomTextFieldUI = {
         let textField = CustomTextFieldUI(placeholder: "Имя")
@@ -234,35 +234,40 @@ private extension ApplicationViewController {
 \(phone)
 \(wishList)
 """
+        guard let path = Bundle.main.path(forResource: "Token", ofType: "plist"),
+              let keys = NSDictionary(contentsOfFile: path),
+              let telegramBotToken = keys["TelegramToken"] as? String,
+              let telegramChatId = keys["TelegramChatId"] as? String
+        else {
+            fatalError("Не удалось загрузить или прочитать файл Token.plist")
+        }
 
-        if let telegramBotToken = keychainManager.getToken(), let telegramChatId = keychainManager.getChatId() {
-            let urlString = "https://api.telegram.org/bot\(telegramBotToken)/sendMessage?chat_id=\(telegramChatId)&text=\(bodyMail)"
+        let urlString = "https://api.telegram.org/bot\(telegramBotToken)/sendMessage?chat_id=\(telegramChatId)&text=\(bodyMail)"
 
-            if let url = URL(string: urlString) {
-                let task = URLSession.shared.dataTask(with: url) { (_, _, error) in
-                    if error != nil {
-                        DispatchQueue.main.async {
-                            self.displayAlert(
-                                title: "Упс... Что-то пошло не так...",
-                                message: "Пожалуйса, свяжитесь с нами",
-                                completionHandler: nil
-                            )
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.displayAlert(
-                                title: "Заявка принята",
-                                message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте",
-                                completionHandler: {
-                                    self.tupCloseButton()
-                                    self.clearTextField()
-                                }
-                            )
-                        }
+        if let url = URL(string: urlString) {
+            let task = URLSession.shared.dataTask(with: url) { (_, _, error) in
+                if error != nil {
+                    DispatchQueue.main.async {
+                        self.displayAlert(
+                            title: "Упс... Что-то пошло не так...",
+                            message: "Пожалуйса, свяжитесь с нами",
+                            completionHandler: nil
+                        )
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.displayAlert(
+                            title: "Заявка принята",
+                            message: "В ближайшее время с вами свяжутся, пожалуйста ожидайте",
+                            completionHandler: {
+                                self.tupCloseButton()
+                                self.clearTextField()
+                            }
+                        )
                     }
                 }
-                task.resume()
             }
+            task.resume()
         }
     }
 
