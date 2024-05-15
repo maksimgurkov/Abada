@@ -20,10 +20,6 @@
         <string>1</string>
         <key>UILaunchStoryboardName</key>
         <string>LaunchScreen.storyboard</string>
-        <key>TelegramToken</key>
-        <string>7019126549:AAHI3PPR2aefuWxF5yNI7jQCDm3JQQxIiZk</string>
-        <key>TelegramChatId</key>
-        <string>-4198100751</string>
         <key>UISupportedInterfaceOrientations</key>
         <array>
             <string>UIInterfaceOrientationPortrait</string>
