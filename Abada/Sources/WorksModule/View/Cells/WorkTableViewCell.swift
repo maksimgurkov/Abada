@@ -13,13 +13,13 @@ final class WorkTableViewCell: UITableViewCell {
     private let nextImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "chevron.right")
-        image.tintColor = AbadaColors.Color(resource: .abadaAcent)
+        image.tintColor = AbadaColors.Color(resource: .abadaGray)
         return image
     }()
 
     private let separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = AbadaColors.Color(resource: .abadaAcent)
+        view.backgroundColor = AbadaColors.Color(resource: .abadaGray)
         return view
     }()
 
@@ -62,7 +62,7 @@ private extension WorkTableViewCell {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            titleLabel.rightAnchor.constraint(equalTo: nextImage.leftAnchor, constant: 20),
+            titleLabel.rightAnchor.constraint(equalTo: nextImage.leftAnchor, constant: -20),
             titleLabel.bottomAnchor.constraint(equalTo: separatorView.topAnchor, constant: -20),
 
             nextImage.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),

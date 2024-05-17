@@ -5,7 +5,7 @@ import AbadaUI
 final class DetailServiceImageCell: UITableViewCell {
 
     // MARK: - Private properties
-    lazy var photoImageView = PhotoBorderImageViewUI(image: "")
+    lazy var photoImageView = PhotoImageViewUI(image: "")
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

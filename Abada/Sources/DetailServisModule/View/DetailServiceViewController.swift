@@ -69,7 +69,7 @@ private extension DetailServiceViewController {
 private extension DetailServiceViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            closingLeverView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            closingLeverView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             closingLeverView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             closingLeverView.heightAnchor.constraint(equalToConstant: 4),
             closingLeverView.widthAnchor.constraint(equalToConstant: 80),

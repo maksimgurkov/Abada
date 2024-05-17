@@ -16,6 +16,6 @@ public final class TitleLabelUI: UILabel {
     private func setupLabel(text: String) {
         textColor = UIColor(named: "abadaText")
         numberOfLines = 0
-        font = UIFont.boldSystemFont(ofSize: 16)
+        font = UIFont.boldSystemFont(ofSize: 18)
     }
 }

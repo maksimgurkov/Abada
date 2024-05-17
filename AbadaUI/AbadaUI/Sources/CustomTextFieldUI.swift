@@ -52,7 +52,7 @@ public final class CustomTextFieldUI: UITextField {
         self.placeholder = placeholder
         layer.cornerRadius = 8
         backgroundColor = .systemGray6
-        layer.borderColor = UIColor(named: "abadaAcent")?.cgColor
+        layer.borderColor = UIColor(named: "abadaGray")?.cgColor
         layer.borderWidth = 1.0
         heightAnchor.constraint(equalToConstant: 44).isActive = true
 

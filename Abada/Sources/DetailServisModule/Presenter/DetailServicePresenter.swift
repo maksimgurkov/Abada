@@ -37,9 +37,6 @@ private extension DetailServicePresenter {
     func createViewModel(viewModel: DetailServisViewModel) {
         var viewModels = [DetailServiceTypeCell]()
 
-        let photoViewModel: DetailServiceTypeCell = .image(.init(nameImage: viewModel.image))
-        viewModels.append(photoViewModel)
-
         let titleViewModel: DetailServiceTypeCell = .title(.init(
             text: viewModel.title,
             systemName: setIconButton(),
@@ -48,6 +45,9 @@ private extension DetailServicePresenter {
             }
         ))
         viewModels.append(titleViewModel)
+
+        let photoViewModel: DetailServiceTypeCell = .image(.init(nameImage: viewModel.image))
+        viewModels.append(photoViewModel)
 
         let articleViewModel: DetailServiceTypeCell = .article(.init(text: viewModel.detailArticle))
         viewModels.append(articleViewModel)

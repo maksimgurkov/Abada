@@ -18,8 +18,6 @@ final class ApplicationViewController: UIViewController {
     private let titleLabel = HeaderLabelUI(text: "")
     private let descriptionLabel = SmallLabelUI(text: "")
 
-    //    let keychainManager = KeychainManager.shared
-
     private let nameTextField: CustomTextFieldUI = {
         let textField = CustomTextFieldUI(placeholder: "Имя")
         textField.isOn = true
@@ -321,7 +319,6 @@ extension ApplicationViewController: MFMailComposeViewControllerDelegate {
         default:
             break
         }
-
         controller.dismiss(animated: true, completion: nil)
     }
 }

@@ -5,19 +5,25 @@ import AbadaUI
 final class GroupServisTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let imageWork = PhotoBorderImageViewUI(image: "")
+    private let imageWork = PhotoImageViewUI(image: "")
 
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = AbadaColors.Color(resource: .abadaAcent)
+        view.backgroundColor = .clear
         view.layer.cornerRadius = 8
         return view
     }()
 
     private let titleLabel: TitleLabelUI = {
         let label = TitleLabelUI(text: "")
-        label.textColor = AbadaColors.Color(resource: .abadaTextInversion)
+        label.textColor = AbadaColors.Color(resource: .abadaText)
         return label
+    }()
+
+    private lazy var seporatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AbadaColors.Color(resource: .abadaGray)
+        return view
     }()
 
     // MARK: - Init
@@ -40,7 +46,7 @@ final class GroupServisTableViewCell: UITableViewCell {
 private extension GroupServisTableViewCell {
     func setupView() {
         selectionStyle = .none
-        backgroundColor = AbadaColors.Color(resource: .abadaBackground)
+        backgroundColor = .clear
         addSubView()
         setConstraints()
     }
@@ -49,7 +55,7 @@ private extension GroupServisTableViewCell {
 // MARK: - Setting
 private extension GroupServisTableViewCell {
     func addSubView() {
-        contentView.addSubviews([containerView, imageWork, titleLabel])
+        contentView.addSubviews([containerView, imageWork, titleLabel, seporatorView])
     }
 }
 
@@ -68,9 +74,14 @@ private extension GroupServisTableViewCell {
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 30),
-            titleLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20),
+            titleLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 0),
             titleLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20),
-            titleLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10)
+            titleLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
+
+            seporatorView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            seporatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            seporatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
+            seporatorView.heightAnchor.constraint(equalToConstant: 0.5)
         ])
     }
 }

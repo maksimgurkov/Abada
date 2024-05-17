@@ -5,7 +5,7 @@ import AbadaUI
 final class NewsTableViewCell: UITableViewCell {
 
     // MARK: - Private properties
-    private let newsImage = PhotoBorderImageViewUI(image: "")
+    private let newsImage = PhotoImageViewUI(image: "")
 
     private let newsTitle: TitleLabelUI = {
         let label = TitleLabelUI(text: "")

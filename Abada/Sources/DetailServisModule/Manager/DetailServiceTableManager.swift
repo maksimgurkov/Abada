@@ -54,19 +54,19 @@ extension DetailServiceTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModels[indexPath.row]
         switch viewModel {
-        case .image(let model):
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: DetailServiceImageCell.description(),
-                for: indexPath
-            ) as? DetailServiceImageCell else { return UITableViewCell() }
-            cell.fill(viewModel: model)
-            return cell
-
         case .title(let model):
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: DetailServiceTitleCell.description(),
                 for: indexPath
             ) as? DetailServiceTitleCell else { return UITableViewCell() }
+            cell.fill(viewModel: model)
+            return cell
+
+        case .image(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: DetailServiceImageCell.description(),
+                for: indexPath
+            ) as? DetailServiceImageCell else { return UITableViewCell() }
             cell.fill(viewModel: model)
             return cell
 

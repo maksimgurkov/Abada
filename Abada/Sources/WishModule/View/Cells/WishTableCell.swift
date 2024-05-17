@@ -4,7 +4,7 @@ import AbadaUI
 // MARK: - WishTableCell
 final class WishTableCell: UITableViewCell {
     // MARK: - Private properties
-    private let imageWork = PhotoBorderImageViewUI(image: "")
+    private let imageWork = PhotoImageViewUI(image: "")
 
     private let containerView: UIView = {
         let view = UIView()

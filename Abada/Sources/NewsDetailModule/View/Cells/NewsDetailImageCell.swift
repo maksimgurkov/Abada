@@ -4,7 +4,7 @@ import AbadaUI
 // MARK: - NewsDetailTitleCell
 final class NewsDetailImageCell: UITableViewCell {
 
-    private let newsImage = PhotoBorderImageViewUI(image: "")
+    private let newsImage = PhotoImageViewUI(image: "")
 
     // MARK: - Initialisers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

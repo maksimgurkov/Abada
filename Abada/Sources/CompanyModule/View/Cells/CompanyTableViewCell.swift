@@ -8,8 +8,8 @@ final class CompanyTableViewCell: UITableViewCell {
     private let titleLabel = TitleLabelUI(text: "")
     private let descriptionLabel = SmallLabelUI(text: "")
 
-    private lazy var photoImageView: PhotoBorderImageViewUI = {
-        let image = PhotoBorderImageViewUI(image: "")
+    private lazy var photoImageView: PhotoImageViewUI = {
+        let image = PhotoImageViewUI(image: "")
         image.image = UIImage(named: "companyDetail_onas")
         return image
     }()

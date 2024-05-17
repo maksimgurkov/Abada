@@ -1,8 +1,8 @@
 import Foundation
 
 enum DetailServiceTypeCell {
-    case image(DetailImageViewModel)
     case title(DetailTitleViewModel)
+    case image(DetailImageViewModel)
     case article(DetailArticleViewModel)
     case price(DetailPriceViewModel)
     case button(DetailButtonViewModel)
